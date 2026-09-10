@@ -1,0 +1,13 @@
+{
+  "HomePage": {
+    "title": "Welcome to BNPC",
+    "description": "Services and engineering company"
+  },
+  "Navigation": {
+    "home": "Home",
+    "services": "Services",
+    "projects": "Projects",
+    "team": "Team",
+    "news": "News"
+  }
+}
