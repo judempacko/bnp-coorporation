@@ -6,7 +6,24 @@ const withNextIntl = createNextIntlPlugin(
 );
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Autorise le test sur téléphone réel via IP locale (HMR + refresh).
+  // Si ton IP change, remplace-la ici et redémarre `npm run dev`.
+  allowedDevOrigins: ['192.168.100.5'],
+  poweredByHeader: false,
+  images: {
+    formats: ['image/avif', 'image/webp'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'api.bnp-coorporation.com',
+        pathname: '/wp-content/uploads/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+    ],
+  },
 };
 
 export default withNextIntl(nextConfig);
