@@ -1,147 +1,604 @@
 @import "tailwindcss";
 
-/* ==========================================================================
-   DECLARATIONS DE POLICES (@font-face Inter)
-   ========================================================================== */
-
-@font-feature-values "Inter" {
-  @styleset {
-    disambiguation: 2;
+/* Indicateur scroll du hero service : double chevron en boucle (fondu + descente) */
+@keyframes hero-chevron {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: translateY(-2px);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(3px);
+  }
+}
+.animate-hero-chevron {
+  animation: hero-chevron 1.8s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-hero-chevron {
+    animation: none;
+    opacity: 1;
   }
 }
 
-/* Latin */
+/* ==========================================================================
+   POLICES & CHARTE BNP CORPORATION — Hybridation MDN
+   Mukta (identité) + rythmique / tokens inspirés de MDN Web Docs (Inter).
+   MDN ref : base 16px, échelle rem, line-height contenu 1.75 / header 1.25,
+   bold = 600, mesure ~48rem, code mono, liens soulignés.
+   ========================================================================== */
+
+/* Mukta locale (400–700 uniquement : pas de 800/900 pour éviter le faux-gras) */
 @font-face {
-  font-family: "Inter";
+  font-family: "Mukta";
+  src: url("/fonts/mukta/Mukta-Regular.ttf") format("truetype");
+  font-weight: 400;
   font-style: normal;
-  font-weight: 100 900;
-  font-feature-settings: "calt" 0;
-  src: url("/fonts/inter-latin.woff2") format("woff2");
   font-display: swap;
-  unicode-range:
-    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
-    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
-    U+2215, U+FEFF, U+FFFD;
 }
 
 @font-face {
-  font-family: "Inter";
-  font-style: italic;
-  font-weight: 100 900;
-  font-feature-settings: "calt" 0;
-  src: url("/fonts/inter-italic-latin.woff2") format("woff2");
-  font-display: swap;
-  unicode-range:
-    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
-    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
-    U+2215, U+FEFF, U+FFFD;
-}
-
-/* Latin extended */
-@font-face {
-  font-family: "Inter";
+  font-family: "Mukta";
+  src: url("/fonts/mukta/Mukta-Medium.ttf") format("truetype");
+  font-weight: 500;
   font-style: normal;
-  font-weight: 100 900;
-  font-feature-settings: "calt" 0;
-  src: url("/fonts/inter-latin-extended.woff2") format("woff2");
   font-display: swap;
-  unicode-range:
-    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304,
-    U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB,
-    U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
 @font-face {
-  font-family: "Inter";
-  font-style: italic;
-  font-weight: 100 900;
-  font-feature-settings: "calt" 0;
-  src: url("/fonts/inter-italic-latin-extended.woff2") format("woff2");
-  font-display: swap;
-  unicode-range:
-    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304,
-    U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB,
-    U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-
-/* Cyrillic */
-@font-face {
-  font-family: "Inter";
+  font-family: "Mukta";
+  src: url("/fonts/mukta/Mukta-SemiBold.ttf") format("truetype");
+  font-weight: 600;
   font-style: normal;
-  font-weight: 100 900;
-  font-feature-settings: "calt" 0;
-  src: url("/fonts/inter-cyrillic.woff2") format("woff2");
   font-display: swap;
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
 }
 
 @font-face {
-  font-family: "Inter";
-  font-style: italic;
-  font-weight: 100 900;
-  font-feature-settings: "calt" 0;
-  src: url("/fonts/inter-italic-cyrillic.woff2") format("woff2");
+  font-family: "Mukta";
+  src: url("/fonts/mukta/Mukta-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
   font-display: swap;
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
 }
 
 /* ==========================================================================
-   VARIABLES ET THEME DE TYPOGRAPHIE
+   TOKENS — échelle MDN adaptée (rem, base navigateur 16px)
    ========================================================================== */
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #2c2c2c;
+  --brand-primary: #0A66C2;
+  --brand-hover: #0854a0;
+  --brand-visited: #5f1fad; /* MDN : visited violet */
+  --text-base-color: #2c2c2c;
+  --text-muted-color: #51565d; /* MDN gray-40, meilleur contraste que #666 */
+  --border-subtle: #e2e8f0;
+  --code-bg: #edeef0; /* MDN gray-80 */
+  --code-bg-dark: #212426;
 
-  /* Variables typographiques */
-  --font-family-text: "Inter", system-ui, sans-serif;
-  --font-family-code: "JetBrains Mono", monospace;
+  /* Verdana — police système (aucun téléchargement), base 16px */
+  --font-family-text: Verdana, Geneva, Tahoma, system-ui, sans-serif;
+  --font-family-code: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
+  /* Échelle MDN : 2.5 / 2 / 1.5 / 1.25 / 1 / 0.8rem */
+  --font-size-largest: 2.5rem;   /* 40px — h1 */
+  --font-size-larger: 2rem;      /* 32px — h2 */
+  --font-size-large: 1.5rem;     /* 24px — h3 */
+  --font-size-medium: 1.25rem;   /* 20px — h4 / lead */
+  --font-size-normal: 1rem;      /* 16px — base rem */
+  --font-size-small: 0.875rem;   /* 14px — petit texte (MDN: 0.8) */
+  --font-size-caption: 0.8125rem;/* 13px */
+
+  /* Corps MDN : 16px */
+  --font-body: 1rem;
+  --font-lead: 1.25rem;
+  --font-display: 3.5rem; /* 56px */
+
+  /* Interlignages MDN */
   --font-line-content: 1.75;
   --font-line-normal: 1.5;
   --font-line-header: 1.25;
-  --font-line-ui: 1;
-
-  --font-size-largest: 2.5rem;
-  --font-size-larger: 2rem;
-  --font-size-large: 1.5rem;
-  --font-size-medium: 1.25rem;
-  --font-size-normal: 1rem;
-  --font-size-small: 0.8rem;
+  --font-line-ui: 1.4;
 
   --font-weight-normal: 400;
-  --font-weight-bold: 600;
+  --font-weight-medium: 500;
+  --font-weight-bold: 600; /* MDN : bold = 600, pas 700 */
+  --font-weight-display: 700; /* max Mukta disponible */
+
+  --measure: 68ch; /* longueur de ligne confortable */
+  --layout-content-max: 48rem; /* MDN */
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-brand: #0A66C2;
+  --color-brand-hover: #0854a0;
   --font-sans: var(--font-family-text);
+  --font-mukta: var(--font-family-text);
   --font-mono: var(--font-family-code);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ==========================================================================
+   BASE — comme MDN : html 16px / 1.5, rendu optimisé
+   ========================================================================== */
+
+/* Couche `base` : priorité inférieure aux utilitaires Tailwind, pour que les
+   classes comme `text-[13px]` sur un `h2` s'appliquent vraiment. Sans ça, ces
+   règles non rangées écrasaient tous les utilitaires (bug des titres à 32px). */
+@layer base {
+  html {
+    font-family: var(--font-family-text);
+    font-size: 100%; /* 16px → 1rem fiable, comme MDN */
+    line-height: var(--font-line-normal);
+    color: var(--text-base-color);
+    overflow-wrap: break-word;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    background: var(--background);
+    color: var(--text-base-color);
+    font-family: var(--font-family-text);
+    font-size: var(--font-body); /* 16px, comme MDN */
+    line-height: 1.7; /* aéré et apaisant, comme MDN */
   }
 }
 
+/* Mukta s'arrête à 700 : on plafonne pour éviter le faux-gras synthétisé */
+.font-extrabold,
+.font-black {
+  font-weight: 700;
+}
+
+::selection {
+  background: #a4cefe; /* MDN blue-80 */
+  color: #072446;
+}
+
+/* Évite les orphelines/veuves dans les paragraphes (amélioration progressive,
+   ignorée par les navigateurs qui ne la supportent pas) */
+@layer base {
+  p {
+    text-wrap: pretty;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
 /* ==========================================================================
-   BASE STYLES
+   TITRES GLOBAUX — esprit MDN : 600, tracking resserré, balance
    ========================================================================== */
 
-html {
-  font-family: var(--font-family-text);
-  font-size: var(--font-size-normal);
-  font-feature-settings: "calt" 0;
-  font-variant-alternates: styleset(disambiguation);
-  line-height: var(--font-line-content);
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: var(--font-weight-bold);
+    line-height: var(--font-line-header);
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+    overflow-wrap: break-word;
+  }
+}
+
+.text-display {
+  font-size: var(--font-display);
+  line-height: 1.1;
+  font-weight: var(--font-weight-display);
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+/* Base titres : taille, graisse, interlignage uniquement.
+   La couleur est héritée du contexte (body : --text-base-color).
+   Sur tout fond non standard, ajouter une classe text-* explicite. */
+@layer base {
+  h1, .text-h1 {
+    font-size: var(--font-size-largest);
+    line-height: 1.2;
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.015em;
+  }
+
+  h2, .text-h2 {
+    font-size: var(--font-size-larger);
+    line-height: var(--font-line-header);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.015em;
+  }
+
+  h3, .text-h3 {
+    font-size: var(--font-size-large);
+    line-height: var(--font-line-header);
+    font-weight: var(--font-weight-bold);
+  }
+
+  h4, .text-h4 {
+    font-size: var(--font-size-medium);
+    line-height: 1.35;
+    font-weight: var(--font-weight-bold);
+  }
+}
+
+/* Couleur par défaut de la charte, pour les utilitaires employés seuls */
+.text-h1, .text-h2, .text-h3, .text-h4 {
+  color: #2c2c2c;
+}
+
+.text-lead {
+  font-size: var(--font-lead);
+  line-height: 1.6;
+  color: #2c2c2c;
+  max-width: var(--measure);
+}
+
+.text-body-base {
+  font-size: var(--font-body);
+  line-height: 1.6;
+  color: #2c2c2c;
+  max-width: var(--measure);
+}
+
+.text-body-sm {
+  font-size: var(--font-size-small);
+  line-height: var(--font-line-normal);
+  color: var(--text-muted-color);
+}
+
+.text-caption {
+  font-size: var(--font-size-caption);
+  line-height: 1.4;
+  color: var(--text-muted-color);
+}
+
+.measure {
+  max-width: var(--measure);
+}
+
+.content-narrow {
+  max-width: var(--layout-content-max);
+  margin-inline: auto;
+}
+
+/* ==========================================================================
+   PROSE ARTICLE — contenus longs WordPress, fidèle à MDN .content-section
+   Usage : <div class="prose-article" dangerouslySetInnerHTML={...} />
+   ========================================================================== */
+
+.prose-article {
+  font-size: var(--font-body);
+  line-height: var(--font-line-content); /* 1.75 MDN */
+  color: var(--text-base-color);
+  overflow-wrap: break-word;
+  max-width: var(--layout-content-max);
+}
+
+.prose-article > *:first-child {
+  margin-top: 0;
+}
+
+.prose-article :target {
+  scroll-margin-top: 6rem;
+}
+
+/* Titres dans l'article : poids normal MDN → ici 600 pour garder l'autorité
+   corporate, mais avec la rythmique MDN (marges, tailles rem). */
+.prose-article h2,
+.prose-article h3,
+.prose-article h4,
+.prose-article h5,
+.prose-article h6 {
+  font-weight: var(--font-weight-bold);
+  line-height: var(--font-line-header);
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+.prose-article h2 {
+  font-size: var(--font-size-larger);
+  margin: 2.5rem 0 1rem;
+}
+
+.prose-article h3 {
+  font-size: var(--font-size-large);
+  margin: 2rem 0 0.75rem;
+}
+
+.prose-article h4 {
+  font-size: var(--font-size-medium);
+  margin: 1.5rem 0 0.5rem;
+}
+
+.prose-article h5,
+.prose-article h6 {
+  font-size: var(--font-body);
+  margin: 1.25rem 0 0.5rem;
+}
+
+.prose-article h2 code,
+.prose-article h3 code,
+.prose-article h4 code {
+  padding: 0 0.125em;
+}
+
+.prose-article p {
+  margin: 1rem 0;
+  max-width: var(--measure);
+}
+
+.prose-article strong,
+.prose-article b {
+  font-weight: var(--font-weight-bold);
+}
+
+/* Liens MDN : soulignés, visited violet, hover épais */
+.prose-article a {
+  color: var(--brand-primary);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+}
+
+.prose-article a:visited {
+  color: var(--brand-visited);
+}
+
+.prose-article a:hover {
+  color: var(--brand-hover);
+  text-decoration-thickness: 2px;
+}
+
+.prose-article a[href^="#"] {
+  text-decoration: none;
+}
+
+.prose-article a[href^="#"]:hover {
+  text-decoration: underline;
+}
+
+/* Listes MDN : retrait, espacement généreux */
+.prose-article ul,
+.prose-article ol {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.prose-article li {
+  margin: 0.5rem 0;
+  max-width: var(--measure);
+}
+
+.prose-article li::marker {
+  color: var(--brand-primary);
+}
+
+.prose-article li > p:first-child {
+  margin-top: 0.5rem;
+}
+
+/* Citation MDN */
+.prose-article blockquote {
+  border-inline-start: 0.25rem solid var(--border-subtle);
+  color: var(--text-muted-color);
+  margin: 1.5rem 0;
+  padding: 0.25rem 0 0.25rem 1.25rem;
+}
+
+.prose-article blockquote > p {
+  margin: 0.5rem 0;
+}
+
+/* Code inline + blocs MDN (JetBrains Mono → Geist Mono ici) */
+.prose-article code,
+.prose-article pre,
+.prose-article kbd {
+  font-family: var(--font-family-code);
+}
+
+.prose-article code {
+  font-size: 0.875em;
+  background-color: var(--code-bg);
+  border-radius: 0.25rem;
+  padding: 0.125em 0.25em;
   overflow-wrap: break-word;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-family-text);
+.prose-article pre {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  background-color: #f7f7f8;
+  border: 1px solid var(--border-subtle);
+  border-radius: 0.25rem;
+  padding: 1rem;
+  margin: 1rem 0;
+  overflow: auto;
+  white-space: pre-wrap;
+}
+
+.prose-article pre code {
+  background-color: transparent;
+  padding: 0;
+  border-radius: 0;
+}
+
+.prose-article kbd {
+  font-size: 0.85em;
+  background-color: #fff;
+  border: 1px solid var(--border-subtle);
+  border-bottom-width: 2px;
+  border-radius: 0.25rem;
+  color: var(--text-muted-color);
+  padding: 0.0625em 0.375em;
+  white-space: nowrap;
+}
+
+/* Images / figures MDN */
+.prose-article img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 2rem auto;
+  border: 1px solid var(--border-subtle);
+  border-radius: 0.25rem;
+  background: #fff;
+}
+
+.prose-article figure {
+  margin: 2rem 0;
+}
+
+.prose-article figcaption {
+  font-size: var(--font-size-small);
+  color: var(--text-muted-color);
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+/* Tableaux MDN */
+.prose-article table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+  line-height: var(--font-line-normal);
+  margin: 1.5rem 0;
+}
+
+.prose-article th,
+.prose-article td {
+  border: 1px solid var(--border-subtle);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+
+.prose-article thead tr,
+.prose-article tr:nth-of-type(2n) {
+  background-color: #f8fafc;
+}
+
+.prose-article th {
+  font-weight: var(--font-weight-bold);
+}
+
+.prose-article hr {
+  border: none;
+  border-top: 1px solid var(--border-subtle);
+  margin: 2.5rem 0;
+}
+
+/* Dark mode article (prefers-color-scheme + classe .dark en secours) */
+@media (prefers-color-scheme: dark) {
+  .prose-article {
+    color: #e2e8f0;
+  }
+  .prose-article a {
+    color: #a4cefe;
+  }
+  .prose-article a:visited {
+    color: #d8b8ff;
+  }
+  .prose-article blockquote {
+    color: #94a3b8;
+    border-color: #334155;
+  }
+  .prose-article code {
+    background-color: var(--code-bg-dark);
+  }
+  .prose-article pre {
+    background-color: #18191b;
+    border-color: #334155;
+  }
+  .prose-article kbd {
+    background-color: #212426;
+    border-color: #334155;
+    color: #cbd5e1;
+  }
+  .prose-article img {
+    border-color: #334155;
+  }
+  .prose-article th,
+  .prose-article td {
+    border-color: #334155;
+  }
+  .prose-article thead tr,
+  .prose-article tr:nth-of-type(2n) {
+    background-color: #1e293b;
+  }
+  .prose-article hr {
+    border-color: #334155;
+  }
+}
+
+.dark .prose-article {
+  color: #e2e8f0;
+}
+
+.dark .prose-article a {
+  color: #a4cefe;
+}
+
+.dark .prose-article a:visited {
+  color: #d8b8ff;
+}
+
+.dark .prose-article code {
+  background-color: var(--code-bg-dark);
+}
+
+.dark .prose-article pre {
+  background-color: #18191b;
+  border-color: #334155;
+}
+
+/* ==========================================================================
+   BOUTONS — flat, poids 600 façon MDN UI
+   ========================================================================== */
+
+.btn-brand {
+  background-color: #0A66C2;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: var(--font-weight-bold);
+  line-height: var(--font-line-normal);
+  letter-spacing: 0.01em;
+  border-radius: 6px;
+  padding: 10px 24px;
+  transition: background-color 0.2s ease-in-out;
+  box-shadow: none !important;
+  border: none;
+}
+
+.btn-brand:hover {
+  background-color: #0854a0;
+  box-shadow: none !important;
+}
+
+.btn-white {
+  background-color: #ffffff;
+  color: #0A66C2;
+  font-size: 1rem;
+  font-weight: var(--font-weight-bold);
+  line-height: var(--font-line-normal);
+  letter-spacing: 0.01em;
+  border-radius: 6px;
+  padding: 10px 24px;
+  transition: background-color 0.2s ease-in-out;
+  box-shadow: none !important;
+  border: none;
+}
+
+.btn-white:hover {
+  background-color: #f0f4f9;
+  box-shadow: none !important;
 }
