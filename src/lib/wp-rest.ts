@@ -2,7 +2,7 @@ const API_URL =
   process.env.NEXT_PUBLIC_WORDPRESS_API_URL ||
   "https://api.bnp-coorporation.com/wp-json/wp/v2";
 
-export async function fetchREST<T = any>(
+export async function fetchREST<T = unknown>(
   endpoint: string,
   options: RequestInit = {}
 ): Promise<T> {
