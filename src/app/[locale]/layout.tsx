@@ -4,7 +4,13 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
+import { Header } from '@/components/Header';
+import { Footer } from '@/components/Footer';
+import { getAllServices } from '@/lib/api';
+import { SITE_URL, organizationJsonLd, websiteJsonLd } from '@/lib/seo';
 import "../globals.css";
+
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,8 +23,50 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "BNPC - Services & Ingénierie",
-  description: "Site officiel de BNPC",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: 'BNP Coorporation Sarl — Sécurité incendie, BTP & Ingénierie au Cameroun',
+    template: '%s — BNP Coorporation Sarl',
+  },
+  description:
+    "BNP Coorporation Sarl (BNPC) : sécurité incendie, BTP, forage d'eau, énergies renouvelables, drones et réparation navale à Yaoundé, Douala, Kribi. Devis sous 24-48h.",
+  keywords: [
+    'BNP Coorporation',
+    'sécurité incendie Cameroun',
+    'SSIAP Yaoundé',
+    'BTP Cameroun',
+    'forage eau Cameroun',
+    'énergie solaire Cameroun',
+    'drone Cameroun',
+    'réparation navale Kribi',
+  ],
+  alternates: {
+    languages: {
+      fr: `${SITE_URL}/fr`,
+      en: `${SITE_URL}/en`,
+      'x-default': `${SITE_URL}/fr`,
+    },
+  },
+  openGraph: {
+    type: 'website',
+    siteName: 'BNP Coorporation Sarl',
+    locale: 'fr_FR',
+    alternateLocale: ['en_US'],
+    images: [{ url: '/logo-bnpc.svg', alt: 'BNP Coorporation Sarl — BNPC' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 export function generateStaticParams() {
@@ -41,11 +89,37 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
   const messages = await getMessages();
 
+  let headerServices: Array<{ slug: string; label: string }> = [];
+  try {
+    headerServices = (await getAllServices(locale)).map((s) => ({
+      slug: s.slug,
+      label: s.title,
+    }));
+  } catch {
+    headerServices = [];
+  }
+
+  // Note : suppressHydrationWarning sur <html> car Chrome (Autofill/Cast) injecte
+  // l'attribut `__gcrremoteframetoken` après réception du HTML mais avant
+  // l'hydratation React → faux mismatch. Attribut 100% externe, jamais rendu
+  // par notre code. Ne masque que les attributs de cet élément.
   return (
-    <html lang={locale} className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col">
+    <html lang={locale} className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`} suppressHydrationWarning>
+      <body className="min-h-full flex flex-col bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-sans">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd()) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd()) }}
+        />
         <NextIntlClientProvider messages={messages}>
-          {children}
+          <Header locale={locale} services={headerServices} />
+          <div className="flex-1 flex flex-col">
+            {children}
+          </div>
+          <Footer locale={locale} />
         </NextIntlClientProvider>
       </body>
     </html>
