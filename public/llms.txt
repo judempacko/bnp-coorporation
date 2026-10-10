@@ -1,0 +1,26 @@
+# BNP Coorporation Sarl — llms.txt (experimental, for AI assistants)
+# Docs: https://llmstxt.org/ — optional file, does not replace sitemap/robots.
+
+> BNP Coorporation Sarl (BNPC) is a multiservice engineering company based in Yaoundé, Cameroon.
+> Founded in 2023. Active in Yaoundé, Douala, Kribi and across Cameroon.
+> Expertise: fire safety (SSIAP training, ERP audits), construction (BTP), water drilling,
+> renewable energy (solar), drones & aerial imaging, naval repair, industrial cleaning.
+> Contact: contact@bnp-coorporation.com, (+237) 6 55 01 09 19, BP 4219 Yaoundé.
+> Hours: Mon-Fri 8:00-16:00, Sat 8:00-12:00. Languages: French (default), English.
+
+## Services (FR/EN)
+- /fr/services/securite-incendie — Sécurité incendie, audits ERP, SSIAP
+- /fr/services/construction-btp — Construction, BTP, génie civil
+- /fr/services/forage-et-eau — Forage d'eau, potabilisation, pompage solaire
+- /fr/services/energies-renouvelables — Centrales solaires, stockage, maintenance
+- /fr/services/drones-imagerie-aerienne — Cartographie 3D, inspection, suivi chantier
+- /fr/services/reparation-navale — Réparation navale (port de Kribi, Douala)
+- /fr/services/nettoyage-industriel — Nettoyage industriel
+- Same paths under /en/ for English versions.
+
+## Company
+- /fr/qui-sommes-nous — About, mission, vision, values, team, key figures
+- /fr/galerie — Events with date, place, photos (meetings, conferences, field)
+- /fr/projets — Projects & case studies
+- /fr/actualites — News & articles
+- /fr/contact — Contact, quote within 24-48h, FAQ, field visits before pricing
