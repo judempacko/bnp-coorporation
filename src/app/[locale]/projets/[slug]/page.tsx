@@ -10,7 +10,7 @@ export default async function ProjetDetailPage({
 
   return (
     <div className="p-8">
-      <h1 className="text-3xl font-bold">Détail du Projet : {slug}</h1>
+      <h1 className="text-3xl font-semibold text-[#2c2c2c]">Détail du Projet : {slug}</h1>
     </div>
   );
 }
