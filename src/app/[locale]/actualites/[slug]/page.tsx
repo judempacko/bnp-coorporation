@@ -4,10 +4,7 @@ import { setRequestLocale } from 'next-intl/server';
 import Link from 'next/link';
 import { getPostBySlug } from '@/lib/api';
 import { canonicalFor, languageAlternates, SITE_URL } from '@/lib/seo';
-
-function stripHtml(html: string): string {
-  return html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
-}
+import { cleanWpText } from '@/lib/html';
 
 export async function generateMetadata({
   params,
@@ -17,9 +14,9 @@ export async function generateMetadata({
   const { locale, slug } = await params;
   const post = await getPostBySlug(slug).catch(() => null);
   if (!post) return {};
-  const plainTitle = stripHtml(post.title);
+  const plainTitle = cleanWpText(post.title);
   const description =
-    stripHtml(post.excerpt || post.content || '').slice(0, 155) ||
+    cleanWpText(post.excerpt || post.content || '').slice(0, 155) ||
     `${plainTitle} — BNP Coorporation Sarl, Cameroun.`;
   const path = `/actualites/${slug}`;
   const image = post.featuredImage?.node?.sourceUrl;
@@ -64,8 +61,8 @@ export default async function ArticleDetailPage({
   const articleJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    headline: stripHtml(post.title),
-    description: stripHtml(post.excerpt || '').slice(0, 200) || undefined,
+    headline: cleanWpText(post.title),
+    description: cleanWpText(post.excerpt || '').slice(0, 200) || undefined,
     datePublished: post.date,
     author: {
       '@type': 'Organization',
@@ -125,7 +122,7 @@ export default async function ArticleDetailPage({
         <div className="mb-10 rounded-3xl overflow-hidden shadow-xl">
           <img
             src={post.featuredImage.node.sourceUrl}
-            alt={post.featuredImage.node.altText || stripHtml(post.title)}
+            alt={post.featuredImage.node.altText || cleanWpText(post.title)}
             className="w-full h-auto max-h-[550px] object-cover"
             loading="lazy"
             decoding="async"

@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any -- Les réponses de l'API REST WordPress sont dynamiques et non typées par schéma */
 import { fetchREST } from './wp-rest';
+import { cleanWpText } from './html';
 
 export interface PostNode {
   id: string;
@@ -34,7 +35,7 @@ export function formatWpPost(item: any): PostNode {
 
   return {
     id: String(item.id),
-    title: item.title?.rendered || item.title || '',
+    title: cleanWpText(item.title?.rendered || item.title || ''),
     slug: item.slug,
     date: item.date,
     excerpt: item.excerpt?.rendered || item.excerpt || '',
@@ -284,7 +285,7 @@ export async function formatWpService(item: any, locale: string): Promise<Servic
 
   return {
     id: String(item.id),
-    title: item.title?.rendered || item.title || '',
+    title: cleanWpText(item.title?.rendered || item.title || ''),
     slug: item.slug,
     subtitle: pickLocale(acf.subtitle, acf.subtitle_en, locale),
     lead: pickLocale(acf.lead, acf.lead_en, locale),

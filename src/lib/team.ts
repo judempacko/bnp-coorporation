@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any -- Réponses WP REST dynamiques */
 import { fetchREST } from './wp-rest';
+import { cleanWpText, cleanWpParagraphs, extractYear, splitNameRole } from './html';
 
 /**
  * Niveau conservé pour compatibilité WP (champ ACF `niveau`) et tri par défaut,
@@ -28,6 +29,16 @@ export interface TeamMember {
   linkedin?: string | null;
   /** Ordre d'affichage dans la grille unique (1 = premier). */
   order: number;
+  /**
+   * Missions VISIBLES sur la fiche (ACF `bio` + `bio_en`, 2-4 lignes).
+   * Absent ou vide = section masquée, jamais inventée.
+   */
+  bio?: string[];
+  /**
+   * Année d'entrée ("2023") extraite des ACF `date_entree` / `annee_entree` /
+   * `date_embauche`. Null = mention masquée.
+   */
+  startYear?: string | null;
 }
 
 export const TEAM_POLES = [
@@ -192,7 +203,7 @@ const MOCK_TEAM: TeamMember[] = [
 /** Tente le CPT `membre` côté WP, sinon repli sur les données mockées. */
 export async function getTeam(locale: string): Promise<TeamMember[]> {
   try {
-    const raw = await fetchREST<any[]>('membre?per_page=100&_embed');
+    const raw = await fetchREST<any[]>('membre_equipe?per_page=100&_embed');
     if (Array.isArray(raw) && raw.length > 0) {
       const mapped: TeamMember[] = raw.map((item: any, i: number) => {
         const acf = item?.acf && typeof item.acf === 'object' ? item.acf : {};
@@ -208,26 +219,40 @@ export async function getTeam(locale: string): Promise<TeamMember[]> {
           if (locale === 'en' && e) return en;
           return typeof fr === 'string' ? fr : '';
         };
+        const { name: titleName, role: titleRole } = splitNameRole(
+          item.title?.rendered
+        );
+        const acfName = cleanWpText(pickEn(acf.nom, acf.nom_en));
+        const acfRole = cleanWpText(pickEn(acf.poste, acf.poste_en));
+        const bio = cleanWpParagraphs(pickEn(acf.bio, acf.bio_en));
+        const startYear = extractYear(
+          pickEn(acf.date_entree, acf.date_entree_en) ||
+            acf.annee_entree ||
+            acf.date_embauche
+        );
         return {
           id: String(item.id),
           slug: item.slug,
-          name:
-            typeof item.title?.rendered === 'string'
-              ? item.title.rendered.replace(/<[^>]*>/g, '').trim()
-              : pickEn(acf.nom, acf.nom_en) || `Membre ${item.id}`,
-          role: pickEn(acf.poste, acf.poste_en) || '',
+          // Le titre WP contient souvent "Nom – Poste" avec entités HTML
+          // ("Nathalie Balla &#8211; Président…") : on sépare nom et rôle, et
+          // on décode les entités que React afficherait littéralement.
+          name: acfName || titleName || `Membre ${item.id}`,
+          role: acfRole || titleRole || '',
           pole: typeof acf.pole === 'string' && acf.pole ? acf.pole : 'technique',
           level: acf.niveau === 'direction' ? 'direction' : 'staff',
           photo,
-          photoAlt: media?.alt_text || '',
+          photoAlt: cleanWpText(media?.alt_text) || '',
           // Texte alternatif invisible : ACF `description_seo` (+ `_en`),
           // repli sur l'ACF `bio` (+ `_en`) si présent.
-          seoDescription:
+          seoDescription: cleanWpText(
             pickEn(acf.description_seo, acf.description_seo_en) ||
-            pickEn(acf.bio, acf.bio_en) ||
-            '',
+              pickEn(acf.bio, acf.bio_en) ||
+              ''
+          ),
           linkedin: typeof acf.linkedin === 'string' ? acf.linkedin : null,
           order: typeof acf.ordre === 'number' ? acf.ordre : i,
+          bio: bio.length > 0 ? bio : undefined,
+          startYear: startYear ?? null,
         };
       });
       return mapped.sort((a, b) => a.order - b.order);

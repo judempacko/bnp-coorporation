@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any -- Réponses WP REST dynamiques */
 import { fetchREST } from './wp-rest';
+import { cleanWpText } from './html';
 
 export type GalleryCategory = 'rencontres' | 'conferences' | 'terrain' | 'ateliers';
 
@@ -204,7 +205,8 @@ export async function getGalleryEvents(locale: string): Promise<GalleryEvent[]> 
   try {
     const raw = await fetchREST<any[]>('galerie?per_page=100&_embed');
     if (Array.isArray(raw) && raw.length > 0) {
-      const mapped: GalleryEvent[] = raw.map((item: any, i: number) => {
+      const mapped: GalleryEvent[] = await Promise.all(
+        raw.map(async (item: any, i: number) => {
         const acf = item?.acf && typeof item.acf === 'object' ? item.acf : {};
         const media = item._embedded?.['wp:featuredmedia']?.[0];
         const sizes = media?.media_details?.sizes || {};
@@ -218,21 +220,49 @@ export async function getGalleryEvents(locale: string): Promise<GalleryEvent[]> 
           if (locale === 'en' && e) return en;
           return typeof fr === 'string' ? fr : '';
         };
-        const galleryImgs: GalleryImage[] = Array.isArray(acf.galerie_images)
-          ? acf.galerie_images
-              .map((img: any) => ({
-                url: img?.url || img?.source_url || '',
-                alt: pickEn(img?.alt, img?.alt_en) || '',
-              }))
-              .filter((img: GalleryImage) => img.url)
-          : [];
+        const galleryImgs: GalleryImage[] = [];
+        if (Array.isArray(acf.galerie_images)) {
+          for (const img of acf.galerie_images) {
+            if (typeof img === 'number') {
+              // Champ galerie en mode "ID" : résolution via /media
+              try {
+                const media = await fetchREST<any>(`media/${img}`);
+                const sizes = media?.media_details?.sizes || {};
+                const url =
+                  sizes.large?.source_url ||
+                  sizes.full?.source_url ||
+                  media?.source_url;
+                if (url) {
+                  galleryImgs.push({
+                    url,
+                    alt: media?.alt_text || media?.title?.rendered || '',
+                  });
+                }
+              } catch {
+                // Image illisible : ignorée
+              }
+            } else if (img && typeof img === 'object') {
+              // Mode "Tableau image" (recommandé) ou objet partiel
+              const url =
+                img?.url ||
+                img?.source_url ||
+                img?.sizes?.large ||
+                img?.sizes?.medium_large ||
+                '';
+              const alt = pickEn(img?.alt, img?.alt_en) || '';
+              if (url) galleryImgs.push({ url, alt });
+            } else if (typeof img === 'string' && img) {
+              galleryImgs.push({ url: img, alt: '' });
+            }
+          }
+        }
         return {
           id: String(item.id),
           slug: item.slug,
           title:
             typeof item.title?.rendered === 'string'
-              ? item.title.rendered.replace(/<[^>]*>/g, '').trim()
-              : pickEn(acf.titre, acf.titre_en),
+              ? cleanWpText(item.title.rendered)
+              : cleanWpText(pickEn(acf.titre, acf.titre_en)),
           date: item.date
             ? String(item.date).slice(0, 10)
             : pickEn(acf.date_evenement, acf.date_evenement),
@@ -250,7 +280,8 @@ export async function getGalleryEvents(locale: string): Promise<GalleryEvent[]> 
               ? galleryImgs
               : [{ url: cover, alt: media?.alt_text || '' }],
         };
-      });
+        })
+      );
       return mapped.sort((a, b) => (a.date < b.date ? 1 : -1));
     }
   } catch {
