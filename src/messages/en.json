@@ -1,8 +1,10 @@
 {
   "HomePage": {
-    "title": "Welcome to BNPC",
-    "subtitle": "Services, Engineering & Innovation Company",
-    "description": "We support companies in their technological transformation with tailored, high-performance, and sustainable engineering solutions."
+    "eyebrow": "BNP Coorporation Sarl (BNPC) — Yaoundé, Cameroon",
+    "title": "BNP Coorporation Sarl (BNPC)",
+    "subtitle": "Fire Safety, Construction & Engineering in Cameroon",
+    "description": "BNP Coorporation Sarl (BNPC), Cameroonian company based in Yaoundé since 2023: fire safety (SSIAP, ERP audits), construction, water drilling, solar, drones and naval repair. Active in Yaoundé, Douala, Kribi. Quote within 24-48h.",
+    "disambiguation": "Independent Cameroonian company, not affiliated with BNP Paribas or BNP Paribas Corporate."
   },
   "Navigation": {
     "home": "Home",

@@ -29,9 +29,15 @@ export const metadata: Metadata = {
     template: '%s — BNP Coorporation Sarl',
   },
   description:
-    "BNP Coorporation Sarl (BNPC) : sécurité incendie, BTP, forage d'eau, énergies renouvelables, drones et réparation navale à Yaoundé, Douala, Kribi. Devis sous 24-48h.",
+    'BNP Coorporation Sarl (BNPC), entreprise camerounaise à Yaoundé : sécurité incendie, BTP, forage d\u2019eau, énergies renouvelables, drones et réparation navale à Douala, Kribi. Devis sous 24-48h.',
   keywords: [
+    'BNP Coorporation Sarl',
     'BNP Coorporation',
+    'BNPC',
+    'bnp coorporation',
+    'bnp coorporation sarl',
+    'BNP Coorporation Cameroun',
+    'BNP Coorporation Yaoundé',
     'sécurité incendie Cameroun',
     'SSIAP Yaoundé',
     'BTP Cameroun',
@@ -105,7 +111,7 @@ export default async function LocaleLayout({
   // par notre code. Ne masque que les attributs de cet élément.
   return (
     <html lang={locale} className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`} suppressHydrationWarning>
-      <body className="min-h-full flex flex-col bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-sans">
+      <body className="min-h-full flex flex-col bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-sans">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd()) }}

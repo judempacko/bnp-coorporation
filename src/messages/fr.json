@@ -1,8 +1,10 @@
 {
   "HomePage": {
-    "title": "Bienvenue chez BNPC",
-    "subtitle": "Société de Services, d'Ingénierie & d'Innovation",
-    "description": "Nous accompagnons les entreprises dans leur transformation technologique avec des solutions d'ingénierie sur-mesure, performantes et pérennes."
+    "eyebrow": "BNP Coorporation Sarl (BNPC) — Yaoundé, Cameroun",
+    "title": "BNP Coorporation Sarl (BNPC)",
+    "subtitle": "Sécurité incendie, BTP & Ingénierie au Cameroun",
+    "description": "BNP Coorporation Sarl (BNPC), entreprise camerounaise basée à Yaoundé depuis 2023 : sécurité incendie (SSIAP, audits ERP), BTP, forage d'eau, solaire, drones et réparation navale. Intervention Yaoundé, Douala, Kribi. Devis sous 24-48h.",
+    "disambiguation": "Entreprise camerounaise indépendante, sans lien avec BNP Paribas ni BNP Paribas Corporate."
   },
   "Navigation": {
     "home": "Accueil",

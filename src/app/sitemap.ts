@@ -16,6 +16,7 @@ const FALLBACK_SERVICE_SLUGS = [
 
 const STATIC_PATHS = [
   '',
+  '/bnp-coorporation-sarl-bnpc',
   '/services',
   '/projets',
   '/actualites',
