@@ -3,9 +3,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { LinkedinLogo } from '@phosphor-icons/react/dist/ssr';
-import { ServiceHero } from '@/components/services/ServiceHero';
-import { EntrepriseSubNav } from '@/components/entreprise/EntrepriseSubNav';
+import { LinkedinLogo, ArrowLeft } from '@phosphor-icons/react/dist/ssr';
 import { getTeam, getTeamMemberBySlug } from '@/lib/team';
 
 export async function generateStaticParams() {
@@ -47,7 +45,6 @@ export default async function TeamMemberPage({
   setRequestLocale(locale);
 
   const t = await getTranslations('TeamPage');
-  const nav = await getTranslations('Navigation');
   const member = await getTeamMemberBySlug(slug, locale);
 
   if (!member) notFound();
@@ -76,27 +73,24 @@ export default async function TeamMemberPage({
     <main className="w-full bg-white text-[#2c2c2c]">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      {/* 1. Hero cinématique sur la photo du collaborateur */}
-      <ServiceHero
-        title={member.name}
-        subtitle={member.role}
-        image={member.photo}
-        backLabel={locale === 'fr' ? "Retour à l'équipe" : 'Back to the team'}
-        backHref={`/${locale}/qui-sommes-nous#equipe`}
-      />
+      {/* Retour équipe : bandeau fin, pas de hero cinématique ici */}
+      <div className="mx-auto max-w-[1100px] px-6 pt-6">
+        <Link
+          href={`/${locale}/qui-sommes-nous`}
+          className="group inline-flex items-center gap-2 text-[14px] font-semibold text-neutral-500 hover:text-[#0A66C2] transition-colors"
+        >
+          <ArrowLeft
+            size={16}
+            weight="bold"
+            aria-hidden
+            className="transition-transform duration-300 ease-out group-hover:-translate-x-1"
+          />
+          {locale === 'fr' ? "Retour à l'équipe" : 'Back to the team'}
+        </Link>
+      </div>
 
-      <EntrepriseSubNav
-        locale={locale}
-        active="equipe"
-        labels={{
-          presentation: nav('companyPresentation'),
-          equipe: nav('companyTeam'),
-          galerie: nav('companyGallery'),
-        }}
-      />
-
-      <div className="max-w-[1100px] mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-[360px_1fr] gap-10 items-start">
-        <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-slate-100">
+      <div className="max-w-[1100px] mx-auto px-6 pt-8 pb-12 sm:pt-10 sm:pb-16 grid grid-cols-1 md:grid-cols-[360px_1fr] gap-8 md:gap-12 items-start">
+        <div className="relative aspect-square rounded-2xl overflow-hidden bg-neutral-200">
           <Image
             src={member.photo}
             alt={member.photoAlt || `${member.name}, ${member.role} — BNP Coorporation`}
@@ -107,40 +101,58 @@ export default async function TeamMemberPage({
           />
         </div>
 
-        <aside className="space-y-4">
-          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6 space-y-4">
-            <h2 className="text-[18px] font-semibold text-[#2c2c2c]">
-              {member.name}
-            </h2>
-            <p className="text-[15px] font-semibold text-[#0A66C2]">{member.role}</p>
-            <p className="text-[14px] leading-[1.7] text-[#51565d]">
-              BNP Coorporation Sarl — Yaoundé, Cameroun
+        {/* Colonne éditoriale : pas de boîte, axe optique aligné sur le haut photo */}
+        <div className="md:pt-1">
+          <h1 className="text-[28px] sm:text-[32px] leading-[1.15] font-semibold tracking-tight text-[#2c2c2c]">
+            {member.name}
+          </h1>
+          <p className="mt-2 text-[17px] font-medium text-[#0A66C2]">{member.role}</p>
+          {/* Année d'entrée réelle (ACF) — masquée si non renseignée */}
+          {member.startYear && (
+            <p className="mt-1.5 text-[15px] text-neutral-500">
+              {locale === 'fr'
+                ? `En poste depuis ${member.startYear}`
+                : `With BNPC since ${member.startYear}`}
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 pt-1">
-              {member.linkedin && member.linkedin !== '#' && (
-                <a
-                  href={member.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-brand inline-flex items-center justify-center gap-2"
-                >
-                  <LinkedinLogo size={18} weight="fill" />
-                  LinkedIn
-                </a>
-              )}
-              <Link
-                href={`/${locale}/contact`}
-                className="inline-flex items-center justify-center font-semibold text-[16px] px-6 py-2.5 rounded-md border border-slate-300 text-[#2c2c2c] hover:border-[#0A66C2] hover:text-[#0A66C2] transition-colors"
-              >
-                {t('ctaButton')}
-              </Link>
+          )}
+
+          <hr className="mt-6 mb-4 border-neutral-200" />
+
+          {/* Missions réelles (ACF bio) — masquées si non renseignées */}
+          {member.bio && member.bio.length > 0 && (
+            <div>
+              <h3 className="text-[13px] font-semibold uppercase tracking-[0.2em] text-neutral-500">
+                {locale === 'fr' ? 'Missions' : 'Key responsibilities'}
+              </h3>
+              <div className="mt-2 space-y-3">
+                {member.bio.map((paragraph, i) => (
+                  <p key={i} className="text-[16px] leading-[1.75] text-[#2c2c2c]">
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
             </div>
+          )}
+
+          <div className="mt-9 flex flex-col sm:flex-row sm:items-center gap-3">
+            {member.linkedin && member.linkedin !== '#' && (
+              <a
+                href={member.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`LinkedIn de ${member.name}`}
+                className="inline-flex items-center justify-center gap-2 font-semibold text-[16px] px-6 py-3 rounded-full border border-neutral-300 text-[#2c2c2c] hover:border-[#0A66C2] hover:text-[#0A66C2] transition-colors"
+              >
+                <LinkedinLogo size={18} weight="fill" />
+                LinkedIn
+              </a>
+            )}
           </div>
-        </aside>
+        </div>
       </div>
 
       {others.length > 0 && (
-        <section className="bg-[#f8f9fa] border-t border-slate-200 py-12 sm:py-14">
+        <section className="bg-neutral-100 border-t border-neutral-200 py-12 sm:py-14">
           <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16">
             <h2 className="text-[24px] font-semibold leading-snug text-[#2c2c2c] mb-6 sm:text-[28px] sm:mb-8">
               {t('listTitle')}
@@ -150,9 +162,9 @@ export default async function TeamMemberPage({
                 <Link
                   key={m.id}
                   href={`/${locale}/qui-sommes-nous/${m.slug}`}
-                  className="group flex flex-col overflow-hidden rounded-lg border border-slate-200 bg-white hover:border-[#0A66C2] transition-colors"
+                  className="group flex flex-col"
                 >
-                  <div className="relative w-full h-44 bg-slate-100 overflow-hidden">
+                  <div className="relative w-full aspect-square bg-neutral-200 overflow-hidden rounded-xl">
                     <Image
                       src={m.photo}
                       alt={m.photoAlt || m.name}
@@ -161,7 +173,7 @@ export default async function TeamMemberPage({
                       className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   </div>
-                  <div className="flex flex-1 flex-col p-5">
+                  <div className="flex flex-1 flex-col pt-4">
                     <span className="text-[18px] font-semibold leading-snug text-[#2c2c2c] group-hover:text-[#0A66C2] transition-colors">
                       {m.name}
                     </span>
@@ -187,7 +199,7 @@ export default async function TeamMemberPage({
           </div>
           <Link
             href={`/${locale}/contact`}
-            className="inline-block w-full text-center bg-white text-[#0A66C2] hover:bg-slate-100 font-semibold text-[16px] px-8 py-3.5 rounded-md transition-colors shadow-none shrink-0 sm:w-auto"
+            className="inline-block w-full text-center bg-white text-[#0A66C2] hover:bg-neutral-100 font-semibold text-[16px] px-8 py-3.5 rounded-full transition-colors shadow-none shrink-0 sm:w-auto"
             style={{ boxShadow: 'none' }}
           >
             {t('ctaButton')}

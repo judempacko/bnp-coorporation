@@ -70,11 +70,11 @@ export function TeamGrid({ members, locale, labels }: TeamGridProps) {
         {ordered.map((m) => (
           <article
             key={m.id}
-            className="group rounded-2xl border border-slate-200 bg-white overflow-hidden hover:shadow-lg transition-shadow"
+            className="group"
           >
             <Link
               href={`/${locale}/qui-sommes-nous/${m.slug}`}
-              className="block relative h-56 w-full bg-slate-100 overflow-hidden"
+              className="block relative aspect-square w-full bg-neutral-200 overflow-hidden rounded-xl"
               aria-label={`${m.name} — ${m.role}`}
             >
               <Image
@@ -85,7 +85,7 @@ export function TeamGrid({ members, locale, labels }: TeamGridProps) {
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
               />
             </Link>
-            <div className="p-5 space-y-1.5">
+            <div className="pt-4 space-y-1.5">
               <h3 className="text-[17px] font-semibold text-[#2c2c2c]">
                 <Link
                   href={`/${locale}/qui-sommes-nous/${m.slug}`}

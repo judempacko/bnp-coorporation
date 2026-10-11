@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ServiceHero } from '@/components/services/ServiceHero';
 import { ScrubLead } from '@/components/services/ScrubLead';
 import { Counter } from '@/components/animations/Counter';
 import { EditorialRow } from '@/components/entreprise/EditorialRow';
@@ -10,8 +9,6 @@ import { TeamGrid } from '@/components/entreprise/TeamGrid';
 import { getTeam } from '@/lib/team';
 import { getGalleryEvents, formatEventDate } from '@/lib/gallery';
 
-const HERO_IMAGE =
-  'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1600';
 const STORY1_IMAGE =
   'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800';
 const STORY2_IMAGE =
@@ -63,14 +60,26 @@ export default async function QuiSommesNousPage({
 
   return (
     <main className="w-full bg-white text-[#2c2c2c]">
-      {/* 1. Hero cinématique */}
-      <ServiceHero
-        title={t('title')}
-        subtitle={t('subtitle')}
-        image={HERO_IMAGE}
-        backLabel={labels.backHome}
-        backHref={`/${locale}`}
-      />
+      {/* Header compact : bandeau bleu profond uni, sans cinématique.
+          Le hero photo plein écran n'a pas de sens ici (page éditoriale),
+          et le bleu vif est réservé aux CTA — d'où une teinte profonde. */}
+      <section className="bg-[#0B2F5C] text-white">
+        <div className="mx-auto max-w-7xl px-6 sm:px-12 lg:px-16 py-10 sm:py-14">
+          <Link
+            href={`/${locale}`}
+            className="group inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-[14px] font-semibold text-white backdrop-blur-md transition-colors hover:bg-white/20"
+          >
+            <span aria-hidden className="transition-transform duration-300 ease-out group-hover:-translate-x-1">←</span>
+            {labels.backHome}
+          </Link>
+          <h1 className="mt-4 text-3xl sm:text-4xl font-semibold tracking-tight text-balance">
+            {t('title')}
+          </h1>
+          <p className="mt-2 max-w-2xl text-[16px] sm:text-[17px] leading-relaxed text-blue-100">
+            {t('subtitle')}
+          </p>
+        </div>
+      </section>
 
       {/* 2. Récit : lead scrub + lignes éditoriales */}
       <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 py-14 sm:py-20">
@@ -141,7 +150,7 @@ export default async function QuiSommesNousPage({
             {c('missionVisionTitle')}
           </h2>
           <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-8">
+            <div className="rounded-2xl border border-slate-200 bg-neutral-100 p-8">
               <div className="flex items-center gap-3">
                 <span className="text-[15px] font-semibold tracking-[0.2em] text-[#0A66C2]">01</span>
                 <span className="h-px w-12 bg-[#0A66C2]" />
@@ -149,7 +158,7 @@ export default async function QuiSommesNousPage({
               <h3 className="mt-2 text-[20px] font-semibold text-[#2c2c2c]">{c('missionTitle')}</h3>
               <p className="mt-3 text-[16px] leading-[1.7] text-[#2c2c2c]">{c('missionDesc')}</p>
             </div>
-            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-8">
+            <div className="rounded-2xl border border-slate-200 bg-neutral-100 p-8">
               <div className="flex items-center gap-3">
                 <span className="text-[15px] font-semibold tracking-[0.2em] text-[#0A66C2]">02</span>
                 <span className="h-px w-12 bg-[#0A66C2]" />
@@ -184,7 +193,7 @@ export default async function QuiSommesNousPage({
 
       {/* 7. Galerie : bandeau façon "autres expertises" */}
       {events.length > 0 && (
-        <section className="bg-[#f8f9fa] border-t border-slate-200 py-12 sm:py-14">
+        <section className="bg-neutral-100 border-t border-slate-200 py-12 sm:py-14">
           <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16">
             <div className="flex items-end justify-between gap-4 mb-6 sm:mb-8">
               <h2 className="text-[24px] font-semibold leading-snug text-[#2c2c2c] sm:text-[28px]">
@@ -205,7 +214,7 @@ export default async function QuiSommesNousPage({
                   href={`/${locale}/galerie/${e.slug}`}
                   className="group flex flex-col overflow-hidden rounded-lg border border-slate-200 bg-white hover:border-[#0A66C2] transition-colors"
                 >
-                  <div className="relative w-full h-44 bg-slate-100 overflow-hidden">
+                  <div className="relative w-full h-44 bg-neutral-200 overflow-hidden">
                     <Image
                       src={e.cover}
                       alt={e.coverAlt || e.title}
@@ -255,7 +264,7 @@ export default async function QuiSommesNousPage({
           </div>
           <Link
             href={`/${locale}/contact`}
-            className="inline-block w-full text-center bg-white text-[#0A66C2] hover:bg-slate-100 font-semibold text-[16px] px-8 py-3.5 rounded-md transition-colors shadow-none shrink-0 sm:w-auto"
+            className="inline-block w-full text-center bg-white text-[#0A66C2] hover:bg-neutral-100 font-semibold text-[16px] px-8 py-3.5 rounded-full transition-colors shadow-none shrink-0 sm:w-auto"
             style={{ boxShadow: 'none' }}
           >
             {teamT('ctaButton')}
