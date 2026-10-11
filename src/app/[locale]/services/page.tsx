@@ -98,7 +98,7 @@ export default async function ServicesPage({
               href={`/${locale}/services/${card.slug}`}
               className="group flex flex-col overflow-hidden rounded-lg border border-slate-200 bg-white hover:border-[#0A66C2] transition-colors"
             >
-              <div className="relative w-full h-52 bg-slate-100 overflow-hidden">
+              <div className="relative w-full h-52 bg-neutral-200 overflow-hidden">
                 <Image
                   src={card.image || FALLBACK_CARD_IMAGE}
                   alt={card.imageAlt}

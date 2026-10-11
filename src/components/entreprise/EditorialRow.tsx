@@ -88,7 +88,7 @@ export function EditorialRow({
       className="grid grid-cols-1 items-center gap-6 md:grid-cols-12 md:gap-10"
     >
       <div
-        className={`relative h-52 w-full overflow-hidden rounded-xl bg-slate-100 sm:h-72 md:col-span-5 ${
+        className={`relative h-52 w-full overflow-hidden rounded-xl bg-neutral-200 sm:h-72 md:col-span-5 ${
           imageFirst ? '' : 'md:order-2'
         }`}
       >

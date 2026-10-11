@@ -59,7 +59,7 @@ export default async function GaleriePage({
           </div>
           <Link
             href={`/${locale}/contact`}
-            className="inline-block w-full text-center bg-white text-[#0A66C2] hover:bg-slate-100 font-semibold text-[16px] px-8 py-3.5 rounded-md transition-colors shadow-none shrink-0 sm:w-auto"
+            className="inline-block w-full text-center bg-white text-[#0A66C2] hover:bg-neutral-100 font-semibold text-[16px] px-8 py-3.5 rounded-full transition-colors shadow-none shrink-0 sm:w-auto"
             style={{ boxShadow: 'none' }}
           >
             {t('ctaButton')}

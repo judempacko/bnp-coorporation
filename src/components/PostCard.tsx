@@ -16,7 +16,7 @@ export function PostCard({ post, locale }: PostCardProps) {
   return (
     <article className="group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
       {post.featuredImage?.node?.sourceUrl && (
-        <div className="relative h-56 w-full overflow-hidden bg-slate-100">
+        <div className="relative h-56 w-full overflow-hidden bg-neutral-200">
           <img
             src={post.featuredImage.node.sourceUrl}
             alt={post.featuredImage.node.altText || post.title}

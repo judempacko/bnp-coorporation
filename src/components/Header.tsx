@@ -9,7 +9,7 @@ import {
   CaretRight,
   List,
   X,
-  GlobeSimple,
+  Translate,
 } from "@phosphor-icons/react";
 
 interface HeaderProps {
@@ -52,19 +52,11 @@ export function Header({ locale, services }: HeaderProps) {
       slug: 'presentation',
       href: `/${locale}/qui-sommes-nous`,
       label: locale === 'fr' ? 'Qui sommes-nous' : 'About us',
-      desc: locale === 'fr' ? 'Notre histoire, mission et valeurs' : 'Our story, mission and values',
-    },
-    {
-      slug: 'equipe',
-      href: `/${locale}/qui-sommes-nous#equipe`,
-      label: locale === 'fr' ? 'Notre équipe' : 'Our team',
-      desc: locale === 'fr' ? 'Direction et collaborateurs' : 'Management and team members',
     },
     {
       slug: 'galerie',
       href: `/${locale}/galerie`,
       label: locale === 'fr' ? 'Galerie média' : 'Media gallery',
-      desc: locale === 'fr' ? 'Rencontres, conférences et chantiers' : 'Meetings, conferences and sites',
     },
   ];
 
@@ -83,7 +75,7 @@ export function Header({ locale, services }: HeaderProps) {
         <Link href={`/${locale}`} className="flex items-center shrink-0 py-1">
           <Image
             src="/logo-bnpc.svg"
-            alt="BNP Coorporation"
+            alt="BNP Coorporation Sarl (BNPC) — bnp coorporation sarl Yaoundé"
             width={104}
             height={56}
             className="h-auto w-auto object-contain"
@@ -91,7 +83,7 @@ export function Header({ locale, services }: HeaderProps) {
         </Link>
 
         {/* Desktop Navigation Links (Taille stricte 17px) */}
-        <nav className="hidden lg:flex items-center gap-6 text-[16px] font-medium text-[#2c2c2c]">
+        <nav className="hidden lg:flex self-stretch items-center gap-6 text-[16px] font-medium text-[#2c2c2c]">
           <Link
             href={`/${locale}`}
             className={`hover:text-[#0A66C2] transition-colors ${isActive(`/${locale}`) ? "text-[#0A66C2] font-semibold" : ""}`}
@@ -99,9 +91,10 @@ export function Header({ locale, services }: HeaderProps) {
             Accueil
           </Link>
 
-          {/* L'entreprise : bouton uniquement (aucune navigation au clic), ouvre le menu */}
+          {/* L'entreprise : bouton uniquement (aucune navigation au clic), ouvre le menu.
+              Panneau gris doux collé au bas de la navbar (wrapper pleine hauteur). */}
           <div
-            className="relative"
+            className="relative self-stretch flex items-center"
             onMouseEnter={() => setCompanyDropdownOpen(true)}
             onMouseLeave={() => setCompanyDropdownOpen(false)}
           >
@@ -125,25 +118,19 @@ export function Header({ locale, services }: HeaderProps) {
             </button>
 
             {companyDropdownOpen && (
-              <div className="absolute top-full left-0 w-80 bg-white border border-slate-200 rounded-xl shadow-xl p-1.5 z-50 animate-in fade-in-0 zoom-in-95 duration-150">
-                <div className="px-3 py-1.5 border-b border-slate-100 mb-1">
-                  <span className="text-[12px] font-semibold text-slate-400 uppercase tracking-wider">
-                      {locale === 'fr' ? "Découvrir l'entreprise" : 'Discover the company'}
-                  </span>
-                </div>
+              <div className="absolute top-full left-0 w-64 bg-white border border-slate-200 rounded-xl shadow-xl p-2 space-y-1 z-50 animate-in fade-in-0 zoom-in-95 duration-150">
                 {companyLinks.map((c) => (
                   <Link
-                    key={c.slug || 'presentation'}
+                    key={c.slug}
                     href={c.href}
                     onClick={() => setCompanyDropdownOpen(false)}
-                    className="group flex items-center justify-between gap-3 px-3.5 py-2.5 rounded-lg hover:bg-blue-50 transition-all"
+                    className={`group flex items-center justify-between gap-3 px-4 py-2.5 rounded-lg text-[16px] font-medium transition-all ${
+                      isActive(c.href)
+                        ? 'bg-[#f1f2f4] text-[#0A66C2]'
+                        : 'text-[#2c2c2c] hover:bg-[#f1f2f4] hover:text-[#0A66C2]'
+                    }`}
                   >
-                    <span>
-                      <span className="block text-[16px] font-medium text-[#2c2c2c] group-hover:text-[#0A66C2]">
-                        {c.label}
-                      </span>
-                      <span className="block text-[13px] text-slate-500">{c.desc}</span>
-                    </span>
+                    <span>{c.label}</span>
                     <CaretRight
                       size={14}
                       weight="bold"
@@ -179,18 +166,17 @@ export function Header({ locale, services }: HeaderProps) {
 
             {/* Shadcn Dropdown Panel */}
             {servicesDropdownOpen && (
-              <div className="absolute top-full left-0 w-72 bg-white border border-slate-200 rounded-xl shadow-xl p-1.5 z-50 animate-in fade-in-0 zoom-in-95 duration-150">
-                <div className="px-3 py-1.5 border-b border-slate-100 mb-1">
-                  <span className="text-[12px] font-semibold text-slate-400 uppercase tracking-wider">
-                      Domaines d&apos;expertise
-                  </span>
-                </div>
+              <div className="absolute top-full left-0 w-72 bg-white border border-slate-200 rounded-xl shadow-xl p-2 space-y-1 z-50 animate-in fade-in-0 zoom-in-95 duration-150">
                 {servicesList.map((s) => (
                   <Link
                     key={s.slug}
                     href={`/${locale}/services/${s.slug}`}
                     onClick={() => setServicesDropdownOpen(false)}
-                    className="group flex items-center justify-between px-3.5 py-2.5 rounded-lg text-[16px] font-medium text-[#2c2c2c] hover:bg-blue-50 hover:text-[#0A66C2] transition-all"
+                    className={`group flex items-center justify-between px-3.5 py-2.5 rounded-lg text-[16px] font-medium transition-all ${
+                      isActive(`/${locale}/services/${s.slug}`)
+                        ? 'bg-[#f1f2f4] text-[#0A66C2]'
+                        : 'text-[#2c2c2c] hover:bg-[#f1f2f4] hover:text-[#0A66C2]'
+                    }`}
                   >
                     <span>{s.label}</span>
                     <CaretRight
@@ -228,19 +214,20 @@ export function Header({ locale, services }: HeaderProps) {
 
         {/* Right Actions: Language Switcher (17px) & Nous joindre Button (17px) */}
         <div className="flex items-center gap-3 shrink-0">
-          {/* Language Switcher */}
+          {/* Language Switcher façon MDN : icône + langue courante, clic = bascule */}
           <Link
             href={switchedPath}
-            className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border border-slate-200 text-[16px] font-semibold text-[#2c2c2c] hover:text-[#0A66C2] hover:border-[#0A66C2] transition-colors"
+            aria-label={locale === 'fr' ? 'Switch to English' : 'Passer en français'}
+            className="inline-flex items-center gap-1.5 px-2 py-1.5 text-[16px] font-medium text-[#2c2c2c] hover:text-[#0A66C2] transition-colors"
           >
-            <GlobeSimple size={18} weight="bold" className="text-[#0A66C2]" />
-            <span className="uppercase">{otherLocale}</span>
+            <Translate size={18} weight="bold" aria-hidden />
+            <span>{locale === 'fr' ? 'Français' : 'English'}</span>
           </Link>
 
           {/* Button Nous Joindre (Taille stricte 17px) */}
           <Link
             href={`/${locale}/contact`}
-            className="hidden sm:inline-flex items-center justify-center bg-[#0A66C2] hover:bg-[#0854a0] text-white font-semibold text-[16px] px-4 py-1.5 rounded-md transition-colors border-none outline-none shadow-none"
+            className="hidden sm:inline-flex items-center justify-center bg-[#0A66C2] hover:bg-[#0854a0] text-white font-semibold text-[16px] px-4 py-1.5 rounded-full transition-colors border-none outline-none shadow-none"
             style={{ boxShadow: "none" }}
           >
             Nous joindre
@@ -282,13 +269,6 @@ export function Header({ locale, services }: HeaderProps) {
               className="block text-[16px] text-[#2c2c2c] py-1"
             >
               {locale === 'fr' ? 'Qui sommes-nous' : 'About us'}
-            </Link>
-            <Link
-              href={`/${locale}/qui-sommes-nous#equipe`}
-              onClick={() => setMobileMenuOpen(false)}
-              className="block text-[16px] text-[#2c2c2c] py-1"
-            >
-              {locale === 'fr' ? 'Notre équipe' : 'Our team'}
             </Link>
             <Link
               href={`/${locale}/galerie`}
@@ -338,7 +318,7 @@ export function Header({ locale, services }: HeaderProps) {
             <Link
               href={`/${locale}/contact`}
               onClick={() => setMobileMenuOpen(false)}
-              className="inline-block w-full text-center bg-[#0A66C2] text-white font-semibold text-[16px] py-2 rounded-md shadow-none"
+              className="inline-block w-full text-center bg-[#0A66C2] text-white font-semibold text-[16px] py-2 rounded-full shadow-none"
             >
               Nous joindre
             </Link>

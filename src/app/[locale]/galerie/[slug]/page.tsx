@@ -97,7 +97,7 @@ export default async function GalerieDetailPage({
           <ScrubLead text={event.description} />
         </div>
 
-        <div className="max-w-[960px] mx-auto mt-10 rounded-2xl border border-slate-200 bg-slate-50 p-6 sm:p-8 grid grid-cols-1 sm:grid-cols-3 gap-6 text-[15px]">
+        <div className="max-w-[960px] mx-auto mt-10 rounded-2xl border border-slate-200 bg-neutral-100 p-6 sm:p-8 grid grid-cols-1 sm:grid-cols-3 gap-6 text-[15px]">
           <div>
             <h2 className="text-[13px] font-semibold uppercase tracking-[0.12em] text-slate-500">
               {t('eventDate')}
@@ -125,7 +125,7 @@ export default async function GalerieDetailPage({
 
       {/* 3. Autres événements façon "autres expertises" */}
       {fallbackOthers.length > 0 && (
-        <section className="bg-[#f8f9fa] border-t border-slate-200 py-12 sm:py-14">
+        <section className="bg-neutral-100 border-t border-slate-200 py-12 sm:py-14">
           <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16">
             <h2 className="text-[24px] font-semibold leading-snug text-[#2c2c2c] mb-6 sm:text-[28px] sm:mb-8">
               {t('moreEvents')}
@@ -137,7 +137,7 @@ export default async function GalerieDetailPage({
                   href={`/${locale}/galerie/${e.slug}`}
                   className="group flex flex-col overflow-hidden rounded-lg border border-slate-200 bg-white hover:border-[#0A66C2] transition-colors"
                 >
-                  <div className="relative w-full h-44 bg-slate-100 overflow-hidden">
+                  <div className="relative w-full h-44 bg-neutral-200 overflow-hidden">
                     <Image
                       src={e.cover}
                       alt={e.coverAlt || e.title}
@@ -178,7 +178,7 @@ export default async function GalerieDetailPage({
           </div>
           <Link
             href={`/${locale}/contact`}
-            className="inline-block w-full text-center bg-white text-[#0A66C2] hover:bg-slate-100 font-semibold text-[16px] px-8 py-3.5 rounded-md transition-colors shadow-none shrink-0 sm:w-auto"
+            className="inline-block w-full text-center bg-white text-[#0A66C2] hover:bg-neutral-100 font-semibold text-[16px] px-8 py-3.5 rounded-full transition-colors shadow-none shrink-0 sm:w-auto"
             style={{ boxShadow: 'none' }}
           >
             {t('ctaButton')}

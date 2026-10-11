@@ -46,7 +46,7 @@ const fallbackServicesDataMap: Record<string, DisplayService> = {
   'securite-incendie': {
     title: 'Sécurité incendie',
     subtitle: 'La protection des biens et de votre environnement',
-    lead: "La protection des personnes et des biens contre les risques d'incendie est une obligation légale et morale. BNP Corporation Sarl offre une expertise globale allant de l'audit de sécurité des Établissements Recevant du Public (ERP) aux certifications professionnelles reconnues.",
+    lead: "La protection des personnes et des biens contre les risques d'incendie est une obligation légale et morale. BNP Coorporation Sarl offre une expertise globale allant de l'audit de sécurité des Établissements Recevant du Public (ERP) aux certifications professionnelles reconnues.",
     features: [
       {
         title: 'Audits et ingénierie',
@@ -79,7 +79,7 @@ const fallbackServicesDataMap: Record<string, DisplayService> = {
       },
     ],
     targets:
-      'BNP Corporation Sarl est le partenaire de référence des Établissements Recevant du Public (ERP), banques, centres commerciaux, usines, immeubles de bureaux et institutions scolaires soumis aux contrôles réglementaires de sécurité incendie au Cameroun. Nous accompagnons les directeurs de sites, responsables HSE et gestionnaires d\u2019immeubles pour mettre leurs infrastructures en conformité totale avec la loi, protéger leurs collaborateurs par des formations agréées (SSIAP, SST) et doter leurs installations de systèmes de détection et d\u2019extinction automatique de pointe à forte fiabilité.',
+      'BNP Coorporation Sarl est le partenaire de référence des Établissements Recevant du Public (ERP), banques, centres commerciaux, usines, immeubles de bureaux et institutions scolaires soumis aux contrôles réglementaires de sécurité incendie au Cameroun. Nous accompagnons les directeurs de sites, responsables HSE et gestionnaires d\u2019immeubles pour mettre leurs infrastructures en conformité totale avec la loi, protéger leurs collaborateurs par des formations agréées (SSIAP, SST) et doter leurs installations de systèmes de détection et d\u2019extinction automatique de pointe à forte fiabilité.',
     ctaTitle: 'Vos locaux et vos équipes sont-ils aux normes de sécurité incendie ?',
     ctaText:
       "Protégez vos collaborateurs et évitez les sanctions réglementaires. Audits ERP, installation d'équipements et formations certifiantes SSIAP à Yaoundé et Douala.",
@@ -88,7 +88,7 @@ const fallbackServicesDataMap: Record<string, DisplayService> = {
   'construction-btp': {
     title: 'Construction (BTP)',
     subtitle: 'Bâtiment et travaux publics de haute précision',
-    lead: "BNP Corporation Sarl réalise vos projets de construction et d'infrastructure avec rigueur, respect des délais et des normes de sécurité internationales.",
+    lead: "BNP Coorporation Sarl réalise vos projets de construction et d'infrastructure avec rigueur, respect des délais et des normes de sécurité internationales.",
     features: [
       {
         title: 'Génie civil & Bâtiments',
@@ -312,7 +312,7 @@ export default async function ServiceDetailPage({
 
       {/* 3. Other Services */}
       {others.length > 0 && (
-        <section className="bg-[#f8f9fa] border-t border-slate-200 py-12 sm:py-14">
+        <section className="bg-neutral-100 border-t border-slate-200 py-12 sm:py-14">
           <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16">
             <h2 className="text-[24px] font-semibold leading-snug text-[#2c2c2c] mb-6 sm:text-[28px] sm:mb-8">
               {labels.othersTitle}
@@ -324,7 +324,7 @@ export default async function ServiceDetailPage({
                   href={`/${locale}/services/${card.slug}`}
                   className="group flex flex-col overflow-hidden rounded-lg border border-slate-200 bg-white hover:border-[#0A66C2] transition-colors"
                 >
-                  <div className="relative w-full h-44 bg-slate-100 overflow-hidden">
+                  <div className="relative w-full h-44 bg-neutral-200 overflow-hidden">
                     <Image
                       src={card.image}
                       alt={card.imageAlt}
@@ -376,7 +376,7 @@ export default async function ServiceDetailPage({
           </div>
           <Link
             href={`/${locale}/contact`}
-            className="inline-block w-full text-center bg-white text-[#0A66C2] hover:bg-slate-100 font-semibold text-[16px] px-8 py-3.5 rounded-md transition-colors shadow-none shrink-0 sm:w-auto"
+            className="inline-block w-full text-center bg-white text-[#0A66C2] hover:bg-neutral-100 font-semibold text-[16px] px-8 py-3.5 rounded-full transition-colors shadow-none shrink-0 sm:w-auto"
             style={{ boxShadow: 'none' }}
           >
             {data.ctaButton}

@@ -53,7 +53,7 @@ export function GalleryGrid({ events, locale, allLabel }: GalleryGridProps) {
             key={event.id}
             className="group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
           >
-            <div className="relative h-56 w-full overflow-hidden bg-slate-100">
+            <div className="relative h-56 w-full overflow-hidden bg-neutral-200">
               <Image
                 src={event.cover}
                 alt={event.coverAlt || event.title}
