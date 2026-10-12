@@ -559,20 +559,40 @@ export default async function HomePage({
         </div>
       </section>
 
+      {/* 8. Entreprise : bande 2/3 texte clair + 1/3 CTA équipe fond noir */}
+      <section className="w-full bg-white">
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 py-12 sm:py-16">
+          <div className="grid grid-cols-1 overflow-hidden rounded-2xl border border-slate-200 md:grid-cols-3">
+            <div className="bg-[#f1f2f4] p-8 sm:p-10 md:col-span-2">
               <h2 className="text-[24px] sm:text-[28px] font-semibold text-[#2c2c2c]">
                 {fr ? 'Une entreprise ancrée au Cameroun' : 'A company rooted in Cameroon'}
               </h2>
+              <p className="mt-3 max-w-xl text-[16px] leading-relaxed text-[#51565d]">
                 {fr
                   ? 'Depuis 2023, une direction resserrée qui décide vite et des experts ancrés sur le terrain.'
                   : 'Since 2023, lean management that decides fast and experts rooted in the field.'}
               </p>
               <Link
                 href={`/${locale}/qui-sommes-nous`}
+                className="mt-5 inline-flex items-center gap-1.5 text-[15px] font-semibold text-[#0A66C2] hover:underline"
               >
+                {fr ? 'Qui sommes-nous →' : 'About us →'}
               </Link>
+            </div>
+            <div className="flex flex-col items-start justify-center gap-4 bg-[#181b1e] p-8 text-white sm:p-10">
+              <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-white/60">
+                {fr ? 'Notre équipe' : 'Our team'}
+              </p>
+              <p className="text-[16px] leading-relaxed text-slate-200">
+                {fr
+                  ? 'Direction resserrée, experts terrain à Yaoundé et Douala.'
+                  : 'Lean management, field experts in Yaoundé and Douala.'}
+              </p>
               <Link
+                href={`/${locale}/qui-sommes-nous#equipe`}
+                className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-[15px] font-semibold text-[#181b1e] transition-colors hover:bg-slate-200"
               >
+                {fr ? "Découvrir l'équipe" : 'Meet the team'}
               </Link>
             </div>
           </div>
