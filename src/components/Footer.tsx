@@ -38,9 +38,9 @@ export function Footer({ locale }: FooterProps) {
               <Image
                 src="/logo-bnpc.svg"
                 alt="BNP Coorporation Sarl (BNPC) — bnp coorporation sarl"
-                width={140}
-                height={56}
-                className="h-auto w-auto object-contain"
+                width={115}
+                height={43}
+                className="h-[43px] w-[115px] object-contain"
               />
             </Link>
             <p className="text-[16px] font-normal text-neutral-700 leading-relaxed">

@@ -68,17 +68,18 @@ export function Header({ locale, services }: HeaderProps) {
   };
 
   return (
-    <header className={`sticky top-0 z-50 w-full bg-white border-b border-slate-200 transition-shadow ${scrolled ? 'shadow-[0_2px_12px_rgba(0,0,0,0.08)]' : ''}`}>
+    <header className={`sticky top-0 z-50 w-full bg-white border-b border-slate-200 transition-shadow ${scrolled ? 'shadow-[0_1px_8px_rgba(0,0,0,0.06)]' : ''}`}>
       {/* Navbar Container */}
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 h-16 sm:h-18 flex items-center justify-between">
-        {/* Brand Logo Grand Format */}
+        {/* Brand Logo — largeur contenue ~115px */}
         <Link href={`/${locale}`} className="flex items-center shrink-0 py-1">
           <Image
             src="/logo-bnpc.svg"
             alt="BNP Coorporation Sarl (BNPC) — bnp coorporation sarl Yaoundé"
-            width={104}
-            height={56}
-            className="h-auto w-auto object-contain"
+            width={115}
+            height={43}
+            priority
+            className="h-[43px] w-[115px] object-contain"
           />
         </Link>
 
@@ -227,7 +228,6 @@ export function Header({ locale, services }: HeaderProps) {
           {/* Button Nous Joindre (Taille stricte 17px) */}
           <Link
             href={`/${locale}/contact`}
-            className="hidden sm:inline-flex items-center justify-center bg-[#0A66C2] hover:bg-[#0854a0] text-white font-semibold text-[16px] px-4 py-1.5 rounded-full transition-colors border-none outline-none shadow-none"
             style={{ boxShadow: "none" }}
           >
             Nous joindre
@@ -318,7 +318,6 @@ export function Header({ locale, services }: HeaderProps) {
             <Link
               href={`/${locale}/contact`}
               onClick={() => setMobileMenuOpen(false)}
-              className="inline-block w-full text-center bg-[#0A66C2] text-white font-semibold text-[16px] py-2 rounded-full shadow-none"
             >
               Nous joindre
             </Link>
