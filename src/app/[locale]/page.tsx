@@ -316,6 +316,7 @@ export default async function HomePage({
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 py-8 sm:py-10">
           <dl className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 text-center">
             {proofs.map((p) => (
+              <div key={p.label} className="flex flex-col space-y-1">
                 <dt className="order-2 text-sm text-[#51565d]">{p.label}</dt>
                 <dd className="order-1 text-2xl sm:text-3xl font-semibold text-[#0A66C2]">
                   {p.value}
@@ -468,7 +469,66 @@ export default async function HomePage({
               </p>
             </div>
           </Reveal>
+          {/* Marquee infini : piste doublée, une seule direction, pause au survol */}
+          {partners.length > 0 && (
+            <div className="partners-marquee-viewport mt-10 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+              <div className="animate-partners-marquee flex w-max">
+                {[0, 1].map((copy) => (
+                  <div
+                    key={copy}
+                    aria-hidden={copy === 1}
+                    className="flex gap-4 pr-4 sm:gap-6 sm:pr-6"
                   >
+                    {partners.map((partner) => (
+                      <div
+                        key={`${copy}-${partner.id}`}
+                        className="flex h-24 w-44 shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-white px-4 opacity-70 grayscale transition-all hover:border-[#0A66C2] hover:opacity-100 hover:grayscale-0 sm:w-52"
+                      >
+                        {partner.website ? (
+                          <a
+                            href={partner.website}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            tabIndex={copy === 1 ? -1 : undefined}
+                            className="flex h-full w-full items-center justify-center"
+                            aria-label={partner.name}
+                          >
+                            {partner.logo ? (
+                              <Image
+                                src={partner.logo}
+                                alt={partner.logoAlt || partner.name}
+                                width={160}
+                                height={64}
+                                className="max-h-12 w-auto object-contain"
+                                loading="lazy"
+                              />
+                            ) : (
+                              <span className="text-center text-[15px] font-semibold tracking-wide text-neutral-500">
+                                {partner.name}
+                              </span>
+                            )}
+                          </a>
+                        ) : partner.logo ? (
+                          <Image
+                            src={partner.logo}
+                            alt={partner.logoAlt || partner.name}
+                            width={160}
+                            height={64}
+                            className="max-h-12 w-auto object-contain"
+                            loading="lazy"
+                          />
+                        ) : (
+                          <span className="text-center text-[15px] font-semibold tracking-wide text-neutral-500">
+                            {partner.name}
+                          </span>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </section>
 

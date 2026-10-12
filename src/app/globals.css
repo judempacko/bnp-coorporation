@@ -656,3 +656,31 @@
   }
 }
 
+/* ==========================================================================
+   MARQUEE PARTENAIRES — défilement infini style SaaS (une direction).
+   Piste doublée (2 copies) + translation -50% = boucle sans couture.
+   Pause au survol/focus, arrêt + scroll manuel si reduced-motion.
+   ========================================================================== */
+@keyframes partners-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-partners-marquee {
+  animation: partners-marquee 32s linear infinite;
+}
+.animate-partners-marquee:hover,
+.animate-partners-marquee:focus-within {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-partners-marquee {
+    animation: none;
+  }
+  .partners-marquee-viewport {
+    overflow-x: auto;
+  }
+}
