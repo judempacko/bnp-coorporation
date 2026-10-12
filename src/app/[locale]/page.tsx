@@ -548,6 +548,7 @@ export default async function HomePage({
           </div>
           <Link
             href={`/${locale}/contact`}
+            className="inline-block w-full text-center bg-white text-[#0A66C2] font-semibold text-[16px] px-8 py-3.5 rounded-full shrink-0 sm:w-auto btn-sweep-white"
           >
             {fr ? 'Demander un devis' : 'Request a quote'}
           </Link>

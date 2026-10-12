@@ -228,6 +228,7 @@ export function Header({ locale, services }: HeaderProps) {
           {/* Button Nous Joindre (Taille stricte 17px) */}
           <Link
             href={`/${locale}/contact`}
+            className="hidden sm:inline-flex items-center justify-center bg-[#0A66C2] text-white font-semibold text-[16px] px-4 py-1.5 rounded-full transition-colors border-none outline-none shadow-none btn-sweep"
             style={{ boxShadow: "none" }}
           >
             Nous joindre
@@ -318,6 +319,7 @@ export function Header({ locale, services }: HeaderProps) {
             <Link
               href={`/${locale}/contact`}
               onClick={() => setMobileMenuOpen(false)}
+              className="inline-block w-full text-center bg-[#0A66C2] text-white font-semibold text-[16px] py-2 rounded-full shadow-none btn-sweep"
             >
               Nous joindre
             </Link>

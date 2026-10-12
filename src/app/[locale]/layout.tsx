@@ -6,6 +6,7 @@ import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import { BackToTop } from '@/components/BackToTop';
 import { getAllServices } from '@/lib/api';
 import { SITE_URL, organizationJsonLd, websiteJsonLd } from '@/lib/seo';
 import "../globals.css";
@@ -58,7 +59,6 @@ export const metadata: Metadata = {
     siteName: 'BNP Coorporation Sarl',
     locale: 'fr_FR',
     alternateLocale: ['en_US'],
-    images: [{ url: '/logo-bnpc.svg', alt: 'BNP Coorporation Sarl — BNPC' }],
   },
   twitter: {
     card: 'summary_large_image',
@@ -110,7 +110,7 @@ export default async function LocaleLayout({
   // l'hydratation React → faux mismatch. Attribut 100% externe, jamais rendu
   // par notre code. Ne masque que les attributs de cet élément.
   return (
-    <html lang={locale} className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`} suppressHydrationWarning>
+    <html lang={locale} data-scroll-behavior="smooth" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`} suppressHydrationWarning>
       <body className="min-h-full flex flex-col bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-sans">
         <script
           type="application/ld+json"
@@ -126,6 +126,7 @@ export default async function LocaleLayout({
             {children}
           </div>
           <Footer locale={locale} />
+          <BackToTop locale={locale} />
         </NextIntlClientProvider>
       </body>
     </html>

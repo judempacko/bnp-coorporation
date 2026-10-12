@@ -602,3 +602,57 @@
   background-color: #f0f4f9;
   box-shadow: none !important;
 }
+
+/* ==========================================================================
+   BALAYAGE COULEUR (wipe) sur les boutons : la teinte glisse de gauche à
+   droite au survol ET revient au unhover — la transition vit sur le
+   pseudo-élément, donc animée dans les deux sens (effet « ripple » doux).
+   ========================================================================== */
+.btn-sweep,
+.btn-sweep-white,
+.btn-sweep-ghost {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+.btn-sweep::before,
+.btn-sweep-white::before,
+.btn-sweep-ghost::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 0;
+  /* Sweep To Right canonique (Hover.css) : le fond naît du bord gauche
+     (scaleX 0 → 1, origine à gauche) au hover, et s'y rétracte
+     (Sweep To Left) au unhover. Bord d'attaque vertical franc. */
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform 0.3s ease-out;
+  will-change: transform;
+  z-index: -1;
+}
+/* Bouton plein bleu : balayage bleu foncé */
+.btn-sweep::before {
+  background-color: #0854a0;
+}
+/* Bouton plein blanc : balayage gris-bleu clair */
+.btn-sweep-white::before {
+  background-color: #dbe7f3;
+}
+/* Bouton outline sur fond sombre : voile blanc */
+.btn-sweep-ghost::before {
+  background-color: rgba(255, 255, 255, 0.16);
+}
+.btn-sweep:hover::before,
+.btn-sweep-white:hover::before,
+.btn-sweep-ghost:hover::before {
+  transform: scaleX(1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn-sweep::before,
+  .btn-sweep-white::before,
+  .btn-sweep-ghost::before {
+    transition: none;
+  }
+}
+
