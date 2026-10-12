@@ -23,6 +23,11 @@ import { Reveal } from '@/components/animations/Reveal';
 import { canonicalFor, languageAlternates } from '@/lib/seo';
 import { fallbackServicesNav } from './services/[slug]/page';
 
+const FALLBACK_CARD_IMAGES = [
+  'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=800',
+  'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=800',
+  'https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&q=80&w=800',
+];
 
 export async function generateMetadata({
   params,
@@ -327,6 +332,8 @@ export default async function HomePage({
         </div>
       </section>
 
+      {/* 3. Services — rangée de cartes overlay : titre sur image,
+          numéro 01–07, flèche circulaire, 8e case CTA (pas d'orpheline). */}
       <section className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 py-14 sm:py-20">
         <Reveal>
           <div className="max-w-3xl">
@@ -338,19 +345,69 @@ export default async function HomePage({
             </h2>
             <p className="mt-3 text-[16px] leading-[1.7] text-[#51565d]">
               {fr
+                ? "De l'audit incendie à la réparation navale."
+                : 'From fire audits to naval repair.'}
             </p>
           </div>
         </Reveal>
         <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          {serviceCards.map((card, i) => (
             <Link
               key={card.slug}
               href={`/${locale}/services/${card.slug}`}
+              className="group relative block aspect-square overflow-hidden rounded-xl border border-slate-200 bg-neutral-200 transition-all duration-300 hover:-translate-y-1 hover:border-transparent hover:shadow-xl"
             >
+              <Image
+                src={card.image || FALLBACK_CARD_IMAGES[i % FALLBACK_CARD_IMAGES.length]}
+                alt={card.imageAlt}
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+              />
+              <div
+                aria-hidden
+                className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"
+              />
+              <span className="absolute left-4 top-4 rounded-full bg-black/45 px-2.5 py-1 text-[12px] font-bold tracking-[0.15em] text-white backdrop-blur-sm">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <span className="absolute inset-x-4 bottom-4 flex items-end justify-between gap-3">
+                <h3 className="flex-1 text-[20px] leading-[1.25] font-semibold text-white">
                   {card.title}
                 </h3>
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/50 text-white backdrop-blur-sm transition-all duration-300 group-hover:border-white group-hover:bg-white group-hover:text-[#0A66C2]">
+                  <ArrowRight size={16} weight="bold" aria-hidden />
                 </span>
+              </span>
             </Link>
           ))}
+          {/* 8e case : CTA qui clôt la grille (plus de carte orpheline) */}
+          <Link
+            href={`/${locale}/services`}
+            className="group relative flex aspect-square flex-col justify-between gap-6 overflow-hidden rounded-xl bg-[#0A66C2] p-6 text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl btn-sweep"
+          >
+            <div className="space-y-2">
+              <p className="text-[12px] font-semibold uppercase tracking-[0.15em] text-white/70">
+                {fr ? "Vue d'ensemble" : 'Overview'}
+              </p>
+              <h3 className="text-[20px] leading-[1.3] font-semibold text-white">
+                {fr ? 'Tous nos services' : 'All our services'}
+              </h3>
+              <p className="text-[15px] leading-relaxed text-white/85">
+                {fr
+                  ? 'Sept pôles complémentaires, une seule entreprise pour vos défis.'
+                  : 'Seven complementary areas, one company for your challenges.'}
+              </p>
+            </div>
+            <span className="flex items-center justify-between">
+              <span className="text-[15px] font-semibold text-white">
+                {fr ? 'Explorer' : 'Explore'}
+              </span>
+              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#0A66C2] transition-transform duration-300 group-hover:translate-x-1">
+                <ArrowRight size={16} weight="bold" aria-hidden />
+              </span>
+            </span>
+          </Link>
         </div>
       </section>
 

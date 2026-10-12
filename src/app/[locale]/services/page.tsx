@@ -7,7 +7,7 @@ import { fallbackServicesNav } from './[slug]/page';
 import { canonicalFor, languageAlternates } from '@/lib/seo';
 
 const FALLBACK_CARD_IMAGE =
-  'https://images.unsplash.com/photo-1541888946425-d0fbb186a5b7?auto=format&fit=crop&q=80&w=800';
+  'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=800';
 
 interface ServiceCard {
   slug: string;
