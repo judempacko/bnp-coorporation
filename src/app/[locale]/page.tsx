@@ -8,6 +8,10 @@ import {
   Timer,
   MapPin,
   ArrowRight,
+  PhoneCall,
+  MagnifyingGlass,
+  FileText,
+  Wrench,
 } from '@phosphor-icons/react/dist/ssr';
 import { getAllPosts, getAllServices } from '@/lib/api';
 import { getProjects } from '@/lib/projects';
@@ -184,37 +188,53 @@ export default async function HomePage({
     ? [
         {
           n: '01',
+          icon: PhoneCall,
           title: 'Contact direct',
+          desc: 'Téléphone, WhatsApp ou formulaire.',
         },
         {
           n: '02',
+          icon: MagnifyingGlass,
           title: 'Visite technique',
+          desc: 'Diagnostic précis sur site.',
         },
         {
           n: '03',
+          icon: FileText,
           title: 'Devis 24-48h',
+          desc: 'Sous 24 à 48h ouvrées.',
         },
         {
           n: '04',
+          icon: Wrench,
           title: 'Réalisation + suivi',
+          desc: 'Exécution et maintenance.',
         },
       ]
     : [
         {
           n: '01',
+          icon: PhoneCall,
           title: 'Direct contact',
+          desc: 'By phone, WhatsApp or form.',
         },
         {
           n: '02',
+          icon: MagnifyingGlass,
           title: 'Site visit',
+          desc: 'Accurate on-site diagnosis.',
         },
         {
           n: '03',
+          icon: FileText,
           title: 'Quote in 24-48h',
+          desc: 'Within 24-48 business hours.',
         },
         {
           n: '04',
+          icon: Wrench,
           title: 'Delivery + follow-up',
+          desc: 'Execution and maintenance.',
         },
       ];
 
@@ -364,8 +384,34 @@ export default async function HomePage({
               {fr ? 'Un parcours simple, sans surprise' : 'A simple process, no surprises'}
             </h2>
           </Reveal>
+          <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
             {steps.map((step) => (
+              <article key={step.n} className="rounded-lg bg-white border border-slate-200 p-5 space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-50 text-[#0A66C2]">
+                    <step.icon size={20} weight="duotone" aria-hidden />
+                  </span>
+                  <span className="text-[13px] font-bold tracking-widest text-slate-300">
+                    {step.n}
+                  </span>
+                </div>
+                <h3 className="text-[16px] font-semibold text-[#2c2c2c]">{step.title}</h3>
+                <p className="text-[14px] leading-relaxed text-[#51565d]">{step.desc}</p>
+              </article>
             ))}
+            {/* 5e carte : CTA diagnostic en fond bleu, même rangée */}
+            <div className="rounded-lg bg-[#0A66C2] p-5 space-y-3 flex flex-col justify-between">
+              <h3 className="text-[17px] font-semibold text-white">
+                {fr ? 'Prêt à lancer votre diagnostic ?' : 'Ready to start your assessment?'}
+              </h3>
+              <Link
+                href={`/${locale}/contact`}
+                className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full bg-white px-5 py-2.5 text-[15px] font-semibold text-[#0A66C2] btn-sweep-white"
+              >
+                {fr ? 'Démarrer' : 'Start'}
+                <ArrowRight size={16} weight="bold" aria-hidden />
+              </Link>
+            </div>
           </div>
         </div>
       </section>
