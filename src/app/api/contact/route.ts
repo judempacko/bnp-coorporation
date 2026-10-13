@@ -3,7 +3,8 @@ import { Ratelimit } from '@upstash/ratelimit';
 import { Redis } from '@upstash/redis';
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-const PHONE_RE = /^\+?[0-9\s().-]{6,20}$/;
+// Nom : lettres (tous alphabets), espaces, apostrophes, points, tirets. Pas de chiffres ni symboles.
+const NAME_RE = /^[\p{L}\p{M} '.-]+$/u;
 const MAX_BODY = 32 * 1024;
 const SERVICES = [
   'securite-incendie',
@@ -126,18 +127,26 @@ export async function POST(req: NextRequest) {
 
   const name = typeof body.name === 'string' ? body.name.trim().slice(0, 100) : '';
   const email = typeof body.email === 'string' ? body.email.trim() : '';
-  const phone = typeof body.phone === 'string' ? body.phone.trim().slice(0, 30) : '';
+  const phone = typeof body.phone === 'string' ? body.phone.trim().slice(0, 25) : '';
   const service = typeof body.service === 'string' ? body.service.trim() : '';
   const message = typeof body.message === 'string' ? body.message.trim() : '';
 
-  if (name.length < 2) {
+  if (name.length < 2 || name.length > 100 || !NAME_RE.test(name)) {
     return NextResponse.json({ ok: false, error: 'invalid_name' }, { status: 400 });
   }
-  if (!EMAIL_RE.test(email)) {
+  if (!EMAIL_RE.test(email) || email.length > 254) {
     return NextResponse.json({ ok: false, error: 'invalid_email' }, { status: 400 });
   }
-  if (phone && !PHONE_RE.test(phone)) {
-    return NextResponse.json({ ok: false, error: 'invalid_phone' }, { status: 400 });
+  // Téléphone international : chiffres/espaces/().-+ uniquement (lettres rejetées),
+  // puis 7 à 15 chiffres au total (norme E.164, tous pays).
+  if (phone) {
+    if (!/^\+?[0-9\s().-]+$/.test(phone)) {
+      return NextResponse.json({ ok: false, error: 'invalid_phone' }, { status: 400 });
+    }
+    const phoneDigits = phone.replace(/\D/g, '');
+    if (phoneDigits.length < 7 || phoneDigits.length > 15) {
+      return NextResponse.json({ ok: false, error: 'invalid_phone' }, { status: 400 });
+    }
   }
   if (service && !SERVICES.includes(service)) {
     return NextResponse.json({ ok: false, error: 'invalid_service' }, { status: 400 });

@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Script from 'next/script';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 declare global {
   interface Window {
@@ -26,13 +26,67 @@ const SERVICES = [
 
 type Status = 'idle' | 'sending' | 'success' | 'error';
 
+// Indicatifs internationaux : Cameroun par défaut, puis Afrique, Europe, Amériques, Asie.
+const COUNTRIES: Array<{ code: string; fr: string; en: string }> = [
+  { code: '+237', fr: 'Cameroun', en: 'Cameroon' },
+  { code: '+241', fr: 'Gabon', en: 'Gabon' },
+  { code: '+242', fr: 'Congo', en: 'Congo' },
+  { code: '+243', fr: 'RD Congo', en: 'DR Congo' },
+  { code: '+236', fr: 'Centrafrique', en: 'Central African Republic' },
+  { code: '+235', fr: 'Tchad', en: 'Chad' },
+  { code: '+240', fr: 'Guinée équatoriale', en: 'Equatorial Guinea' },
+  { code: '+234', fr: 'Nigéria', en: 'Nigeria' },
+  { code: '+233', fr: 'Ghana', en: 'Ghana' },
+  { code: '+225', fr: "Côte d'Ivoire", en: 'Ivory Coast' },
+  { code: '+221', fr: 'Sénégal', en: 'Senegal' },
+  { code: '+223', fr: 'Mali', en: 'Mali' },
+  { code: '+226', fr: 'Burkina Faso', en: 'Burkina Faso' },
+  { code: '+227', fr: 'Niger', en: 'Niger' },
+  { code: '+229', fr: 'Bénin', en: 'Benin' },
+  { code: '+228', fr: 'Togo', en: 'Togo' },
+  { code: '+224', fr: 'Guinée', en: 'Guinea' },
+  { code: '+212', fr: 'Maroc', en: 'Morocco' },
+  { code: '+213', fr: 'Algérie', en: 'Algeria' },
+  { code: '+216', fr: 'Tunisie', en: 'Tunisia' },
+  { code: '+33', fr: 'France', en: 'France' },
+  { code: '+32', fr: 'Belgique', en: 'Belgium' },
+  { code: '+41', fr: 'Suisse', en: 'Switzerland' },
+  { code: '+34', fr: 'Espagne', en: 'Spain' },
+  { code: '+39', fr: 'Italie', en: 'Italy' },
+  { code: '+49', fr: 'Allemagne', en: 'Germany' },
+  { code: '+44', fr: 'Royaume-Uni', en: 'United Kingdom' },
+  { code: '+1', fr: 'USA / Canada', en: 'USA / Canada' },
+  { code: '+55', fr: 'Brésil', en: 'Brazil' },
+  { code: '+971', fr: 'Émirats arabes unis', en: 'UAE' },
+  { code: '+966', fr: 'Arabie saoudite', en: 'Saudi Arabia' },
+  { code: '+86', fr: 'Chine', en: 'China' },
+  { code: '+91', fr: 'Inde', en: 'India' },
+  { code: '+81', fr: 'Japon', en: 'Japan' },
+];
+
+// Mêmes règles que le serveur : lettres accentuées + espaces + ' . -
+const NAME_RE = /^[\p{L}\p{M} '.-]+$/u;
+
+function digitsOf(phone: string): string {
+  return phone.replace(/\D/g, '');
+}
+
+// Numéro international valide = 7 à 15 chiffres au total (norme E.164).
+function isValidPhone(phone: string): boolean {
+  if (!/^\+?[0-9\s().-]+$/.test(phone)) return false;
+  const d = digitsOf(phone);
+  return d.length >= 7 && d.length <= 15;
+}
+
 export function ContactForm() {
   const t = useTranslations('ContactPage');
+  const locale = useLocale();
 
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    phone: '',
+    phoneCode: '+237',
+    phoneNumber: '',
     service: '',
     message: '',
     consent: false,
@@ -63,6 +117,23 @@ export function ContactForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (status === 'sending') return;
+
+    // Validation client miroir du serveur (le serveur revalide tout).
+    const name = formData.name.trim();
+    if (name.length < 2 || name.length > 100 || !NAME_RE.test(name)) {
+      setStatus('error');
+      setErrorCode('invalid_name');
+      return;
+    }
+    const phone = formData.phoneNumber.trim()
+      ? `${formData.phoneCode} ${formData.phoneNumber.trim()}`
+      : '';
+    if (phone && !isValidPhone(phone)) {
+      setStatus('error');
+      setErrorCode('invalid_phone');
+      return;
+    }
+
     setStatus('sending');
     setErrorCode(null);
 
@@ -70,7 +141,7 @@ export function ContactForm() {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...formData, turnstileToken }),
+        body: JSON.stringify({ ...formData, phone, turnstileToken }),
       });
       const data = await res.json().catch(() => null);
 
@@ -79,7 +150,8 @@ export function ContactForm() {
         setFormData({
           name: '',
           email: '',
-          phone: '',
+          phoneCode: formData.phoneCode,
+          phoneNumber: '',
           service: '',
           message: '',
           consent: false,
@@ -105,7 +177,9 @@ export function ContactForm() {
   const errorMessage =
     errorCode === 'too_many_requests'
       ? t('errorRateLimit')
-      : errorCode === 'invalid_email'
+      : errorCode === 'invalid_name'
+        ? t('errorInvalidName')
+        : errorCode === 'invalid_email'
         ? t('errorInvalidEmail')
         : errorCode === 'invalid_phone'
           ? t('errorInvalidPhone')
@@ -197,15 +271,35 @@ export function ContactForm() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <input
-            type="tel"
-            value={formData.phone}
-            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-            placeholder={t('phonePlaceholder')}
-            aria-label={t('phonePlaceholder')}
-            className={inputClass}
-            autoComplete="tel"
-          />
+          <div className="flex gap-3">
+            <select
+              value={formData.phoneCode}
+              onChange={(e) => setFormData({ ...formData, phoneCode: e.target.value })}
+              aria-label={t('dialCodeLabel')}
+              className={`${inputClass} w-[128px] shrink-0 cursor-pointer`}
+            >
+              {COUNTRIES.map((c) => (
+                <option key={c.code} value={c.code}>
+                  {c.code} {(locale === 'en' ? c.en : c.fr).slice(0, 12)}
+                </option>
+              ))}
+            </select>
+            <input
+              type="tel"
+              value={formData.phoneNumber}
+              onChange={(e) =>
+                // Filtrage live : les lettres ne peuvent même pas être saisies.
+                setFormData({ ...formData, phoneNumber: e.target.value.replace(/[^0-9\s().-]/g, '') })
+              }
+              placeholder={t('phonePlaceholder')}
+              aria-label={t('phonePlaceholder')}
+              className={inputClass}
+              autoComplete="tel-national"
+              inputMode="tel"
+              minLength={6}
+              maxLength={18}
+            />
+          </div>
           <select
             required
             value={formData.service}
