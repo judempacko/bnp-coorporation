@@ -1,26 +1,33 @@
-# BNP Coorporation Sarl — llms.txt (experimental, for AI assistants)
-# Docs: https://llmstxt.org/ — optional file, does not replace sitemap/robots.
+# BNP Coorporation Sarl (BNPC)
 
-> BNP Coorporation Sarl (BNPC) is a multiservice engineering company based in Yaoundé, Cameroon.
-> Founded in 2023. Active in Yaoundé, Douala, Kribi and across Cameroon.
-> Expertise: fire safety (SSIAP training, ERP audits), construction (BTP), water drilling,
-> renewable energy (solar), drones & aerial imaging, naval repair, industrial cleaning.
-> Contact: contact@bnp-coorporation.com, (+237) 6 55 01 09 19, BP 4219 Yaoundé.
-> Hours: Mon-Fri 8:00-16:00, Sat 8:00-12:00. Languages: French (default), English.
+> BNP Coorporation Sarl (BNPC) is a multiservice engineering company based in Yaoundé, Cameroon, founded in 2023. Active in Yaoundé, Douala, Kribi and across Cameroon. Expertise: fire safety (SSIAP training, ERP audits), construction (BTP), water drilling, renewable energy (solar), drones and aerial imaging, naval repair, industrial cleaning. Contact: contact@bnp-coorporation.com, (+237) 6 55 01 09 19, BP 4219 Yaoundé. Hours: Mon-Fri 8:00-16:00, Sat 8:00-12:00. Languages: French (default), English. Independent Cameroonian company, no link with BNP Paribas nor BNP Paribas Corporate.
 
-## Services (FR/EN)
-- /fr/services/securite-incendie — Sécurité incendie, audits ERP, SSIAP
-- /fr/services/construction-btp — Construction, BTP, génie civil
-- /fr/services/forage-et-eau — Forage d'eau, potabilisation, pompage solaire
-- /fr/services/energies-renouvelables — Centrales solaires, stockage, maintenance
-- /fr/services/drones-imagerie-aerienne — Cartographie 3D, inspection, suivi chantier
-- /fr/services/reparation-navale — Réparation navale (port de Kribi, Douala)
-- /fr/services/nettoyage-industriel — Nettoyage industriel
-- Same paths under /en/ for English versions.
+## Services (FR)
+
+- [Sécurité incendie](https://bnp-coorporation.com/fr/services/securite-incendie): audits ERP, ingénierie SSIAP, équipements et formations.
+- [Construction (BTP)](https://bnp-coorporation.com/fr/services/construction-btp): bâtiment, génie civil, rénovation.
+- [Forage et eau](https://bnp-coorporation.com/fr/services/forage-et-eau): études géophysiques, forage, potabilisation, pompage solaire.
+- [Énergies renouvelables](https://bnp-coorporation.com/fr/services/energies-renouvelables): centrales solaires, stockage, maintenance.
+- [Drones (imagerie aérienne)](https://bnp-coorporation.com/fr/services/drones-imagerie-aerienne): cartographie 3D, inspection, suivi de chantier.
+- [Réparation navale](https://bnp-coorporation.com/fr/services/reparation-navale): ports de Kribi et Douala.
+- [Nettoyage industriel](https://bnp-coorporation.com/fr/services/nettoyage-industriel): sites industriels et tertiaires.
+
+## Services (EN)
+
+- [Fire Safety](https://bnp-coorporation.com/en/services/securite-incendie): ERP audits, SSIAP engineering, equipment and training.
+- [Construction](https://bnp-coorporation.com/en/services/construction-btp): building, civil engineering, renovation.
+- [Drilling and Water](https://bnp-coorporation.com/en/services/forage-et-eau): geophysical surveys, drilling, potabilization, solar pumping.
+- [Renewable Energy](https://bnp-coorporation.com/en/services/energies-renouvelables): solar plants, storage, maintenance.
+- [Drones (Aerial Imaging)](https://bnp-coorporation.com/en/services/drones-imagerie-aerienne): 3D mapping, inspection, site monitoring.
+- [Naval Repair](https://bnp-coorporation.com/en/services/reparation-navale): ports of Kribi and Douala.
+- [Industrial Cleaning](https://bnp-coorporation.com/en/services/nettoyage-industriel): industrial and commercial sites.
 
 ## Company
-- /fr/qui-sommes-nous — About, mission, vision, values, team, key figures
-- /fr/galerie — Events with date, place, photos (meetings, conferences, field)
-- /fr/projets — Projects & case studies
-- /fr/actualites — News & articles
-- /fr/contact — Contact, quote within 24-48h, FAQ, field visits before pricing
+
+- [Qui sommes-nous](https://bnp-coorporation.com/fr/qui-sommes-nous): mission, vision, valeurs, équipe, chiffres clés.
+- [About us](https://bnp-coorporation.com/en/qui-sommes-nous): mission, vision, values, team, key figures.
+- [Galerie](https://bnp-coorporation.com/fr/galerie): événements datés et localisés avec photos (rencontres, conférences, terrain).
+- [Projets](https://bnp-coorporation.com/fr/projets): réalisations et études de cas.
+- [Actualités](https://bnp-coorporation.com/fr/actualites): news et articles.
+- [Contact](https://bnp-coorporation.com/fr/contact): devis sous 24-48h ouvrées, visites techniques, FAQ. Same in [English](https://bnp-coorporation.com/en/contact).
+- [Accueil](https://bnp-coorporation.com/fr): présentation générale. [Home (EN)](https://bnp-coorporation.com/en).
