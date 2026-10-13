@@ -136,6 +136,7 @@
     "errorInvalidPhone": "Invalid phone number (e.g. +237 6 55 01 09 19).",
     "errorConsent": "Please accept the use of your data to send the message.",
     "errorRateLimit": "Too many attempts. Please try again in a few minutes.",
+    "errorCaptcha": "Bot verification failed. Reload the page and try again.",
     "faqTitle": "Frequently asked questions about our intervention procedures",
     "faq1Q": "What is the lead time for a quote at BNP Coorporation Sarl?",
     "faq1A": "Our engineers and technical experts analyze your request and send you a detailed proposal within 24 to 48 business hours. For industrial or naval emergencies, our teams can be mobilized immediately.",

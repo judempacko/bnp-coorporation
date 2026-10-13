@@ -1,20 +1,77 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { Ratelimit } from '@upstash/ratelimit';
+import { Redis } from '@upstash/redis';
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const PHONE_RE = /^\+?[0-9\s().-]{6,20}$/;
 const MAX_BODY = 32 * 1024;
 const SERVICES = ['incendie', 'btp', 'forage', 'solaire', 'drones', 'naval', 'autre'];
 
-// Rate-limit best-effort en mémoire : 5 envois / heure / IP.
-const hits = new Map<string, number[]>();
-function rateLimited(ip: string): boolean {
+// --- Rate-limit Redis (partagé entre toutes les instances serverless) ---
+// Actif uniquement si les vars Upstash sont posées, sinon repli mémoire.
+const redisEnabled =
+  !!process.env.UPSTASH_REDIS_REST_URL && !!process.env.UPSTASH_REDIS_REST_TOKEN;
+
+const redisRatelimit = redisEnabled
+  ? new Ratelimit({
+      redis: Redis.fromEnv(),
+      limiter: Ratelimit.slidingWindow(5, '1 h'),
+      analytics: true,
+      prefix: 'bnpc-contact',
+    })
+  : null;
+
+// --- Repli mémoire (dev local / avant config Upstash) ---
+// Borné + purge pour éviter toute croissance infinie.
+const MAX_ENTRIES = 2000;
+const memoryHits = new Map<string, number[]>();
+function memoryRateLimited(ip: string): boolean {
   const now = Date.now();
   const windowStart = now - 60 * 60 * 1000;
-  const list = (hits.get(ip) ?? []).filter((t) => t > windowStart);
+  if (memoryHits.size > MAX_ENTRIES) {
+    for (const [key, list] of memoryHits) {
+      if (list.every((t) => t <= windowStart)) memoryHits.delete(key);
+      if (memoryHits.size <= MAX_ENTRIES / 2) break;
+    }
+  }
+  const list = (memoryHits.get(ip) ?? []).filter((t) => t > windowStart);
   if (list.length >= 5) return true;
   list.push(now);
-  hits.set(ip, list);
+  memoryHits.set(ip, list);
   return false;
+}
+
+async function isRateLimited(ip: string): Promise<boolean> {
+  if (redisRatelimit) {
+    try {
+      const { success } = await redisRatelimit.limit(ip);
+      return !success;
+    } catch (e) {
+      console.error('[contact] Redis ratelimit failed, fallback mémoire', String(e));
+      return memoryRateLimited(ip);
+    }
+  }
+  return memoryRateLimited(ip);
+}
+
+// --- Vérification Cloudflare Turnstile ---
+// Active uniquement si TURNSTILE_SECRET_KEY est posée.
+async function verifyTurnstile(token: unknown, ip: string): Promise<boolean> {
+  const secret = process.env.TURNSTILE_SECRET_KEY;
+  if (!secret) return true; // non configuré = on laisse passer
+  if (typeof token !== 'string' || token.length === 0) return false;
+  try {
+    const res = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({ secret, response: token, remoteip: ip }),
+    });
+    const data = (await res.json().catch(() => null)) as { success?: boolean } | null;
+    return data?.success === true;
+  } catch (e) {
+    console.error('[contact] Turnstile verify failed', String(e));
+    return false;
+  }
 }
 
 interface ContactPayload {
@@ -26,6 +83,8 @@ interface ContactPayload {
   consent?: unknown;
   /** Honeypot anti-spam : doit rester vide. */
   company?: unknown;
+  /** Token Turnstile fourni par le widget. */
+  turnstileToken?: unknown;
 }
 
 export async function POST(req: NextRequest) {
@@ -74,21 +133,28 @@ export async function POST(req: NextRequest) {
     req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
     req.headers.get('x-real-ip') ||
     'unknown';
-  if (rateLimited(ip)) {
+
+  if (await isRateLimited(ip)) {
     return NextResponse.json({ ok: false, error: 'too_many_requests' }, { status: 429 });
+  }
+
+  if (!(await verifyTurnstile(body.turnstileToken, ip))) {
+    return NextResponse.json({ ok: false, error: 'turnstile_failed' }, { status: 403 });
   }
 
   const apiKey = process.env.RESEND_API_KEY;
   const to = process.env.CONTACT_TO_EMAIL || 'contact@bnp-coorporation.com';
   if (!apiKey) {
     // Pas de transport configuré : on ne fait jamais semblant d'avoir envoyé.
-    console.error('[contact] RESEND_API_KEY manquante, message non envoyé', { name, email });
+    console.error('[contact] RESEND_API_KEY manquante, message non envoyé');
     return NextResponse.json({ ok: false, error: 'service_unavailable' }, { status: 503 });
   }
 
   const from = process.env.CONTACT_FROM_EMAIL || 'contact@bnp-coorporation.com';
+  // Nom assaini : sans retours ligne (sujet d'email).
+  const safeName = name.replace(/[\r\n]+/g, ' ');
   const text = [
-    `Nom : ${name}`,
+    `Nom : ${safeName}`,
     `Email : ${email}`,
     phone ? `Téléphone : ${phone}` : null,
     service ? `Service : ${service}` : null,
@@ -109,7 +175,9 @@ export async function POST(req: NextRequest) {
         from: `BNPC Contact <${from}>`,
         to: [to],
         reply_to: email,
-        subject: service ? `[Contact BNPC] ${service} — ${name}` : `[Contact BNPC] Message de ${name}`,
+        subject: service
+          ? `[Contact BNPC] ${service} — ${safeName}`
+          : `[Contact BNPC] Message de ${safeName}`,
         text,
       }),
     });

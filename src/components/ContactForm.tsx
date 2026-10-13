@@ -1,7 +1,17 @@
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import Script from 'next/script';
 import { useTranslations } from 'next-intl';
+
+declare global {
+  interface Window {
+    turnstile?: {
+      render: (el: HTMLElement, opts: Record<string, unknown>) => string;
+      reset: (widgetId: string) => void;
+    };
+  }
+}
 
 const SERVICES = [
   'incendie',
@@ -29,6 +39,25 @@ export function ContactForm() {
   });
   const [status, setStatus] = useState<Status>('idle');
   const [errorCode, setErrorCode] = useState<string | null>(null);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const widgetRef = useRef<HTMLDivElement>(null);
+  const widgetId = useRef<string | null>(null);
+  const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
+
+  // Rend le widget Turnstile (seulement si la sitekey est configurée).
+  const renderWidget = useCallback(() => {
+    if (!siteKey || !widgetRef.current || !window.turnstile || widgetId.current) return;
+    widgetId.current = window.turnstile.render(widgetRef.current, {
+      sitekey: siteKey,
+      callback: (token: string) => setTurnstileToken(token),
+      'expired-callback': () => setTurnstileToken(null),
+      'error-callback': () => setTurnstileToken(null),
+    });
+  }, [siteKey]);
+
+  useEffect(() => {
+    renderWidget();
+  }, [renderWidget]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -40,7 +69,7 @@ export function ContactForm() {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, turnstileToken }),
       });
       const data = await res.json().catch(() => null);
 
@@ -55,6 +84,10 @@ export function ContactForm() {
           consent: false,
           company: '',
         });
+        setTurnstileToken(null);
+        if (widgetId.current && window.turnstile) {
+          window.turnstile.reset(widgetId.current);
+        }
       } else {
         setStatus('error');
         setErrorCode(
@@ -77,7 +110,9 @@ export function ContactForm() {
           ? t('errorInvalidPhone')
           : errorCode === 'consent_required'
             ? t('errorConsent')
-            : t('errorGeneric');
+            : errorCode === 'turnstile_failed'
+              ? t('errorCaptcha')
+              : t('errorGeneric');
 
   const inputClass =
     'w-full bg-white px-4 py-3 text-[16px] leading-[1.7] text-ink placeholder:text-neutral-400 focus:outline-none focus:ring-1 focus:ring-brand';
@@ -113,6 +148,17 @@ export function ContactForm() {
       )}
 
       <form onSubmit={handleSubmit} className="mt-8 space-y-3">
+        {siteKey && (
+          <>
+            <Script
+              src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+              async
+              defer
+              onLoad={renderWidget}
+            />
+            <div ref={widgetRef} className="flex justify-center" />
+          </>
+        )}
         {/* Honeypot : invisible pour les humains, piège à bots */}
         <input
           type="text"

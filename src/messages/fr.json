@@ -136,6 +136,7 @@
     "errorInvalidPhone": "Numéro invalide (ex : +237 6 55 01 09 19).",
     "errorConsent": "Veuillez accepter l'utilisation de vos données pour envoyer le message.",
     "errorRateLimit": "Trop de tentatives. Réessayez dans quelques minutes.",
+    "errorCaptcha": "Vérification anti-robot échouée. Rechargez la page et réessayez.",
     "faqTitle": "Questions fréquentes sur nos modalités d'intervention",
     "faq1Q": "Quel est le délai d'obtention d'un devis chez BNP Coorporation Sarl ?",
     "faq1A": "Nos ingénieurs et experts techniques analysent votre demande et vous transmettent une proposition détaillée sous 24 à 48 heures ouvrées. Pour les urgences industrielles ou navales, nos équipes peuvent être mobilisées immédiatement.",
