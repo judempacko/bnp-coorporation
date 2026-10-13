@@ -33,7 +33,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     for (const path of STATIC_PATHS) {
       entries.push({
         url: `${SITE_URL}/${locale}${path}`,
-        lastModified: now,
+        // Pas de lastModified volontairement : une date "maintenant" à chaque
+        // build ferait croire à Google que tout a changé et déclencherait
+        // des réexplorations permanentes (rich results / sitelinks instables).
         changeFrequency: path === '' ? 'weekly' : 'monthly',
         priority: path === '' ? 1 : path === '/services' ? 0.9 : 0.7,
         alternates: {
@@ -57,7 +59,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     for (const slug of serviceSlugs) {
       entries.push({
         url: `${SITE_URL}/${locale}/services/${slug}`,
-        lastModified: now,
         changeFrequency: 'monthly',
         priority: 0.8,
         alternates: {
@@ -105,7 +106,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       for (const member of members.slice(0, 100)) {
         entries.push({
           url: `${SITE_URL}/${locale}/qui-sommes-nous/${member.slug}`,
-          lastModified: now,
           changeFrequency: 'monthly',
           priority: 0.5,
         });
