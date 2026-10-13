@@ -5,6 +5,7 @@ import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import { Header } from '@/components/Header';
+import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { Footer } from '@/components/Footer';
 import { BackToTop } from '@/components/BackToTop';
 import { getAllServices } from '@/lib/api';
@@ -23,7 +24,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
+const baseMetadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: 'BNP Coorporation Sarl — Sécurité incendie, BTP & Ingénierie au Cameroun',
@@ -91,6 +92,14 @@ export function generateStaticParams() {
   return routing.locales.map((locale: string) => ({ locale }));
 }
 
+// Vérification Google Search Console : active uniquement si la var est posée.
+// Le code est fourni par Search Console (TXT DNS recommandé, meta en secours).
+export async function generateMetadata(): Promise<Metadata> {
+  const code = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
+  if (!code) return baseMetadata;
+  return { ...baseMetadata, verification: { google: code } };
+}
+
 export default async function LocaleLayout({
   children,
   params
@@ -134,6 +143,7 @@ export default async function LocaleLayout({
         />
         <NextIntlClientProvider messages={messages}>
           <Header locale={locale} services={headerServices} />
+          <Breadcrumbs />
           <div className="flex-1 flex flex-col">
             {children}
           </div>
