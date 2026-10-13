@@ -70,14 +70,14 @@ export default async function TeamMemberPage({
   };
 
   return (
-    <main className="w-full bg-white text-[#2c2c2c]">
+    <main className="w-full bg-white text-ink">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       {/* Retour équipe : bandeau fin, pas de hero cinématique ici */}
       <div className="mx-auto max-w-[1100px] px-6 pt-6">
         <Link
           href={`/${locale}/qui-sommes-nous`}
-          className="group inline-flex items-center gap-2 text-[14px] font-semibold text-neutral-500 hover:text-[#0A66C2] transition-colors"
+          className="group inline-flex items-center gap-2 text-[14px] font-semibold text-neutral-500 hover:text-brand transition-colors"
         >
           <ArrowLeft
             size={16}
@@ -103,10 +103,10 @@ export default async function TeamMemberPage({
 
         {/* Colonne éditoriale : pas de boîte, axe optique aligné sur le haut photo */}
         <div className="md:pt-1">
-          <h1 className="text-[28px] sm:text-[32px] leading-[1.15] font-semibold tracking-tight text-[#2c2c2c]">
+          <h1 className="text-[28px] sm:text-[32px] leading-[1.15] font-semibold tracking-tight text-ink">
             {member.name}
           </h1>
-          <p className="mt-2 text-[17px] font-medium text-[#0A66C2]">{member.role}</p>
+          <p className="mt-2 text-[17px] font-medium text-brand">{member.role}</p>
           {/* Année d'entrée réelle (ACF) — masquée si non renseignée */}
           {member.startYear && (
             <p className="mt-1.5 text-[15px] text-neutral-500">
@@ -126,7 +126,7 @@ export default async function TeamMemberPage({
               </h3>
               <div className="mt-2 space-y-3">
                 {member.bio.map((paragraph, i) => (
-                  <p key={i} className="text-[16px] leading-[1.75] text-[#2c2c2c]">
+                  <p key={i} className="text-[16px] leading-[1.75] text-ink">
                     {paragraph}
                   </p>
                 ))}
@@ -141,7 +141,7 @@ export default async function TeamMemberPage({
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`LinkedIn de ${member.name}`}
-                className="inline-flex items-center justify-center gap-2 font-semibold text-[16px] px-6 py-3 rounded-full border border-neutral-300 text-[#2c2c2c] hover:border-[#0A66C2] hover:text-[#0A66C2] transition-colors"
+                className="inline-flex items-center justify-center gap-2 font-semibold text-[16px] px-6 py-3 rounded-full border border-neutral-300 text-ink hover:border-brand hover:text-brand transition-colors"
               >
                 <LinkedinLogo size={18} weight="fill" />
                 LinkedIn
@@ -154,7 +154,7 @@ export default async function TeamMemberPage({
       {others.length > 0 && (
         <section className="bg-neutral-100 border-t border-neutral-200 py-12 sm:py-14">
           <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16">
-            <h2 className="text-[24px] font-semibold leading-snug text-[#2c2c2c] mb-6 sm:text-[28px] sm:mb-8">
+            <h2 className="text-[24px] font-semibold leading-snug text-ink mb-6 sm:text-[28px] sm:mb-8">
               {t('listTitle')}
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
@@ -174,10 +174,10 @@ export default async function TeamMemberPage({
                     />
                   </div>
                   <div className="flex flex-1 flex-col pt-4">
-                    <span className="text-[18px] font-semibold leading-snug text-[#2c2c2c] group-hover:text-[#0A66C2] transition-colors">
+                    <span className="text-[18px] font-semibold leading-snug text-ink group-hover:text-brand transition-colors">
                       {m.name}
                     </span>
-                    <span className="mt-1 text-[14px] font-semibold text-[#0A66C2]">{m.role}</span>
+                    <span className="mt-1 text-[14px] font-semibold text-brand">{m.role}</span>
                   </div>
                 </Link>
               ))}
@@ -187,7 +187,7 @@ export default async function TeamMemberPage({
       )}
 
       {/* Bannière CTA bleue */}
-      <section className="bg-[#0A66C2] text-white py-12 px-6 sm:py-14 sm:px-12 lg:px-16">
+      <section className="bg-brand text-white py-12 px-6 sm:py-14 sm:px-12 lg:px-16">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center items-stretch justify-between gap-6 md:gap-8">
           <div className="space-y-3 max-w-3xl">
             <h2 className="text-[26px] font-semibold text-white leading-tight sm:text-[32px]">
@@ -199,7 +199,7 @@ export default async function TeamMemberPage({
           </div>
           <Link
             href={`/${locale}/contact`}
-            className="inline-block w-full text-center bg-white text-[#0A66C2] hover:bg-neutral-100 font-semibold text-[16px] px-8 py-3.5 rounded-full transition-colors shadow-none shrink-0 sm:w-auto"
+            className="inline-block w-full text-center bg-white text-brand hover:bg-neutral-100 font-semibold text-[16px] px-8 py-3.5 rounded-full transition-colors shadow-none shrink-0 sm:w-auto"
             style={{ boxShadow: 'none' }}
           >
             {t('ctaButton')}

@@ -43,7 +43,7 @@ export async function generateMetadata({
     ? 'BNP Coorporation Sarl (BNPC) — Sécurité incendie, BTP & Ingénierie au Cameroun'
     : 'BNP Coorporation Sarl (BNPC) — Fire Safety, Construction & Engineering in Cameroon';
   const description = fr
-    ? "BNP Coorporation Sarl (BNPC) à Yaoundé : sécurité incendie (SSIAP, audits ERP), BTP, forage d'eau, solaire, drones, naval. Devis sous 24-48h, intervention Yaoundé-Douala-Kribi."
+    ? "BNP Coorporation Sarl (BNPC) à Yaoundé : sécurité incendie (SSIAP, audits ERP), BTP, forage d'eau, solaire, drones, naval. Devis sous 24-48h, intervention Yaoundé, Douala et tout le Cameroun."
     : 'BNP Coorporation Sarl (BNPC) in Yaoundé: fire safety (SSIAP, ERP audits), construction, water drilling, solar, drones, naval repair. Quote within 24-48h across Cameroon.';
   const path = '';
   return {
@@ -133,13 +133,13 @@ export default async function HomePage({
     ? [
         { value: '2023', label: 'Fondée à Yaoundé' },
         { value: '7', label: "Pôles d'expertise" },
-        { value: '3', label: 'Bases : Yaoundé, Douala, Kribi' },
+        { value: '2', label: 'Bases : Yaoundé, Douala' },
         { value: '24-48h', label: 'Devis après visite technique' },
       ]
     : [
         { value: '2023', label: 'Founded in Yaoundé' },
         { value: '7', label: 'Areas of expertise' },
-        { value: '3', label: 'Bases: Yaoundé, Douala, Kribi' },
+        { value: '2', label: 'Bases: Yaoundé, Douala' },
         { value: '24-48h', label: 'Quote after site visit' },
       ];
 
@@ -163,7 +163,7 @@ export default async function HomePage({
         {
           icon: MapPin,
           title: 'Couverture nationale',
-          desc: 'Yaoundé, Douala, Kribi + tout le Cameroun, y compris urgences industrielles et navales.',
+          desc: 'Mobilisables sur le terrain à Yaoundé, Douala et dans le reste du Cameroun pour fournir nos services.',
         },
       ]
     : [
@@ -185,7 +185,7 @@ export default async function HomePage({
         {
           icon: MapPin,
           title: 'Nationwide coverage',
-          desc: 'Yaoundé, Douala, Kribi + all of Cameroon, including industrial and naval emergencies.',
+          desc: 'Deployable on site in Yaoundé, Douala and across the rest of Cameroon to deliver our services.',
         },
       ];
 
@@ -243,36 +243,6 @@ export default async function HomePage({
         },
       ];
 
-  const zones = fr
-    ? [
-        {
-          city: 'Yaoundé',
-          desc: 'Siège — BP 4219. BTP, sécurité incendie, solaire, forages, drones.',
-        },
-        {
-          city: 'Douala',
-          desc: 'Capitale économique. Industries, audits ERP, installations techniques.',
-        },
-        {
-          city: 'Kribi',
-          desc: 'Zone portuaire. Réparation navale, exercices incendie, chantiers.',
-        },
-      ]
-    : [
-        {
-          city: 'Yaoundé',
-          desc: 'Head office — P.O. Box 4219. Construction, fire safety, solar, drilling, drones.',
-        },
-        {
-          city: 'Douala',
-          desc: 'Economic capital. Industries, ERP audits, technical installations.',
-        },
-        {
-          city: 'Kribi',
-          desc: 'Port area. Naval repair, fire drills, construction sites.',
-        },
-      ];
-
   const faqs = fr
     ? [
         {
@@ -317,13 +287,16 @@ export default async function HomePage({
       />
 
       {/* 2. Bandeau preuves */}
-      <section className="w-full bg-[#f1f2f4] border-y border-slate-200">
+      <section className="w-full bg-surface border-y border-slate-200">
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 py-8 sm:py-10">
-          <dl className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 text-center">
+          <dl className="grid grid-cols-2 lg:grid-cols-4 gap-y-8 text-center">
             {proofs.map((p) => (
-              <div key={p.label} className="flex flex-col space-y-1">
-                <dt className="order-2 text-sm text-[#51565d]">{p.label}</dt>
-                <dd className="order-1 text-2xl sm:text-3xl font-semibold text-[#0A66C2]">
+              <div
+                key={p.label}
+                className="flex flex-col space-y-1.5 px-4 sm:px-8 even:border-l even:border-slate-300 lg:border-l lg:border-slate-300 lg:first:border-l-0"
+              >
+                <dt className="order-2 text-base leading-relaxed text-muted">{p.label}</dt>
+                <dd className="order-1 text-2xl sm:text-3xl font-semibold text-brand">
                   {p.value}
                 </dd>
               </div>
@@ -337,20 +310,20 @@ export default async function HomePage({
       <section className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 py-14 sm:py-20">
         <Reveal>
           <div className="max-w-3xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.1em] text-[#0A66C2]">
+            <p className="text-sm font-semibold uppercase tracking-[0.1em] text-brand">
               {fr ? 'Nos expertises' : 'Our expertise'}
             </p>
-            <h2 className="mt-2 text-[28px] sm:text-[40px] leading-[1.2] font-semibold text-[#2c2c2c]">
+            <h2 className="mt-2 text-[28px] sm:text-[40px] leading-[1.2] font-semibold text-ink">
               {fr ? 'Sept pôles complémentaires' : 'Seven complementary areas'}
             </h2>
-            <p className="mt-3 text-[16px] leading-[1.7] text-[#51565d]">
+            <p className="mt-3 text-[16px] leading-[1.7] text-muted">
               {fr
                 ? "De l'audit incendie à la réparation navale."
                 : 'From fire audits to naval repair.'}
             </p>
           </div>
         </Reveal>
-        <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
           {serviceCards.map((card, i) => (
             <Link
               key={card.slug}
@@ -361,21 +334,18 @@ export default async function HomePage({
                 src={card.image || FALLBACK_CARD_IMAGES[i % FALLBACK_CARD_IMAGES.length]}
                 alt={card.imageAlt}
                 fill
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                 className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               />
               <div
                 aria-hidden
                 className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"
               />
-              <span className="absolute left-4 top-4 rounded-full bg-black/45 px-2.5 py-1 text-[12px] font-bold tracking-[0.15em] text-white backdrop-blur-sm">
-                {String(i + 1).padStart(2, '0')}
-              </span>
-              <span className="absolute inset-x-4 bottom-4 flex items-end justify-between gap-3">
-                <h3 className="flex-1 text-[20px] leading-[1.25] font-semibold text-white">
+              <span className="absolute inset-x-4 bottom-4 flex items-end justify-between gap-2.5">
+                <h3 className="flex-1 text-[18px] leading-[1.25] font-semibold text-white">
                   {card.title}
                 </h3>
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/50 text-white backdrop-blur-sm transition-all duration-300 group-hover:border-white group-hover:bg-white group-hover:text-[#0A66C2]">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-brand bg-brand text-white transition-all duration-300 group-hover:border-white group-hover:bg-white group-hover:text-brand">
                   <ArrowRight size={16} weight="bold" aria-hidden />
                 </span>
               </span>
@@ -384,16 +354,16 @@ export default async function HomePage({
           {/* 8e case : CTA qui clôt la grille (plus de carte orpheline) */}
           <Link
             href={`/${locale}/services`}
-            className="group relative flex aspect-square flex-col justify-between gap-6 overflow-hidden rounded-xl bg-[#0A66C2] p-6 text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl btn-sweep"
+            className="group relative flex aspect-square flex-col justify-between gap-6 overflow-hidden rounded-xl bg-brand p-6 text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl btn-sweep"
           >
             <div className="space-y-2">
-              <p className="text-[12px] font-semibold uppercase tracking-[0.15em] text-white/70">
+              <p className="text-[12px] font-semibold uppercase tracking-[0.15em] text-white/90">
                 {fr ? "Vue d'ensemble" : 'Overview'}
               </p>
-              <h3 className="text-[20px] leading-[1.3] font-semibold text-white">
+              <h3 className="text-[18px] leading-[1.3] font-semibold text-white">
                 {fr ? 'Tous nos services' : 'All our services'}
               </h3>
-              <p className="text-[15px] leading-relaxed text-white/85">
+              <p className="text-[14px] leading-relaxed text-white/85">
                 {fr
                   ? 'Sept pôles complémentaires, une seule entreprise pour vos défis.'
                   : 'Seven complementary areas, one company for your challenges.'}
@@ -403,7 +373,7 @@ export default async function HomePage({
               <span className="text-[15px] font-semibold text-white">
                 {fr ? 'Explorer' : 'Explore'}
               </span>
-              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#0A66C2] transition-transform duration-300 group-hover:translate-x-1">
+              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-brand transition-transform duration-300 group-hover:translate-x-1">
                 <ArrowRight size={16} weight="bold" aria-hidden />
               </span>
             </span>
@@ -415,7 +385,7 @@ export default async function HomePage({
       <section className="w-full bg-white border-t border-slate-200">
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 py-14 sm:py-20">
           <Reveal>
-            <h2 className="text-[28px] sm:text-[32px] font-semibold text-[#2c2c2c]">
+            <h2 className="text-[28px] sm:text-[32px] font-semibold text-ink">
               {fr ? 'Pourquoi choisir BNPC ?' : 'Why choose BNPC?'}
             </h2>
           </Reveal>
@@ -425,52 +395,50 @@ export default async function HomePage({
                 key={s.title}
                 className="rounded-lg border border-slate-200 p-6 space-y-3"
               >
-                <s.icon size={28} weight="duotone" className="text-[#0A66C2]" aria-hidden />
-                <h3 className="text-[18px] font-semibold text-[#2c2c2c]">{s.title}</h3>
-                <p className="text-[15px] leading-relaxed text-[#51565d]">{s.desc}</p>
+                <s.icon size={28} weight="duotone" className="text-brand" aria-hidden />
+                <h3 className="text-[18px] font-semibold text-ink">{s.title}</h3>
+                <p className="text-[15px] leading-relaxed text-muted">{s.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 5. Méthode */}
-      <section className="w-full bg-[#f1f2f4]">
+      {/* 5. Méthode — process centré inspiré maquette : pastille + badge numéro + pointillés */}
+      <section className="w-full bg-surface">
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 py-14 sm:py-20">
           <Reveal>
-            <h2 className="text-[28px] sm:text-[32px] font-semibold text-[#2c2c2c]">
+            <h2 className="text-[28px] sm:text-[32px] font-semibold text-ink">
               {fr ? 'Un parcours simple, sans surprise' : 'A simple process, no surprises'}
             </h2>
           </Reveal>
-          <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-            {steps.map((step) => (
-              <article key={step.n} className="rounded-lg bg-white border border-slate-200 p-5 space-y-3">
-                <div className="flex items-center justify-between">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-50 text-[#0A66C2]">
-                    <step.icon size={20} weight="duotone" aria-hidden />
+          <ol className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-10">
+            {steps.map((step, i) => (
+              <li
+                key={step.n}
+                className="relative flex flex-col items-center px-2 text-center"
+              >
+                {i < steps.length - 1 && (
+                  <span
+                    aria-hidden="true"
+                    className="absolute left-[62%] top-8 hidden w-[76%] border-t border-dashed border-slate-300 lg:block"
+                  />
+                )}
+                <div className="relative">
+                  <span className="flex h-16 w-16 items-center justify-center rounded-full bg-brand text-white shadow-md">
+                    <step.icon size={26} weight="duotone" aria-hidden />
                   </span>
-                  <span className="text-[13px] font-bold tracking-widest text-slate-300">
+                  <span className="absolute -right-1.5 -top-1.5 flex h-6 min-w-6 items-center justify-center rounded-full bg-coal px-1 text-[11px] font-bold text-white ring-2 ring-surface">
                     {step.n}
                   </span>
                 </div>
-                <h3 className="text-[16px] font-semibold text-[#2c2c2c]">{step.title}</h3>
-                <p className="text-[14px] leading-relaxed text-[#51565d]">{step.desc}</p>
-              </article>
+                <h3 className="mt-4 text-[17px] font-semibold text-ink">{step.title}</h3>
+                <p className="mt-2 max-w-[26ch] text-[15px] leading-relaxed text-muted">
+                  {step.desc}
+                </p>
+              </li>
             ))}
-            {/* 5e carte : CTA diagnostic en fond bleu, même rangée */}
-            <div className="rounded-lg bg-[#0A66C2] p-5 space-y-3 flex flex-col justify-between">
-              <h3 className="text-[17px] font-semibold text-white">
-                {fr ? 'Prêt à lancer votre diagnostic ?' : 'Ready to start your assessment?'}
-              </h3>
-              <Link
-                href={`/${locale}/contact`}
-                className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full bg-white px-5 py-2.5 text-[15px] font-semibold text-[#0A66C2] btn-sweep-white"
-              >
-                {fr ? 'Démarrer' : 'Start'}
-                <ArrowRight size={16} weight="bold" aria-hidden />
-              </Link>
-            </div>
-          </div>
+          </ol>
         </div>
       </section>
 
@@ -479,13 +447,13 @@ export default async function HomePage({
         <section className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 py-14 sm:py-20">
           <Reveal>
             <div className="max-w-2xl mx-auto text-center">
-              <p className="text-sm font-semibold uppercase tracking-[0.1em] text-[#0A66C2]">
+              <p className="text-sm font-semibold uppercase tracking-[0.1em] text-brand">
                 {fr ? 'Dernières études de cas' : 'Latest case studies'}
               </p>
-              <h2 className="mt-2 text-[28px] sm:text-[40px] leading-[1.2] font-semibold text-[#2c2c2c]">
+              <h2 className="mt-2 text-[28px] sm:text-[40px] leading-[1.2] font-semibold text-ink">
                 {fr ? 'Projets à la une' : 'Featured projects'}
               </h2>
-              <p className="mt-3 text-[16px] leading-[1.7] text-[#51565d]">
+              <p className="mt-3 text-[16px] leading-[1.7] text-muted">
                 {fr
                   ? 'Un aperçu des solutions que nous déployons sur le terrain pour nos clients.'
                   : 'A glimpse of the solutions we deploy in the field for our clients.'}
@@ -500,7 +468,7 @@ export default async function HomePage({
           <div className="mt-10 text-center">
             <Link
               href={`/${locale}/projets`}
-              className="inline-flex items-center justify-center rounded-full border border-slate-300 px-6 py-3 text-base font-semibold text-slate-700 hover:border-[#0A66C2] hover:text-[#0A66C2] transition-colors"
+              className="inline-flex items-center justify-center rounded-full border border-slate-300 px-6 py-3 text-base font-semibold text-slate-700 hover:border-brand hover:text-brand transition-colors"
             >
               {fr ? 'Tous nos projets' : 'All our projects'}
             </Link>
@@ -509,17 +477,18 @@ export default async function HomePage({
       )}
 
       {/* 6b. Partenaires — structure : header centré + rangée de 6 logos en niveaux de gris */}
+      {partners.length > 0 && (
       <section className="w-full border-t border-slate-200 bg-white">
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 py-14 sm:py-20">
           <Reveal>
             <div className="max-w-2xl mx-auto text-center">
-              <p className="text-sm font-semibold uppercase tracking-[0.1em] text-[#0A66C2]">
+              <p className="text-sm font-semibold uppercase tracking-[0.1em] text-brand">
                 {fr ? 'Rejoignez-nous' : 'Join us'}
               </p>
-              <h2 className="mt-2 text-[28px] sm:text-[40px] leading-[1.2] font-semibold text-[#2c2c2c]">
+              <h2 className="mt-2 text-[28px] sm:text-[40px] leading-[1.2] font-semibold text-ink">
                 {fr ? 'Nos partenaires' : 'Our partners'}
               </h2>
-              <p className="mt-3 text-[16px] leading-[1.7] text-[#51565d]">
+              <p className="mt-3 text-[16px] leading-[1.7] text-muted">
                 {fr
                   ? 'Ils nous confient leurs sites, leurs chantiers et leurs équipements sur l’ensemble du territoire.'
                   : 'They trust us with their sites, projects and equipment across the country.'}
@@ -527,8 +496,7 @@ export default async function HomePage({
             </div>
           </Reveal>
           {/* Marquee infini : piste doublée, une seule direction, pause au survol */}
-          {partners.length > 0 && (
-            <div className="partners-marquee-viewport mt-10 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+          <div className="partners-marquee-viewport mt-10 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
               <div className="animate-partners-marquee flex w-max">
                 {[0, 1].map((copy) => (
                   <div
@@ -539,7 +507,7 @@ export default async function HomePage({
                     {partners.map((partner) => (
                       <div
                         key={`${copy}-${partner.id}`}
-                        className="flex h-24 w-44 shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-white px-4 opacity-70 grayscale transition-all hover:border-[#0A66C2] hover:opacity-100 hover:grayscale-0 sm:w-52"
+                        className="flex h-24 w-44 shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-white px-4 opacity-70 grayscale transition-all hover:border-brand hover:opacity-100 hover:grayscale-0 sm:w-52"
                       >
                         {partner.website ? (
                           <a
@@ -585,58 +553,31 @@ export default async function HomePage({
                 ))}
               </div>
             </div>
-          )}
         </div>
       </section>
+      )}
 
-      {/* 7. Zones d'intervention */}
-      <section className="w-full border-t border-slate-200">
-        <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 py-14 sm:py-20">
-          <Reveal>
-            <h2 className="text-[28px] sm:text-[32px] font-semibold text-[#2c2c2c]">
-              {fr ? "Où intervenons-nous ?" : 'Where do we operate?'}
-            </h2>
-            <p className="mt-3 text-[16px] text-[#51565d] max-w-3xl">
-              {fr
-                ? 'Trois bases opérationnelles et une couverture nationale, y compris sites industriels isolés et zones agricoles.'
-                : 'Three operational bases and nationwide coverage, including isolated industrial sites and agricultural areas.'}
-            </p>
-          </Reveal>
-          <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-6">
-            {zones.map((z) => (
-              <div key={z.city} className="rounded-lg border border-slate-200 p-6 space-y-2">
-                <p className="inline-flex items-center gap-2 text-[18px] font-semibold text-[#2c2c2c]">
-                  <MapPin size={20} weight="fill" className="text-[#0A66C2]" aria-hidden />
-                  {z.city}
-                </p>
-                <p className="text-[15px] leading-relaxed text-[#51565d]">{z.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 8. Entreprise : bande 2/3 texte clair + 1/3 CTA équipe fond noir */}
+      {/* 7. Entreprise : bande 2/3 texte clair + 1/3 CTA équipe fond noir */}
       <section className="w-full bg-white">
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 py-12 sm:py-16">
           <div className="grid grid-cols-1 overflow-hidden rounded-2xl border border-slate-200 md:grid-cols-3">
-            <div className="bg-[#f1f2f4] p-8 sm:p-10 md:col-span-2">
-              <h2 className="text-[24px] sm:text-[28px] font-semibold text-[#2c2c2c]">
+            <div className="bg-surface p-8 sm:p-10 md:col-span-2">
+              <h2 className="text-[24px] sm:text-[28px] font-semibold text-ink">
                 {fr ? 'Une entreprise ancrée au Cameroun' : 'A company rooted in Cameroon'}
               </h2>
-              <p className="mt-3 max-w-xl text-[16px] leading-relaxed text-[#51565d]">
+              <p className="mt-3 max-w-xl text-[16px] leading-relaxed text-muted">
                 {fr
                   ? 'Depuis 2023, une direction resserrée qui décide vite et des experts ancrés sur le terrain.'
                   : 'Since 2023, lean management that decides fast and experts rooted in the field.'}
               </p>
               <Link
                 href={`/${locale}/qui-sommes-nous`}
-                className="mt-5 inline-flex items-center gap-1.5 text-[15px] font-semibold text-[#0A66C2] hover:underline"
+                className="mt-5 inline-flex items-center gap-1.5 text-[15px] font-semibold text-brand hover:underline"
               >
                 {fr ? 'Qui sommes-nous →' : 'About us →'}
               </Link>
             </div>
-            <div className="flex flex-col items-start justify-center gap-4 bg-[#181b1e] p-8 text-white sm:p-10">
+            <div className="flex flex-col items-start justify-center gap-4 bg-coal p-8 text-white sm:p-10">
               <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-white/60">
                 {fr ? 'Notre équipe' : 'Our team'}
               </p>
@@ -647,7 +588,7 @@ export default async function HomePage({
               </p>
               <Link
                 href={`/${locale}/qui-sommes-nous#equipe`}
-                className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-[15px] font-semibold text-[#181b1e] transition-colors hover:bg-slate-200"
+                className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-[15px] font-semibold text-coal transition-colors hover:bg-slate-200"
               >
                 {fr ? "Découvrir l'équipe" : 'Meet the team'}
               </Link>
@@ -656,17 +597,17 @@ export default async function HomePage({
         </div>
       </section>
 
-      {/* 9. Actualités — structure : header centré + 3 cartes */}
+      {/* 8. Actualités — structure : header centré + 3 cartes */}
       <section className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 py-14 sm:py-20">
         <Reveal>
           <div className="max-w-2xl mx-auto text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.1em] text-[#0A66C2]">
+            <p className="text-sm font-semibold uppercase tracking-[0.1em] text-brand">
               {fr ? 'Analyses & tendances' : 'Insights & trends'}
             </p>
-            <h2 className="mt-2 text-[28px] sm:text-[40px] leading-[1.2] font-semibold text-[#2c2c2c]">
+            <h2 className="mt-2 text-[28px] sm:text-[40px] leading-[1.2] font-semibold text-ink">
               {fr ? 'Articles récents' : 'Recent articles'}
             </h2>
-            <p className="mt-3 text-[16px] leading-[1.7] text-[#51565d]">
+            <p className="mt-3 text-[16px] leading-[1.7] text-muted">
               {fr
                 ? 'Suivez nos actualités, nos chantiers et nos retours d’expérience.'
                 : 'Follow our news, sites and field feedback.'}
@@ -690,32 +631,32 @@ export default async function HomePage({
         <div className="mt-10 text-center">
           <Link
             href={`/${locale}/actualites`}
-            className="inline-flex items-center justify-center rounded-full border border-slate-300 px-6 py-3 text-base font-semibold text-slate-700 hover:border-[#0A66C2] hover:text-[#0A66C2] transition-colors"
+            className="inline-flex items-center justify-center rounded-full border border-slate-300 px-6 py-3 text-base font-semibold text-slate-700 hover:border-brand hover:text-brand transition-colors"
           >
             {fr ? 'Toutes les actualités' : 'All news'}
           </Link>
         </div>
       </section>
 
-      {/* 10. FAQ courte */}
+      {/* 9. FAQ courte */}
       <section className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 pb-14 sm:pb-20">
         <Reveal>
-          <h2 className="text-[24px] sm:text-[28px] font-semibold text-[#2c2c2c]">
+          <h2 className="text-[24px] sm:text-[28px] font-semibold text-ink">
             {fr ? "Questions fréquentes" : 'Frequently asked questions'}
           </h2>
         </Reveal>
         <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
           {faqs.map((f) => (
             <div key={f.q} className="rounded-lg border border-slate-200 p-6 space-y-2">
-              <h3 className="text-[16px] font-semibold text-[#2c2c2c]">{f.q}</h3>
-              <p className="text-[15px] leading-relaxed text-[#51565d]">{f.a}</p>
+              <h3 className="text-[16px] font-semibold text-ink">{f.q}</h3>
+              <p className="text-[15px] leading-relaxed text-muted">{f.a}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* 11. CTA final */}
-      <section className="bg-[#0A66C2] text-white py-12 px-6 sm:py-14 sm:px-12 lg:px-16">
+      {/* 10. CTA final */}
+      <section className="bg-brand text-white py-12 px-6 sm:py-14 sm:px-12 lg:px-16">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center items-stretch justify-between gap-6 md:gap-8">
           <div className="space-y-3 max-w-3xl">
             <h2 className="text-[26px] font-semibold text-white leading-tight sm:text-[32px]">
@@ -731,7 +672,7 @@ export default async function HomePage({
           </div>
           <Link
             href={`/${locale}/contact`}
-            className="inline-block w-full text-center bg-white text-[#0A66C2] font-semibold text-[16px] px-8 py-3.5 rounded-full shrink-0 sm:w-auto btn-sweep-white"
+            className="inline-block w-full text-center bg-white text-brand font-semibold text-[16px] px-8 py-3.5 rounded-full shrink-0 sm:w-auto btn-sweep-white"
           >
             {fr ? 'Demander un devis' : 'Request a quote'}
           </Link>

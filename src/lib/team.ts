@@ -74,7 +74,7 @@ const MOCK_TEAM: TeamMember[] = [
       'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=80&auto=format&fit=crop',
     photoAlt: 'Bertrand N. P., Directeur Général de BNP Coorporation à Yaoundé',
     seoDescription:
-      "Bertrand N. P. est le Directeur Général et fondateur de BNP Coorporation Sarl, entreprise d'ingénierie multiservices basée à Yaoundé au Cameroun. Il définit la vision stratégique, pilote les partenariats B2B avec grands groupes et PME, et supervise les activités BTP, sécurité incendie, forage d'eau, énergies renouvelables, drones et réparation navale à Yaoundé, Douala et Kribi.",
+      "Bertrand N. P. est le Directeur Général et fondateur de BNP Coorporation Sarl, entreprise d'ingénierie multiservices basée à Yaoundé au Cameroun. Il définit la vision stratégique, pilote les partenariats B2B avec grands groupes et PME, et supervise les activités BTP, sécurité incendie, forage d'eau, énergies renouvelables, drones et réparation navale à Yaoundé, Douala et dans le reste du Cameroun.",
     linkedin: 'https://www.linkedin.com/in/bertrand-n-p',
     order: 1,
   },
@@ -119,7 +119,7 @@ const MOCK_TEAM: TeamMember[] = [
       'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80&auto=format&fit=crop',
     photoAlt: 'Stéphane T., Ingénieur BTP chez BNP Coorporation',
     seoDescription:
-      "Stéphane T. est Ingénieur BTP chez BNP Coorporation Sarl. Il assure la maîtrise d'œuvre, le suivi de chantier et la réception de travaux de construction à Yaoundé, Douala et Kribi, pour des clients B2B et particuliers.",
+      "Stéphane T. est Ingénieur BTP chez BNP Coorporation Sarl. Il assure la maîtrise d'œuvre, le suivi de chantier et la réception de travaux de construction à Yaoundé, Douala et dans le reste du Cameroun, pour des clients B2B et particuliers.",
     linkedin: 'https://www.linkedin.com/in/stephane-t',
     order: 4,
   },

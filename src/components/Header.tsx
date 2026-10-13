@@ -84,10 +84,10 @@ export function Header({ locale, services }: HeaderProps) {
         </Link>
 
         {/* Desktop Navigation Links (Taille stricte 17px) */}
-        <nav className="hidden lg:flex self-stretch items-center gap-6 text-[16px] font-medium text-[#2c2c2c]">
+        <nav className="hidden lg:flex self-stretch items-center gap-6 text-[16px] font-medium text-ink">
           <Link
             href={`/${locale}`}
-            className={`hover:text-[#0A66C2] transition-colors ${isActive(`/${locale}`) ? "text-[#0A66C2] font-semibold" : ""}`}
+            className={`hover:text-brand transition-colors ${isActive(`/${locale}`) ? "text-brand font-semibold" : ""}`}
           >
             Accueil
           </Link>
@@ -104,9 +104,9 @@ export function Header({ locale, services }: HeaderProps) {
               onClick={() => setCompanyDropdownOpen((v) => !v)}
               aria-expanded={companyDropdownOpen}
               aria-haspopup="true"
-              className={`flex items-center gap-1 py-2 hover:text-[#0A66C2] transition-colors cursor-pointer text-[16px] font-medium ${
+              className={`flex items-center gap-1 py-2 hover:text-brand transition-colors cursor-pointer text-[16px] font-medium ${
                 isActive(`/${locale}/qui-sommes-nous`) || isActive(`/${locale}/galerie`)
-                  ? "text-[#0A66C2] font-semibold"
+                  ? "text-brand font-semibold"
                   : ""
               }`}
             >
@@ -114,7 +114,7 @@ export function Header({ locale, services }: HeaderProps) {
               <CaretDown
                 size={14}
                 weight="bold"
-                className={`transition-transform duration-200 ${companyDropdownOpen ? "rotate-180 text-[#0A66C2]" : ""}`}
+                className={`transition-transform duration-200 ${companyDropdownOpen ? "rotate-180 text-brand" : ""}`}
               />
             </button>
 
@@ -127,15 +127,15 @@ export function Header({ locale, services }: HeaderProps) {
                     onClick={() => setCompanyDropdownOpen(false)}
                     className={`group flex items-center justify-between gap-3 px-4 py-2.5 rounded-lg text-[16px] font-medium transition-all ${
                       isActive(c.href)
-                        ? 'bg-[#f1f2f4] text-[#0A66C2]'
-                        : 'text-[#2c2c2c] hover:bg-[#f1f2f4] hover:text-[#0A66C2]'
+                        ? 'bg-surface text-brand'
+                        : 'text-ink hover:bg-surface hover:text-brand'
                     }`}
                   >
                     <span>{c.label}</span>
                     <CaretRight
                       size={14}
                       weight="bold"
-                      className="opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-[#0A66C2] shrink-0"
+                      className="opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-brand shrink-0"
                     />
                   </Link>
                 ))}
@@ -151,9 +151,9 @@ export function Header({ locale, services }: HeaderProps) {
           >
             <button
               type="button"
-              className={`flex items-center gap-1 py-2 hover:text-[#0A66C2] transition-colors cursor-pointer text-[16px] font-medium ${
+              className={`flex items-center gap-1 py-2 hover:text-brand transition-colors cursor-pointer text-[16px] font-medium ${
                 isActive(`/${locale}/services`)
-                  ? "text-[#0A66C2] font-semibold"
+                  ? "text-brand font-semibold"
                   : ""
               }`}
             >
@@ -161,7 +161,7 @@ export function Header({ locale, services }: HeaderProps) {
               <CaretDown
                 size={14}
                 weight="bold"
-                className={`transition-transform duration-200 ${servicesDropdownOpen ? "rotate-180 text-[#0A66C2]" : ""}`}
+                className={`transition-transform duration-200 ${servicesDropdownOpen ? "rotate-180 text-brand" : ""}`}
               />
             </button>
 
@@ -175,15 +175,15 @@ export function Header({ locale, services }: HeaderProps) {
                     onClick={() => setServicesDropdownOpen(false)}
                     className={`group flex items-center justify-between px-3.5 py-2.5 rounded-lg text-[16px] font-medium transition-all ${
                       isActive(`/${locale}/services/${s.slug}`)
-                        ? 'bg-[#f1f2f4] text-[#0A66C2]'
-                        : 'text-[#2c2c2c] hover:bg-[#f1f2f4] hover:text-[#0A66C2]'
+                        ? 'bg-surface text-brand'
+                        : 'text-ink hover:bg-surface hover:text-brand'
                     }`}
                   >
                     <span>{s.label}</span>
                     <CaretRight
                       size={14}
                       weight="bold"
-                      className="opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-[#0A66C2]"
+                      className="opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-brand"
                     />
                   </Link>
                 ))}
@@ -193,21 +193,21 @@ export function Header({ locale, services }: HeaderProps) {
 
           <Link
             href={`/${locale}/projets`}
-            className={`hover:text-[#0A66C2] transition-colors ${isActive(`/${locale}/projets`) ? "text-[#0A66C2] font-semibold" : ""}`}
+            className={`hover:text-brand transition-colors ${isActive(`/${locale}/projets`) ? "text-brand font-semibold" : ""}`}
           >
             Réalisations
           </Link>
 
           <Link
             href={`/${locale}/actualites`}
-            className={`hover:text-[#0A66C2] transition-colors ${isActive(`/${locale}/actualites`) ? "text-[#0A66C2] font-semibold" : ""}`}
+            className={`hover:text-brand transition-colors ${isActive(`/${locale}/actualites`) ? "text-brand font-semibold" : ""}`}
           >
             Actualités
           </Link>
 
           <Link
             href={`/${locale}/contact`}
-            className={`hover:text-[#0A66C2] transition-colors ${isActive(`/${locale}/contact`) ? "text-[#0A66C2] font-semibold" : ""}`}
+            className={`hover:text-brand transition-colors ${isActive(`/${locale}/contact`) ? "text-brand font-semibold" : ""}`}
           >
             Contact
           </Link>
@@ -219,7 +219,7 @@ export function Header({ locale, services }: HeaderProps) {
           <Link
             href={switchedPath}
             aria-label={locale === 'fr' ? 'Switch to English' : 'Passer en français'}
-            className="inline-flex items-center gap-1.5 px-2 py-1.5 text-[16px] font-medium text-[#2c2c2c] hover:text-[#0A66C2] transition-colors"
+            className="inline-flex items-center gap-1.5 px-2 py-1.5 text-[16px] font-medium text-ink hover:text-brand transition-colors"
           >
             <Translate size={18} weight="bold" aria-hidden />
             <span>{locale === 'fr' ? 'Français' : 'English'}</span>
@@ -228,7 +228,7 @@ export function Header({ locale, services }: HeaderProps) {
           {/* Button Nous Joindre (Taille stricte 17px) */}
           <Link
             href={`/${locale}/contact`}
-            className="hidden sm:inline-flex items-center justify-center bg-[#0A66C2] text-white font-semibold text-[16px] px-4 py-1.5 rounded-full transition-colors border-none outline-none shadow-none btn-sweep"
+            className="hidden sm:inline-flex items-center justify-center bg-brand text-white font-semibold text-[16px] px-4 py-1.5 rounded-full transition-colors border-none outline-none shadow-none btn-sweep"
             style={{ boxShadow: "none" }}
           >
             Nous joindre
@@ -238,7 +238,7 @@ export function Header({ locale, services }: HeaderProps) {
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 text-slate-700 hover:text-[#0A66C2]"
+            className="lg:hidden p-2 text-slate-700 hover:text-brand"
             aria-label="Toggle menu"
           >
             {mobileMenuOpen ? (
@@ -256,31 +256,31 @@ export function Header({ locale, services }: HeaderProps) {
           <Link
             href={`/${locale}`}
             onClick={() => setMobileMenuOpen(false)}
-            className="block text-[16px] font-medium text-[#2c2c2c] py-1"
+            className="block text-[16px] font-medium text-ink py-1"
           >
             Accueil
           </Link>
-          <div className="space-y-1 pl-3 border-l-2 border-[#0A66C2]">
-            <span className="block text-[16px] font-semibold text-[#0A66C2] uppercase tracking-wider py-1">
+          <div className="space-y-1 pl-3 border-l-2 border-brand">
+            <span className="block text-[16px] font-semibold text-brand uppercase tracking-wider py-1">
               L&apos;entreprise
             </span>
             <Link
               href={`/${locale}/qui-sommes-nous`}
               onClick={() => setMobileMenuOpen(false)}
-              className="block text-[16px] text-[#2c2c2c] py-1"
+              className="block text-[16px] text-ink py-1"
             >
               {locale === 'fr' ? 'Qui sommes-nous' : 'About us'}
             </Link>
             <Link
               href={`/${locale}/galerie`}
               onClick={() => setMobileMenuOpen(false)}
-              className="block text-[16px] text-[#2c2c2c] py-1"
+              className="block text-[16px] text-ink py-1"
             >
               {locale === 'fr' ? 'Galerie média' : 'Media gallery'}
             </Link>
           </div>
-          <div className="space-y-1 pl-3 border-l-2 border-[#0A66C2]">
-            <span className="block text-[16px] font-semibold text-[#0A66C2] uppercase tracking-wider py-1">
+          <div className="space-y-1 pl-3 border-l-2 border-brand">
+            <span className="block text-[16px] font-semibold text-brand uppercase tracking-wider py-1">
               Services
             </span>
             {servicesList.map((s) => (
@@ -288,7 +288,7 @@ export function Header({ locale, services }: HeaderProps) {
                 key={s.slug}
                 href={`/${locale}/services/${s.slug}`}
                 onClick={() => setMobileMenuOpen(false)}
-                className="block text-[16px] text-[#2c2c2c] py-1"
+                className="block text-[16px] text-ink py-1"
               >
                 {s.label}
               </Link>
@@ -297,21 +297,21 @@ export function Header({ locale, services }: HeaderProps) {
           <Link
             href={`/${locale}/projets`}
             onClick={() => setMobileMenuOpen(false)}
-            className="block text-[16px] font-medium text-[#2c2c2c] py-1"
+            className="block text-[16px] font-medium text-ink py-1"
           >
             Réalisations
           </Link>
           <Link
             href={`/${locale}/actualites`}
             onClick={() => setMobileMenuOpen(false)}
-            className="block text-[16px] font-medium text-[#2c2c2c] py-1"
+            className="block text-[16px] font-medium text-ink py-1"
           >
             Actualités
           </Link>
           <Link
             href={`/${locale}/contact`}
             onClick={() => setMobileMenuOpen(false)}
-            className="block text-[16px] font-medium text-[#2c2c2c] py-1"
+            className="block text-[16px] font-medium text-ink py-1"
           >
             Contact
           </Link>
@@ -319,7 +319,7 @@ export function Header({ locale, services }: HeaderProps) {
             <Link
               href={`/${locale}/contact`}
               onClick={() => setMobileMenuOpen(false)}
-              className="inline-block w-full text-center bg-[#0A66C2] text-white font-semibold text-[16px] py-2 rounded-full shadow-none btn-sweep"
+              className="inline-block w-full text-center bg-brand text-white font-semibold text-[16px] py-2 rounded-full shadow-none btn-sweep"
             >
               Nous joindre
             </Link>

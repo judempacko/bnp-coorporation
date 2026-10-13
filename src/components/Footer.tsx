@@ -45,8 +45,8 @@ export function Footer({ locale }: FooterProps) {
             </Link>
             <p className="text-[16px] font-normal text-neutral-700 leading-relaxed">
               {fr
-                ? "BNP Coorporation Sarl (BNPC) : ingénierie multiservices basée à Yaoundé depuis 2023. Sécurité incendie, BTP, forage d'eau, solaire, drones et naval. Intervention Yaoundé, Douala, Kribi et tout le Cameroun."
-                : 'BNP Coorporation Sarl (BNPC): multiservice engineering company based in Yaoundé since 2023. Fire safety, construction, water drilling, solar, drones and naval. Active in Yaoundé, Douala, Kribi and across Cameroon.'}
+                ? "BNP Coorporation Sarl (BNPC) : ingénierie multiservices basée à Yaoundé depuis 2023. Sécurité incendie, BTP, forage d'eau, solaire, drones et naval. Basés à Yaoundé et Douala, intervention dans tout le Cameroun."
+                : 'BNP Coorporation Sarl (BNPC): multiservice engineering company based in Yaoundé since 2023. Fire safety, construction, water drilling, solar, drones and naval. Based in Yaoundé and Douala, operating across Cameroon.'}
             </p>
             {/* Désambiguïsation d'entité : volontairement non affichée —
                 lue en arrière-plan via organizationJsonLd() (disambiguatingDescription) */}
@@ -62,9 +62,9 @@ export function Footer({ locale }: FooterProps) {
                 <li key={service.slug}>
                   <Link
                     href={`/${locale}/services/${service.slug}`}
-                    className="hover:text-[#0A66C2] transition-colors inline-flex items-center gap-2 text-neutral-700 group"
+                    className="hover:text-brand transition-colors inline-flex items-center gap-2 text-neutral-700 group"
                   >
-                    <CaretRight size={14} weight="bold" className="text-[#0A66C2] group-hover:translate-x-0.5 transition-transform" />
+                    <CaretRight size={14} weight="bold" className="text-brand group-hover:translate-x-0.5 transition-transform" />
                     <span>{service.label}</span>
                   </Link>
                 </li>
@@ -79,44 +79,44 @@ export function Footer({ locale }: FooterProps) {
             </h2>
             <ul className="space-y-2.5 text-[16px] font-normal">
               <li>
-                <Link href={`/${locale}/qui-sommes-nous`} className="hover:text-[#0A66C2] transition-colors inline-flex items-center gap-2 text-neutral-700 group">
-                  <CaretRight size={14} weight="bold" className="text-[#0A66C2] group-hover:translate-x-0.5 transition-transform" />
+                <Link href={`/${locale}/qui-sommes-nous`} className="hover:text-brand transition-colors inline-flex items-center gap-2 text-neutral-700 group">
+                  <CaretRight size={14} weight="bold" className="text-brand group-hover:translate-x-0.5 transition-transform" />
                   <span>Qui sommes-nous</span>
                 </Link>
               </li>
               <li>
-                <Link href={`/${locale}/qui-sommes-nous`} className="hover:text-[#0A66C2] transition-colors inline-flex items-center gap-2 text-neutral-700 group">
-                  <CaretRight size={14} weight="bold" className="text-[#0A66C2] group-hover:translate-x-0.5 transition-transform" />
+                <Link href={`/${locale}/qui-sommes-nous`} className="hover:text-brand transition-colors inline-flex items-center gap-2 text-neutral-700 group">
+                  <CaretRight size={14} weight="bold" className="text-brand group-hover:translate-x-0.5 transition-transform" />
                   <span>Notre Équipe</span>
                 </Link>
               </li>
               <li>
-                <Link href={`/${locale}/galerie`} className="hover:text-[#0A66C2] transition-colors inline-flex items-center gap-2 text-neutral-700 group">
-                  <CaretRight size={14} weight="bold" className="text-[#0A66C2] group-hover:translate-x-0.5 transition-transform" />
+                <Link href={`/${locale}/galerie`} className="hover:text-brand transition-colors inline-flex items-center gap-2 text-neutral-700 group">
+                  <CaretRight size={14} weight="bold" className="text-brand group-hover:translate-x-0.5 transition-transform" />
                   <span>Galerie média</span>
                 </Link>
               </li>
               <li>
-                <Link href={`/${locale}/projets`} className="hover:text-[#0A66C2] transition-colors inline-flex items-center gap-2 text-neutral-700 group">
-                  <CaretRight size={14} weight="bold" className="text-[#0A66C2] group-hover:translate-x-0.5 transition-transform" />
+                <Link href={`/${locale}/projets`} className="hover:text-brand transition-colors inline-flex items-center gap-2 text-neutral-700 group">
+                  <CaretRight size={14} weight="bold" className="text-brand group-hover:translate-x-0.5 transition-transform" />
                   <span>Nos réalisations</span>
                 </Link>
               </li>
               <li>
-                <Link href={`/${locale}/actualites`} className="hover:text-[#0A66C2] transition-colors inline-flex items-center gap-2 text-neutral-700 group">
-                  <CaretRight size={14} weight="bold" className="text-[#0A66C2] group-hover:translate-x-0.5 transition-transform" />
+                <Link href={`/${locale}/actualites`} className="hover:text-brand transition-colors inline-flex items-center gap-2 text-neutral-700 group">
+                  <CaretRight size={14} weight="bold" className="text-brand group-hover:translate-x-0.5 transition-transform" />
                   <span>Actualités</span>
                 </Link>
               </li>
               <li>
-                <Link href={`/${locale}/contact`} className="hover:text-[#0A66C2] transition-colors inline-flex items-center gap-2 text-neutral-700 group">
-                  <CaretRight size={14} weight="bold" className="text-[#0A66C2] group-hover:translate-x-0.5 transition-transform" />
+                <Link href={`/${locale}/contact`} className="hover:text-brand transition-colors inline-flex items-center gap-2 text-neutral-700 group">
+                  <CaretRight size={14} weight="bold" className="text-brand group-hover:translate-x-0.5 transition-transform" />
                   <span>Contact</span>
                 </Link>
               </li>
               <li>
-                <Link href={`/${locale}/bnp-coorporation-sarl-bnpc`} className="hover:text-[#0A66C2] transition-colors inline-flex items-center gap-2 text-neutral-700 group">
-                  <CaretRight size={14} weight="bold" className="text-[#0A66C2] group-hover:translate-x-0.5 transition-transform" />
+                <Link href={`/${locale}/bnp-coorporation-sarl-bnpc`} className="hover:text-brand transition-colors inline-flex items-center gap-2 text-neutral-700 group">
+                  <CaretRight size={14} weight="bold" className="text-brand group-hover:translate-x-0.5 transition-transform" />
                   <span>BNP Coorporation Sarl (BNPC)</span>
                 </Link>
               </li>
@@ -130,19 +130,19 @@ export function Footer({ locale }: FooterProps) {
             </h2>
             <div className="space-y-3.5 text-[16px] font-normal text-neutral-700">
               <div className="flex items-start gap-3">
-                <MapPin size={20} weight="fill" className="text-[#0A66C2] shrink-0 mt-0.5" />
+                <MapPin size={20} weight="fill" className="text-brand shrink-0 mt-0.5" />
                 <span>BP 4219, Yaoundé, Cameroun</span>
               </div>
               <div className="flex items-start gap-3">
-                <Phone size={20} weight="fill" className="text-[#0A66C2] shrink-0 mt-0.5" />
+                <Phone size={20} weight="fill" className="text-brand shrink-0 mt-0.5" />
                 <div className="flex flex-col">
-                  <a href="tel:+237655010919" className="hover:text-[#0A66C2] transition-colors">(+237) 6 55 01 09 19</a>
-                  <a href="tel:+237658051478" className="hover:text-[#0A66C2] transition-colors">(+237) 6 58 05 14 78</a>
+                  <a href="tel:+237655010919" className="hover:text-brand transition-colors">(+237) 6 55 01 09 19</a>
+                  <a href="tel:+237658051478" className="hover:text-brand transition-colors">(+237) 6 58 05 14 78</a>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <EnvelopeSimple size={20} weight="fill" className="text-[#0A66C2] shrink-0 mt-0.5" />
-                <a href="mailto:contact@bnp-coorporation.com" className="hover:text-[#0A66C2] transition-colors break-all">
+                <EnvelopeSimple size={20} weight="fill" className="text-brand shrink-0 mt-0.5" />
+                <a href="mailto:contact@bnp-coorporation.com" className="hover:text-brand transition-colors break-all">
                   contact@bnp-coorporation.com
                 </a>
               </div>

@@ -97,18 +97,18 @@ export default async function ProjetDetailPage({
     meta.push({ icon: MapPin, label: fr ? 'Ville' : 'City', value: project.ville });
 
   return (
-    <div className="w-full bg-white text-[#2c2c2c]">
+    <div className="w-full bg-white text-ink">
       {/* 1. En-tête */}
       <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 pt-10 sm:pt-14">
         <Link
           href={`/${locale}/projets`}
-          className="inline-flex items-center gap-2 text-[15px] font-semibold text-[#0A66C2] hover:underline"
+          className="inline-flex items-center gap-2 text-[15px] font-semibold text-brand hover:underline"
         >
           <ArrowLeft size={16} weight="bold" aria-hidden />
           {fr ? 'Tous nos projets' : 'All our projects'}
         </Link>
         {project.tags.length > 0 && (
-          <p className="mt-4 text-[13px] font-semibold uppercase tracking-wide text-[#0A66C2]">
+          <p className="mt-4 text-[13px] font-semibold uppercase tracking-wide text-brand">
             {project.tags.join(' • ')}
           </p>
         )}
@@ -116,7 +116,7 @@ export default async function ProjetDetailPage({
           {project.title}
         </h1>
         {project.excerpt && (
-          <p className="mt-4 text-[18px] leading-relaxed text-[#51565d] max-w-3xl">
+          <p className="mt-4 text-[18px] leading-relaxed text-muted max-w-3xl">
             {project.excerpt}
           </p>
         )}
@@ -126,8 +126,8 @@ export default async function ProjetDetailPage({
           <dl className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {meta.map((m) => (
               <div key={m.label} className="rounded-lg border border-slate-200 p-4">
-                <dt className="inline-flex items-center gap-2 text-[13px] font-semibold uppercase tracking-wide text-[#51565d]">
-                  <m.icon size={16} weight="fill" className="text-[#0A66C2]" aria-hidden />
+                <dt className="inline-flex items-center gap-2 text-[13px] font-semibold uppercase tracking-wide text-muted">
+                  <m.icon size={16} weight="fill" className="text-brand" aria-hidden />
                   {m.label}
                 </dt>
                 <dd className="mt-1 text-[16px] font-semibold">{m.value}</dd>
@@ -135,14 +135,14 @@ export default async function ProjetDetailPage({
             ))}
             {project.serviceSlug && (
               <div className="rounded-lg border border-slate-200 p-4">
-                <dt className="inline-flex items-center gap-2 text-[13px] font-semibold uppercase tracking-wide text-[#51565d]">
-                  <Wrench size={16} weight="fill" className="text-[#0A66C2]" aria-hidden />
+                <dt className="inline-flex items-center gap-2 text-[13px] font-semibold uppercase tracking-wide text-muted">
+                  <Wrench size={16} weight="fill" className="text-brand" aria-hidden />
                   {fr ? 'Service' : 'Service'}
                 </dt>
                 <dd className="mt-1 text-[16px] font-semibold">
                   <Link
                     href={`/${locale}/services/${project.serviceSlug}`}
-                    className="text-[#0A66C2] hover:underline"
+                    className="text-brand hover:underline"
                   >
                     {project.serviceLabel || project.serviceSlug}
                   </Link>
@@ -171,7 +171,7 @@ export default async function ProjetDetailPage({
       {project.description.length > 0 && (
         <div className="max-w-[960px] mx-auto px-6 sm:px-12 lg:px-16 py-10 sm:py-12 space-y-4">
           {project.description.map((para, i) => (
-            <p key={i} className="text-[16px] leading-[1.75] text-[#2c2c2c]">
+            <p key={i} className="text-[16px] leading-[1.75] text-ink">
               {para}
             </p>
           ))}
@@ -236,13 +236,13 @@ export default async function ProjetDetailPage({
                     href={video.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block rounded-lg border border-slate-200 p-5 text-[16px] font-semibold text-[#0A66C2] hover:border-[#0A66C2] transition-colors"
+                    className="block rounded-lg border border-slate-200 p-5 text-[16px] font-semibold text-brand hover:border-brand transition-colors"
                   >
                     {video.title || video.url} <span aria-hidden>↗</span>
                   </a>
                 )}
                 {video.title && (video.embedUrl || video.kind === 'mp4') && (
-                  <p className="text-[14px] text-[#51565d]">{video.title}</p>
+                  <p className="text-[14px] text-muted">{video.title}</p>
                 )}
               </div>
             ))}
@@ -252,7 +252,7 @@ export default async function ProjetDetailPage({
 
       {/* 6. LinkedIn */}
       {project.linkedinUrl && (
-        <section className="w-full bg-[#f1f2f4]">
+        <section className="w-full bg-surface">
           <div className="max-w-[960px] mx-auto px-6 sm:px-12 lg:px-16 py-10 sm:py-12 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <p className="text-[16px] font-semibold">
               {fr
@@ -263,7 +263,7 @@ export default async function ProjetDetailPage({
               href={project.linkedinUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-[#0A66C2] px-6 py-3 text-base font-semibold text-white hover:bg-[#0854a0] transition-colors shrink-0"
+              className="inline-flex items-center gap-2 rounded-full bg-brand px-6 py-3 text-base font-semibold text-white hover:bg-brand-hover transition-colors shrink-0"
             >
               <LinkedinLogo size={20} weight="fill" aria-hidden />
               {fr ? 'Voir sur LinkedIn' : 'View on LinkedIn'}
@@ -289,7 +289,7 @@ export default async function ProjetDetailPage({
       )}
 
       {/* 8. CTA */}
-      <section className="bg-[#0A66C2] text-white py-12 px-6 sm:py-14 sm:px-12 lg:px-16">
+      <section className="bg-brand text-white py-12 px-6 sm:py-14 sm:px-12 lg:px-16">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center items-stretch justify-between gap-6 md:gap-8">
           <div className="space-y-3 max-w-3xl">
             <h2 className="text-[26px] font-semibold text-white leading-tight sm:text-[32px]">
@@ -303,7 +303,7 @@ export default async function ProjetDetailPage({
           </div>
           <Link
             href={`/${locale}/contact`}
-            className="inline-block w-full text-center bg-white text-[#0A66C2] font-semibold text-[16px] px-8 py-3.5 rounded-full shrink-0 sm:w-auto btn-sweep-white"
+            className="inline-block w-full text-center bg-white text-brand font-semibold text-[16px] px-8 py-3.5 rounded-full shrink-0 sm:w-auto btn-sweep-white"
           >
             {fr ? 'Demander un devis' : 'Request a quote'}
           </Link>

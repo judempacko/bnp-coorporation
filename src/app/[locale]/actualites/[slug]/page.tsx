@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { setRequestLocale } from 'next-intl/server';
 import Link from 'next/link';
@@ -119,13 +120,13 @@ export default async function ArticleDetailPage({
       </header>
 
       {post.featuredImage?.node?.sourceUrl && (
-        <div className="mb-10 rounded-3xl overflow-hidden shadow-xl">
-          <img
+        <div className="relative mb-10 aspect-[16/9] w-full overflow-hidden rounded-3xl shadow-xl bg-neutral-200">
+          <Image
             src={post.featuredImage.node.sourceUrl}
             alt={post.featuredImage.node.altText || cleanWpText(post.title)}
-            className="w-full h-auto max-h-[550px] object-cover"
-            loading="lazy"
-            decoding="async"
+            fill
+            sizes="(max-width: 768px) 100vw, 1100px"
+            className="object-cover"
           />
         </div>
       )}

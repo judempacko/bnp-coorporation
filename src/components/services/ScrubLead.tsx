@@ -74,7 +74,7 @@ export function ScrubLead({ text, className = '' }: ScrubLeadProps) {
   return (
     <p
       ref={rootRef}
-      className={`text-[18px] leading-[1.7] text-[#2c2c2c] ${className}`}
+      className={`text-[18px] leading-[1.7] text-ink ${className}`}
     >
       {words.map((word, i) => (
         <span key={i} className="scrub-word">

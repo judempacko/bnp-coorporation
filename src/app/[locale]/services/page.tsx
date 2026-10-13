@@ -80,10 +80,10 @@ export default async function ServicesPage({
   return (
     <main className="w-full bg-white">
       <section className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 pt-12 sm:pt-24 pb-6 sm:pb-8 text-center">
-        <h1 className="text-[28px] sm:text-[40px] leading-[1.2] font-semibold text-[#2c2c2c]">
+        <h1 className="text-[28px] sm:text-[40px] leading-[1.2] font-semibold text-ink">
           {fr ? 'Nos Services' : 'Our Services'}
         </h1>
-        <p className="mt-3 text-[16px] leading-[1.7] text-[#666] max-w-3xl mx-auto">
+        <p className="mt-3 text-[16px] leading-[1.7] text-muted max-w-3xl mx-auto">
           {fr
             ? 'Sept pôles d\u2019expertise complémentaires pour répondre à vos défis industriels, techniques et opérationnels sur l\u2019ensemble du territoire camerounais.'
             : 'Seven complementary areas of expertise to meet your industrial, technical and operational challenges across Cameroon.'}
@@ -96,7 +96,7 @@ export default async function ServicesPage({
             <Link
               key={card.slug}
               href={`/${locale}/services/${card.slug}`}
-              className="group flex flex-col overflow-hidden rounded-lg border border-slate-200 bg-white hover:border-[#0A66C2] transition-colors"
+              className="group flex flex-col overflow-hidden rounded-lg border border-slate-200 bg-white hover:border-brand transition-colors"
             >
               <div className="relative w-full h-52 bg-neutral-200 overflow-hidden">
                 <Image
@@ -108,15 +108,15 @@ export default async function ServicesPage({
                 />
               </div>
               <div className="flex flex-1 flex-col p-5 sm:p-6 space-y-2.5 sm:space-y-3">
-                <h2 className="text-[20px] sm:text-[24px] leading-[1.3] font-semibold text-[#2c2c2c] group-hover:text-[#0A66C2] transition-colors">
+                <h2 className="text-[20px] sm:text-[24px] leading-[1.3] font-semibold text-ink group-hover:text-brand transition-colors">
                   {card.title}
                 </h2>
                 {card.excerpt && (
-                  <p className="text-[16px] leading-[1.7] text-[#666] line-clamp-3">
+                  <p className="text-[16px] leading-[1.7] text-muted line-clamp-3">
                     {card.excerpt}
                   </p>
                 )}
-                <span className="mt-auto pt-2 inline-flex items-center gap-2 text-[16px] font-semibold text-[#0A66C2]">
+                <span className="mt-auto pt-2 inline-flex items-center gap-2 text-[16px] font-semibold text-brand">
                   {fr ? 'Découvrir' : 'Discover'}
                   <span aria-hidden>→</span>
                 </span>

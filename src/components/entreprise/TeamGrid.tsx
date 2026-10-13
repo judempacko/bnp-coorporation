@@ -53,14 +53,14 @@ export function TeamGrid({ members, locale, labels }: TeamGridProps) {
       />
 
       <div className="text-center max-w-2xl mx-auto space-y-3">
-        <h2 className="text-[24px] sm:text-[28px] font-semibold text-[#2c2c2c]">
+        <h2 className="text-[24px] sm:text-[28px] font-semibold text-ink">
           {labels.title}
         </h2>
-        <p className="text-[16px] text-[#666]">{labels.subtitle}</p>
+        <p className="text-[16px] text-muted">{labels.subtitle}</p>
       </div>
 
       {ordered.length === 0 ? (
-        <p className="text-center text-[15px] text-[#666]">
+        <p className="text-center text-[15px] text-muted">
           {locale === 'fr'
             ? 'Notre équipe sera bientôt présentée ici.'
             : 'Our team will soon be introduced here.'}
@@ -86,20 +86,20 @@ export function TeamGrid({ members, locale, labels }: TeamGridProps) {
               />
             </Link>
             <div className="pt-4 space-y-1.5">
-              <h3 className="text-[17px] font-semibold text-[#2c2c2c]">
+              <h3 className="text-[17px] font-semibold text-ink">
                 <Link
                   href={`/${locale}/qui-sommes-nous/${m.slug}`}
-                  className="hover:text-[#0A66C2] transition-colors"
+                  className="hover:text-brand transition-colors"
                 >
                   {m.name}
                 </Link>
               </h3>
-              <p className="text-[14px] font-semibold text-[#0A66C2]">{m.role}</p>
+              <p className="text-[14px] font-semibold text-brand">{m.role}</p>
               {m.linkedin && m.linkedin !== '#' && (
                 <a
                   href={m.linkedin}
                   aria-label={`LinkedIn de ${m.name}`}
-                  className="inline-flex items-center gap-2 pt-1 text-[14px] font-semibold text-[#0A66C2] hover:underline"
+                  className="inline-flex items-center gap-2 pt-1 text-[14px] font-semibold text-brand hover:underline"
                 >
                   <LinkedinLogo size={18} weight="fill" />
                   LinkedIn

@@ -13,7 +13,7 @@ export async function generateMetadata({
   const fr = locale !== 'en';
   const title = fr ? 'Projets & Réalisations' : 'Projects & Achievements';
   const description = fr
-    ? "Réalisations BNPC au Cameroun : BTP, sécurité incendie, forages, solaire, drones, naval. Études de cas et chantiers Yaoundé-Douala-Kribi."
+    ? "Réalisations BNPC au Cameroun : BTP, sécurité incendie, forages, solaire, drones, naval. Études de cas et chantiers à Yaoundé, Douala et tout le Cameroun."
     : 'BNPC projects in Cameroon: construction, fire safety, drilling, solar, drones, naval. Case studies across Cameroon.';
   return {
     title: `${title} — BNPC`,
@@ -45,10 +45,10 @@ export default async function ProjetsPage({
   return (
     <main className="w-full bg-white">
       <section className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 pt-12 sm:pt-24 pb-6 sm:pb-8 text-center">
-        <h1 className="text-[28px] sm:text-[40px] leading-[1.2] font-semibold text-[#2c2c2c]">
+        <h1 className="text-[28px] sm:text-[40px] leading-[1.2] font-semibold text-ink">
           {fr ? 'Nos Projets & Réalisations' : 'Our Projects & Achievements'}
         </h1>
-        <p className="mt-3 text-[16px] leading-[1.7] text-[#666] max-w-3xl mx-auto">
+        <p className="mt-3 text-[16px] leading-[1.7] text-muted max-w-3xl mx-auto">
           {fr
             ? "Études de cas et chantiers BNPC au Cameroun : client, année, lieu et service concerné pour chaque réalisation."
             : 'BNPC case studies and sites in Cameroon: client, year, location and related service for each achievement.'}

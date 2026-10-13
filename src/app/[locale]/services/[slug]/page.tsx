@@ -177,8 +177,8 @@ export async function generateMetadata({
   const description =
     rawDesc.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 155) ||
     (fr
-      ? `${title} au Cameroun par BNP Coorporation Sarl : audit, réalisation et maintenance à Yaoundé, Douala, Kribi. Devis sous 24-48h.`
-      : `${title} in Cameroon by BNP Coorporation Sarl: audit, delivery and maintenance in Yaoundé, Douala, Kribi. Quote within 24-48h.`);
+      ? `${title} au Cameroun par BNP Coorporation Sarl : audit, réalisation et maintenance à Yaoundé, Douala et dans tout le Cameroun. Devis sous 24-48h.`
+      : `${title} in Cameroon by BNP Coorporation Sarl: audit, delivery and maintenance in Yaoundé, Douala and across Cameroon. Quote within 24-48h.`);
   const image = wpService?.heroImage || FALLBACK_HERO;
   const path = `/services/${slug}`;
   return {
@@ -266,7 +266,7 @@ export default async function ServiceDetailPage({
   };
 
   return (
-    <div className="w-full bg-white text-[#2c2c2c]">
+    <div className="w-full bg-white text-ink">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
@@ -314,7 +314,7 @@ export default async function ServiceDetailPage({
       {others.length > 0 && (
         <section className="bg-neutral-100 border-t border-slate-200 py-12 sm:py-14">
           <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16">
-            <h2 className="text-[24px] font-semibold leading-snug text-[#2c2c2c] mb-6 sm:text-[28px] sm:mb-8">
+            <h2 className="text-[24px] font-semibold leading-snug text-ink mb-6 sm:text-[28px] sm:mb-8">
               {labels.othersTitle}
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
@@ -322,7 +322,7 @@ export default async function ServiceDetailPage({
                 <Link
                   key={card.slug}
                   href={`/${locale}/services/${card.slug}`}
-                  className="group flex flex-col overflow-hidden rounded-lg border border-slate-200 bg-white hover:border-[#0A66C2] transition-colors"
+                  className="group flex flex-col overflow-hidden rounded-lg border border-slate-200 bg-white hover:border-brand transition-colors"
                 >
                   <div className="relative w-full h-44 bg-neutral-200 overflow-hidden">
                     <Image
@@ -334,10 +334,10 @@ export default async function ServiceDetailPage({
                     />
                   </div>
                   <div className="flex items-center justify-between gap-3 p-5">
-                    <span className="text-[18px] font-semibold text-[#2c2c2c] group-hover:text-[#0A66C2] transition-colors sm:text-[20px]">
+                    <span className="text-[18px] font-semibold text-ink group-hover:text-brand transition-colors sm:text-[20px]">
                       {card.title}
                     </span>
-                    <span className="inline-flex items-center gap-1.5 text-[16px] font-semibold text-[#0A66C2] shrink-0">
+                    <span className="inline-flex items-center gap-1.5 text-[16px] font-semibold text-brand shrink-0">
                       {labels.discover}
                       <span aria-hidden>→</span>
                     </span>
@@ -351,12 +351,12 @@ export default async function ServiceDetailPage({
 
       {/* 4. Cibles : bandeau pleine largeur gris doux, collé au CTA */}
       {data.targets && (
-        <section className="w-full bg-[#f1f2f4]">
+        <section className="w-full bg-surface">
           <div className="max-w-[960px] mx-auto px-6 sm:px-12 lg:px-16 py-12 sm:py-16">
-            <h2 className="text-[22px] font-semibold text-[#2c2c2c] sm:text-[24px]">
+            <h2 className="text-[22px] font-semibold text-ink sm:text-[24px]">
               {labels.targetsTitle}
             </h2>
-            <p className="mt-3 text-[16px] text-[#2c2c2c] leading-relaxed">
+            <p className="mt-3 text-[16px] text-ink leading-relaxed">
               {data.targets}
             </p>
           </div>
@@ -364,7 +364,7 @@ export default async function ServiceDetailPage({
       )}
 
       {/* 5. Bottom CTA Banner */}
-      <section className="bg-[#0A66C2] text-white py-12 px-6 sm:py-14 sm:px-12 lg:px-16">
+      <section className="bg-brand text-white py-12 px-6 sm:py-14 sm:px-12 lg:px-16">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center items-stretch justify-between gap-6 md:gap-8">
           <div className="space-y-3 max-w-3xl">
             <h2 className="text-[26px] font-semibold text-white leading-tight sm:text-[32px]">
@@ -376,7 +376,7 @@ export default async function ServiceDetailPage({
           </div>
           <Link
             href={`/${locale}/contact`}
-            className="inline-block w-full text-center bg-white text-[#0A66C2] hover:bg-neutral-100 font-semibold text-[16px] px-8 py-3.5 rounded-full transition-colors shadow-none shrink-0 sm:w-auto"
+            className="inline-block w-full text-center bg-white text-brand hover:bg-neutral-100 font-semibold text-[16px] px-8 py-3.5 rounded-full transition-colors shadow-none shrink-0 sm:w-auto"
             style={{ boxShadow: 'none' }}
           >
             {data.ctaButton}

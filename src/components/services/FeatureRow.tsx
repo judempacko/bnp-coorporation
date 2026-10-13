@@ -109,23 +109,23 @@ export function FeatureRow({
 
       <div className={`md:col-span-7 ${imageFirst ? '' : 'md:order-1'}`}>
         <div className="flex items-center gap-3">
-          <span className="feature-num text-[15px] font-semibold tracking-[0.2em] text-[#0A66C2]">
+          <span className="feature-num text-[15px] font-semibold tracking-[0.2em] text-brand">
             {String(index + 1).padStart(2, '0')}
           </span>
-          <span className="feature-line h-px w-12 origin-left bg-[#0A66C2]" />
+          <span className="feature-line h-px w-12 origin-left bg-brand" />
         </div>
         {title && (
-          <h2 className="feature-title mt-2 text-[18px] font-semibold leading-snug text-[#2c2c2c] sm:text-[24px]">
+          <h2 className="feature-title mt-2 text-[18px] font-semibold leading-snug text-ink sm:text-[24px]">
             {title}
           </h2>
         )}
         {items.length > 0 && (
-          <ul className="mt-4 space-y-2.5 text-base leading-[1.7] text-[#2c2c2c]">
+          <ul className="mt-4 space-y-2.5 text-base leading-[1.7] text-ink">
             {items.map((item, i) => (
               <li key={i} className="feature-item flex items-start gap-2.5">
                 <span
                   aria-hidden
-                  className="mt-[10px] h-[7px] w-[7px] shrink-0 rounded-full bg-[#0A66C2]"
+                  className="mt-[10px] h-[7px] w-[7px] shrink-0 rounded-full bg-brand"
                 />
                 <span className="flex-1">{item}</span>
               </li>

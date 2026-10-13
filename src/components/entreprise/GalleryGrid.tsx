@@ -38,8 +38,8 @@ export function GalleryGrid({ events, locale, allLabel }: GalleryGridProps) {
             aria-pressed={activeCat === c.slug}
             className={`px-4 py-1.5 rounded-full text-[14px] font-semibold border transition-colors ${
               activeCat === c.slug
-                ? 'bg-[#0A66C2] text-white border-[#0A66C2]'
-                : 'bg-white text-[#2c2c2c] border-slate-300 hover:border-[#0A66C2] hover:text-[#0A66C2]'
+                ? 'bg-brand text-white border-brand'
+                : 'bg-white text-ink border-slate-300 hover:border-brand hover:text-brand'
             }`}
           >
             {locale === 'en' ? c.labelEn : c.labelFr}
@@ -61,27 +61,27 @@ export function GalleryGrid({ events, locale, allLabel }: GalleryGridProps) {
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
               />
-              <span className="absolute top-3 left-3 inline-flex items-center rounded-full bg-white/95 px-3 py-1 text-[13px] font-semibold text-[#0A66C2] border border-blue-100">
+              <span className="absolute top-3 left-3 inline-flex items-center rounded-full bg-white/95 px-3 py-1 text-[13px] font-semibold text-brand border border-blue-100">
                 {categoryLabel(event.category, locale)}
               </span>
             </div>
             <div className="flex flex-1 flex-col p-6">
-              <h2 className="text-[18px] font-semibold leading-snug text-[#2c2c2c] group-hover:text-[#0A66C2] transition-colors line-clamp-2">
+              <h2 className="text-[18px] font-semibold leading-snug text-ink group-hover:text-brand transition-colors line-clamp-2">
                 <Link href={`/${locale}/galerie/${event.slug}`}>
                   <span className="absolute inset-0" aria-hidden="true" />
                   {event.title}
                 </Link>
               </h2>
-              <p className="mt-2 text-[14px] leading-relaxed text-[#666] line-clamp-2">
+              <p className="mt-2 text-[14px] leading-relaxed text-muted line-clamp-2">
                 {event.description}
               </p>
-              <div className="mt-auto pt-4 flex items-center gap-4 text-[13px] font-medium text-[#51565d] border-t border-slate-100">
+              <div className="mt-auto pt-4 flex items-center gap-4 text-[13px] font-medium text-muted border-t border-slate-100">
                 <span className="inline-flex items-center gap-1.5">
-                  <CalendarBlank size={15} weight="bold" className="text-[#0A66C2]" />
+                  <CalendarBlank size={15} weight="bold" className="text-brand" />
                   <time dateTime={event.date}>{formatEventDate(event.date, locale)}</time>
                 </span>
                 <span className="inline-flex items-center gap-1.5 truncate">
-                  <MapPin size={15} weight="fill" className="text-[#0A66C2] shrink-0" />
+                  <MapPin size={15} weight="fill" className="text-brand shrink-0" />
                   {event.lieu}
                 </span>
               </div>
@@ -91,7 +91,7 @@ export function GalleryGrid({ events, locale, allLabel }: GalleryGridProps) {
       </div>
 
       {filtered.length === 0 && (
-        <p className="mt-8 text-center text-[15px] text-[#666]">
+        <p className="mt-8 text-center text-[15px] text-muted">
           {locale === 'fr' ? 'Aucun événement dans cette catégorie.' : 'No event in this category.'}
         </p>
       )}

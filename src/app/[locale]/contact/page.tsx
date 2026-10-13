@@ -100,7 +100,7 @@ export default async function ContactPage({
       />
 
       {/* Hero banner */}
-      <section className="relative w-full h-[200px] sm:h-[240px] flex items-center justify-center overflow-hidden bg-[#232323]">
+      <section className="relative w-full h-[200px] sm:h-[240px] flex items-center justify-center overflow-hidden bg-banner">
         <ParallaxBg
           image="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1800&q=70"
           className="bg-cover bg-center grayscale"
@@ -118,68 +118,68 @@ export default async function ContactPage({
       <section className="max-w-[1100px] mx-auto px-6 pt-12 sm:pt-16 pb-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 text-center">
           <div className="flex flex-col items-center">
-            <span className="text-[#0A66C2]">
+            <span className="text-brand">
               <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M6.62 10.79a15.15 15.15 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.4 11.4 0 003.57.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.4 11.4 0 00.57 3.57 1 1 0 01-.25 1.02l-2.2 2.2z" />
               </svg>
             </span>
-            <h2 className="mt-3 text-[18px] leading-[1.35] font-semibold text-[#2c2c2c]">
+            <h2 className="mt-3 text-[18px] leading-[1.35] font-semibold text-ink">
               {t('phoneWhatsappTitle')}
             </h2>
-            <p className="mt-2 text-[16px] text-[#666]">
-              <a href="tel:+237655010919" className="hover:text-[#0A66C2]">{t('phone1')}</a>
+            <p className="mt-2 text-[16px] text-muted">
+              <a href="tel:+237655010919" className="hover:text-brand">{t('phone1')}</a>
             </p>
-            <p className="mt-1 text-[16px] text-[#666]">
-              <a href="tel:+237658051478" className="hover:text-[#0A66C2]">{t('phone2')}</a>
+            <p className="mt-1 text-[16px] text-muted">
+              <a href="tel:+237658051478" className="hover:text-brand">{t('phone2')}</a>
             </p>
           </div>
           <div className="flex flex-col items-center">
-            <span className="text-[#0A66C2]">
+            <span className="text-brand">
               <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
               </svg>
             </span>
-            <h2 className="mt-3 text-[18px] leading-[1.35] font-semibold text-[#2c2c2c]">
+            <h2 className="mt-3 text-[18px] leading-[1.35] font-semibold text-ink">
               {t('emailTitle')}
             </h2>
-            <p className="mt-2 text-[16px] text-[#666] break-all">
-              <a href="mailto:contact@bnp-coorporation.com" className="hover:text-[#0A66C2]">{t('emailValue')}</a>
+            <p className="mt-2 text-[16px] text-muted break-all">
+              <a href="mailto:contact@bnp-coorporation.com" className="hover:text-brand">{t('emailValue')}</a>
             </p>
           </div>
           <div className="flex flex-col items-center">
-            <span className="text-[#0A66C2]">
+            <span className="text-brand">
               <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M3.4 20.4l17.45-7.48a1 1 0 000-1.84L3.4 3.6a1 1 0 00-1.39 1.24l1.85 6.82a1 1 0 00.72.72l6.82 1.85a.5.5 0 010 .94l-6.82 1.85a1 1 0 00-.72.72l-1.85 6.82a1 1 0 001.39 1.24z" />
               </svg>
             </span>
-            <h2 className="mt-3 text-[18px] leading-[1.35] font-semibold text-[#2c2c2c]">
+            <h2 className="mt-3 text-[18px] leading-[1.35] font-semibold text-ink">
               {t('addressTitle')}
             </h2>
-            <p className="mt-2 text-[16px] text-[#666]">{t('addressValue')}</p>
+            <p className="mt-2 text-[16px] text-muted">{t('addressValue')}</p>
           </div>
           <div className="flex flex-col items-center">
-            <span className="text-[#0A66C2]">
+            <span className="text-brand">
               <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M19 4h-1V2h-2v2H8V2H6v2H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2zm-9 13H7v-2h3v2zm2-4H7v-2h5v2zm5 4h-3v-2h3v2zm0-4H7v-2h10v2z" />
               </svg>
             </span>
-            <h2 className="mt-3 text-[18px] leading-[1.35] font-semibold text-[#2c2c2c]">
+            <h2 className="mt-3 text-[18px] leading-[1.35] font-semibold text-ink">
               {t('hoursTitle')}
             </h2>
-            <p className="mt-2 text-[16px] text-[#666]">{t('hoursWeek')}</p>
-            <p className="mt-1 text-[16px] text-[#666]">{t('hoursSat')}</p>
+            <p className="mt-2 text-[16px] text-muted">{t('hoursWeek')}</p>
+            <p className="mt-1 text-[16px] text-muted">{t('hoursSat')}</p>
           </div>
         </div>
       </section>
 
       {/* Formulaire */}
-      <section className="w-full bg-[#f1f2f4] py-12 sm:py-14">
+      <section className="w-full bg-surface py-12 sm:py-14">
         <ContactForm />
       </section>
 
       {/* FAQ — <details> natif = crawlable sans JS, idéal SEO/GEO */}
       <section className="max-w-[1100px] mx-auto px-6 py-12 sm:py-16">
-        <h2 className="text-center text-[24px] sm:text-[28px] leading-[1.25] font-semibold text-[#2c2c2c] max-w-[640px] mx-auto">
+        <h2 className="text-center text-[24px] sm:text-[28px] leading-[1.25] font-semibold text-ink max-w-[640px] mx-auto">
           {t('faqTitle')}
         </h2>
         <div className="mt-8 space-y-4">
@@ -187,15 +187,15 @@ export default async function ContactPage({
             <details
               key={i}
               open={i === 0}
-              className="group border border-slate-200 bg-white open:border-[#0A66C2] transition-colors"
+              className="group border border-slate-200 bg-white open:border-brand transition-colors"
             >
-              <summary className="flex items-center gap-4 cursor-pointer p-5 text-left text-[18px] leading-[1.35] font-semibold text-[#2c2c2c] hover:text-[#0A66C2]">
-                <span className="w-8 h-8 shrink-0 border border-[#0A66C2] text-[#0A66C2] flex items-center justify-center text-lg leading-none group-open:rotate-180 transition-transform">
+              <summary className="flex items-center gap-4 cursor-pointer p-5 text-left text-[18px] leading-[1.35] font-semibold text-ink hover:text-brand">
+                <span className="w-8 h-8 shrink-0 border border-brand text-brand flex items-center justify-center text-lg leading-none group-open:rotate-180 transition-transform">
                   ⌃
                 </span>
                 {faq.q}
               </summary>
-              <p className="px-5 pb-5 pl-[68px] text-[16px] leading-[1.7] text-[#666]">
+              <p className="px-5 pb-5 pl-[68px] text-[16px] leading-[1.7] text-muted">
                 {faq.a}
               </p>
             </details>

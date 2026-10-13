@@ -20,7 +20,7 @@ export function ProjectCard({ project, locale }: ProjectCardProps) {
   const meta = [project.ville, project.year].filter(Boolean).join(' • ');
 
   return (
-    <article className="group relative flex flex-col overflow-hidden rounded-xl bg-[#14181d] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+    <article className="group relative flex flex-col overflow-hidden rounded-xl bg-coal transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
       <Link
         href={href}
         className="relative block aspect-[16/10] w-full overflow-hidden bg-neutral-800"
@@ -41,7 +41,7 @@ export function ProjectCard({ project, locale }: ProjectCardProps) {
         <Link
           href={href}
           aria-label={`${fr ? 'Voir le projet' : 'View project'} : ${project.title}`}
-          className="absolute -top-[22px] right-4 z-10 flex h-11 w-11 items-center justify-center rounded-md bg-[#0A66C2] text-white shadow-lg transition-all duration-300 hover:bg-white hover:text-[#0A66C2]"
+          className="absolute -top-[22px] right-4 z-10 flex h-11 w-11 items-center justify-center rounded-md bg-brand text-white shadow-lg transition-all duration-300 hover:bg-white hover:text-brand"
         >
           <ArrowUpRight
             size={19}

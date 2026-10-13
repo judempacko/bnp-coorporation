@@ -101,7 +101,7 @@ export function ServiceHero({
   return (
     <section
       ref={rootRef}
-      className="relative w-full overflow-hidden bg-[#181b1e] text-white"
+      className="relative w-full overflow-hidden bg-coal text-white"
     >
       {/* Fond */}
       <div

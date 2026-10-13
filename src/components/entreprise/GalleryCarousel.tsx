@@ -47,7 +47,7 @@ export function GalleryCarousel({ images, title }: GalleryCarouselProps) {
               type="button"
               onClick={() => goTo(index - 1)}
               aria-label="Image précédente"
-              className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 hover:bg-white text-[#2c2c2c] flex items-center justify-center transition-colors"
+              className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 hover:bg-white text-ink flex items-center justify-center transition-colors"
             >
               <CaretLeft size={20} weight="bold" />
             </button>
@@ -55,7 +55,7 @@ export function GalleryCarousel({ images, title }: GalleryCarouselProps) {
               type="button"
               onClick={() => goTo(index + 1)}
               aria-label="Image suivante"
-              className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 hover:bg-white text-[#2c2c2c] flex items-center justify-center transition-colors"
+              className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 hover:bg-white text-ink flex items-center justify-center transition-colors"
             >
               <CaretRight size={20} weight="bold" />
             </button>
@@ -75,7 +75,7 @@ export function GalleryCarousel({ images, title }: GalleryCarouselProps) {
               aria-label={`Voir l’image ${i + 1}`}
               aria-current={i === index ? 'true' : undefined}
               className={`relative aspect-[4/3] rounded-lg overflow-hidden border-2 transition-colors ${
-                i === index ? 'border-[#0A66C2]' : 'border-transparent opacity-70 hover:opacity-100'
+                i === index ? 'border-brand' : 'border-transparent opacity-70 hover:opacity-100'
               }`}
             >
               <Image
@@ -90,7 +90,7 @@ export function GalleryCarousel({ images, title }: GalleryCarouselProps) {
         </div>
       )}
       {current.alt && (
-        <p className="text-[14px] text-[#51565d] italic">{current.alt}</p>
+        <p className="text-[14px] text-muted italic">{current.alt}</p>
       )}
     </div>
   );

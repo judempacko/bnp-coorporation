@@ -28,8 +28,8 @@ export function EntrepriseSubNav({ locale, active, labels }: EntrepriseSubNavPro
               aria-current={isActive ? 'page' : undefined}
               className={`whitespace-nowrap px-4 py-3 text-[15px] font-semibold border-b-2 -mb-px transition-colors ${
                 isActive
-                  ? 'text-[#0A66C2] border-[#0A66C2]'
-                  : 'text-[#2c2c2c] border-transparent hover:text-[#0A66C2]'
+                  ? 'text-brand border-brand'
+                  : 'text-ink border-transparent hover:text-brand'
               }`}
             >
               {item.label}

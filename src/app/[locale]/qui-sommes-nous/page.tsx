@@ -59,11 +59,11 @@ export default async function QuiSommesNousPage({
   };
 
   return (
-    <main className="w-full bg-white text-[#2c2c2c]">
+    <main className="w-full bg-white text-ink">
       {/* Header compact : bandeau bleu profond uni, sans cinématique.
           Le hero photo plein écran n'a pas de sens ici (page éditoriale),
           et le bleu vif est réservé aux CTA — d'où une teinte profonde. */}
-      <section className="bg-[#0B2F5C] text-white">
+      <section className="bg-navy text-white">
         <div className="mx-auto max-w-7xl px-6 sm:px-12 lg:px-16 py-10 sm:py-14">
           <Link
             href={`/${locale}`}
@@ -109,7 +109,7 @@ export default async function QuiSommesNousPage({
 
       {/* 3. Chiffres clés */}
       <section className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 pb-14 sm:pb-20">
-        <div className="rounded-3xl bg-[#0A66C2] text-white p-8 sm:p-14">
+        <div className="rounded-3xl bg-brand text-white p-8 sm:p-14">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div className="space-y-2">
               <Counter target={10} suffix="+" className="text-5xl sm:text-6xl font-bold text-white" />
@@ -146,25 +146,25 @@ export default async function QuiSommesNousPage({
       {/* 5. Mission & Vision en cartes */}
       <section className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 pb-14 sm:pb-20">
         <div className="max-w-[960px] mx-auto">
-          <h2 className="text-center text-[24px] sm:text-[28px] font-semibold text-[#2c2c2c]">
+          <h2 className="text-center text-[24px] sm:text-[28px] font-semibold text-ink">
             {c('missionVisionTitle')}
           </h2>
           <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="rounded-2xl border border-slate-200 bg-neutral-100 p-8">
               <div className="flex items-center gap-3">
-                <span className="text-[15px] font-semibold tracking-[0.2em] text-[#0A66C2]">01</span>
-                <span className="h-px w-12 bg-[#0A66C2]" />
+                <span className="text-[15px] font-semibold tracking-[0.2em] text-brand">01</span>
+                <span className="h-px w-12 bg-brand" />
               </div>
-              <h3 className="mt-2 text-[20px] font-semibold text-[#2c2c2c]">{c('missionTitle')}</h3>
-              <p className="mt-3 text-[16px] leading-[1.7] text-[#2c2c2c]">{c('missionDesc')}</p>
+              <h3 className="mt-2 text-[20px] font-semibold text-ink">{c('missionTitle')}</h3>
+              <p className="mt-3 text-[16px] leading-[1.7] text-ink">{c('missionDesc')}</p>
             </div>
             <div className="rounded-2xl border border-slate-200 bg-neutral-100 p-8">
               <div className="flex items-center gap-3">
-                <span className="text-[15px] font-semibold tracking-[0.2em] text-[#0A66C2]">02</span>
-                <span className="h-px w-12 bg-[#0A66C2]" />
+                <span className="text-[15px] font-semibold tracking-[0.2em] text-brand">02</span>
+                <span className="h-px w-12 bg-brand" />
               </div>
-              <h3 className="mt-2 text-[20px] font-semibold text-[#2c2c2c]">{c('visionTitle')}</h3>
-              <p className="mt-3 text-[16px] leading-[1.7] text-[#2c2c2c]">{c('visionDesc')}</p>
+              <h3 className="mt-2 text-[20px] font-semibold text-ink">{c('visionTitle')}</h3>
+              <p className="mt-3 text-[16px] leading-[1.7] text-ink">{c('visionDesc')}</p>
             </div>
           </div>
         </div>
@@ -172,20 +172,20 @@ export default async function QuiSommesNousPage({
 
       {/* 6. Valeurs en cartes numérotées */}
       <section className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 pb-14 sm:pb-20">
-        <h2 className="text-center text-[24px] sm:text-[28px] font-semibold text-[#2c2c2c]">
+        <h2 className="text-center text-[24px] sm:text-[28px] font-semibold text-ink">
           {c('valuesTitle')}
         </h2>
         <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {values.map((v, i) => (
             <div
               key={v.title}
-              className="rounded-2xl border border-slate-200 bg-white p-6 hover:border-[#0A66C2] transition-colors"
+              className="rounded-2xl border border-slate-200 bg-white p-6 hover:border-brand transition-colors"
             >
-              <span className="text-[15px] font-semibold tracking-[0.2em] text-[#0A66C2]">
+              <span className="text-[15px] font-semibold tracking-[0.2em] text-brand">
                 {String(i + 1).padStart(2, '0')}
               </span>
-              <h3 className="mt-2 text-[18px] font-semibold text-[#2c2c2c]">{v.title}</h3>
-              <p className="mt-1.5 text-[15px] leading-[1.7] text-[#666]">{v.desc}</p>
+              <h3 className="mt-2 text-[18px] font-semibold text-ink">{v.title}</h3>
+              <p className="mt-1.5 text-[15px] leading-[1.7] text-muted">{v.desc}</p>
             </div>
           ))}
         </div>
@@ -196,12 +196,12 @@ export default async function QuiSommesNousPage({
         <section className="bg-neutral-100 border-t border-slate-200 py-12 sm:py-14">
           <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16">
             <div className="flex items-end justify-between gap-4 mb-6 sm:mb-8">
-              <h2 className="text-[24px] font-semibold leading-snug text-[#2c2c2c] sm:text-[28px]">
+              <h2 className="text-[24px] font-semibold leading-snug text-ink sm:text-[28px]">
                 {t('galleryTeaserTitle')}
               </h2>
               <Link
                 href={`/${locale}/galerie`}
-                className="hidden sm:inline-flex items-center gap-1.5 text-[16px] font-semibold text-[#0A66C2] shrink-0 hover:underline"
+                className="hidden sm:inline-flex items-center gap-1.5 text-[16px] font-semibold text-brand shrink-0 hover:underline"
               >
                 {labels.galleryAll}
                 <span aria-hidden>→</span>
@@ -212,7 +212,7 @@ export default async function QuiSommesNousPage({
                 <Link
                   key={e.id}
                   href={`/${locale}/galerie/${e.slug}`}
-                  className="group flex flex-col overflow-hidden rounded-lg border border-slate-200 bg-white hover:border-[#0A66C2] transition-colors"
+                  className="group flex flex-col overflow-hidden rounded-lg border border-slate-200 bg-white hover:border-brand transition-colors"
                 >
                   <div className="relative w-full h-44 bg-neutral-200 overflow-hidden">
                     <Image
@@ -224,13 +224,13 @@ export default async function QuiSommesNousPage({
                     />
                   </div>
                   <div className="flex flex-1 flex-col p-5">
-                    <span className="text-[18px] font-semibold leading-snug text-[#2c2c2c] group-hover:text-[#0A66C2] transition-colors line-clamp-1">
+                    <span className="text-[18px] font-semibold leading-snug text-ink group-hover:text-brand transition-colors line-clamp-1">
                       {e.title}
                     </span>
-                    <span className="mt-1 text-[14px] text-[#666]">
+                    <span className="mt-1 text-[14px] text-muted">
                       <time dateTime={e.date}>{formatEventDate(e.date, locale)}</time> · {e.lieu}
                     </span>
-                    <span className="mt-auto pt-3 inline-flex items-center gap-1.5 text-[16px] font-semibold text-[#0A66C2]">
+                    <span className="mt-auto pt-3 inline-flex items-center gap-1.5 text-[16px] font-semibold text-brand">
                       {labels.discover}
                       <span aria-hidden>→</span>
                     </span>
@@ -241,7 +241,7 @@ export default async function QuiSommesNousPage({
             <div className="mt-6 text-center sm:hidden">
               <Link
                 href={`/${locale}/galerie`}
-                className="inline-flex items-center gap-1.5 text-[16px] font-semibold text-[#0A66C2]"
+                className="inline-flex items-center gap-1.5 text-[16px] font-semibold text-brand"
               >
                 {labels.galleryAll}
                 <span aria-hidden>→</span>
@@ -252,7 +252,7 @@ export default async function QuiSommesNousPage({
       )}
 
       {/* 8. Bannière CTA bleue */}
-      <section className="bg-[#0A66C2] text-white py-12 px-6 sm:py-14 sm:px-12 lg:px-16">
+      <section className="bg-brand text-white py-12 px-6 sm:py-14 sm:px-12 lg:px-16">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center items-stretch justify-between gap-6 md:gap-8">
           <div className="space-y-3 max-w-3xl">
             <h2 className="text-[26px] font-semibold text-white leading-tight sm:text-[32px]">
@@ -264,7 +264,7 @@ export default async function QuiSommesNousPage({
           </div>
           <Link
             href={`/${locale}/contact`}
-            className="inline-block w-full text-center bg-white text-[#0A66C2] hover:bg-neutral-100 font-semibold text-[16px] px-8 py-3.5 rounded-full transition-colors shadow-none shrink-0 sm:w-auto"
+            className="inline-block w-full text-center bg-white text-brand hover:bg-neutral-100 font-semibold text-[16px] px-8 py-3.5 rounded-full transition-colors shadow-none shrink-0 sm:w-auto"
             style={{ boxShadow: 'none' }}
           >
             {teamT('ctaButton')}

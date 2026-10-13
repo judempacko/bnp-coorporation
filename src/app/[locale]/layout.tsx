@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     template: '%s — BNP Coorporation Sarl',
   },
   description:
-    'BNP Coorporation Sarl (BNPC), entreprise camerounaise à Yaoundé : sécurité incendie, BTP, forage d\u2019eau, énergies renouvelables, drones et réparation navale à Douala, Kribi. Devis sous 24-48h.',
+    'BNP Coorporation Sarl (BNPC), entreprise camerounaise à Yaoundé : sécurité incendie, BTP, forage d\u2019eau, énergies renouvelables, drones et réparation navale. Basés à Yaoundé et Douala, intervention dans tout le Cameroun. Devis sous 24-48h.',
   keywords: [
     'BNP Coorporation Sarl',
     'BNP Coorporation',

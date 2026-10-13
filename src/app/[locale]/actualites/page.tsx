@@ -13,7 +13,7 @@ export async function generateMetadata({
   const fr = locale !== 'en';
   const title = fr ? 'Actualités' : 'News';
   const description = fr
-    ? "Actualités BNPC : chantiers BTP, sécurité incendie, forages, solaire, drones au Cameroun. Articles, événements et retours terrain Yaoundé-Douala-Kribi."
+    ? "Actualités BNPC : chantiers BTP, sécurité incendie, forages, solaire, drones au Cameroun. Articles, événements et retours terrain à Yaoundé, Douala et tout le Cameroun."
     : 'BNPC news: construction, fire safety, drilling, solar, drones in Cameroon. Articles, events and field reports.';
   return {
     title: `${title} — BNPC`,

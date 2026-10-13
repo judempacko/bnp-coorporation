@@ -105,15 +105,15 @@ export function EditorialRow({
 
       <div className={`md:col-span-7 ${imageFirst ? '' : 'md:order-1'}`}>
         <div className="flex items-center gap-3">
-          <span className="story-num text-[15px] font-semibold tracking-[0.2em] text-[#0A66C2]">
+          <span className="story-num text-[15px] font-semibold tracking-[0.2em] text-brand">
             {String(index + 1).padStart(2, '0')}
           </span>
-          <span className="story-line h-px w-12 origin-left bg-[#0A66C2]" />
+          <span className="story-line h-px w-12 origin-left bg-brand" />
         </div>
-        <h2 className="story-title mt-2 text-[18px] font-semibold leading-snug text-[#2c2c2c] sm:text-[24px]">
+        <h2 className="story-title mt-2 text-[18px] font-semibold leading-snug text-ink sm:text-[24px]">
           {title}
         </h2>
-        <div className="mt-4 space-y-4 text-base leading-[1.7] text-[#2c2c2c]">
+        <div className="mt-4 space-y-4 text-base leading-[1.7] text-ink">
           {paragraphs.map((p, i) => (
             <p key={i} className="story-para">
               {p}

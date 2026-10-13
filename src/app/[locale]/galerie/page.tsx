@@ -34,7 +34,7 @@ export default async function GaleriePage({
   const backLabel = locale === 'fr' ? 'Accueil' : 'Home';
 
   return (
-    <main className="w-full bg-white text-[#2c2c2c]">
+    <main className="w-full bg-white text-ink">
       <ServiceHero
         title={t('title')}
         subtitle={t('intro')}
@@ -47,7 +47,7 @@ export default async function GaleriePage({
         <GalleryGrid events={events} locale={locale} allLabel={locale === 'fr' ? 'Tout' : 'All'} />
       </section>
 
-      <section className="bg-[#0A66C2] text-white py-12 px-6 sm:py-14 sm:px-12 lg:px-16">
+      <section className="bg-brand text-white py-12 px-6 sm:py-14 sm:px-12 lg:px-16">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center items-stretch justify-between gap-6 md:gap-8">
           <div className="space-y-3 max-w-3xl">
             <h2 className="text-[26px] font-semibold text-white leading-tight sm:text-[32px]">
@@ -59,7 +59,7 @@ export default async function GaleriePage({
           </div>
           <Link
             href={`/${locale}/contact`}
-            className="inline-block w-full text-center bg-white text-[#0A66C2] hover:bg-neutral-100 font-semibold text-[16px] px-8 py-3.5 rounded-full transition-colors shadow-none shrink-0 sm:w-auto"
+            className="inline-block w-full text-center bg-white text-brand hover:bg-neutral-100 font-semibold text-[16px] px-8 py-3.5 rounded-full transition-colors shadow-none shrink-0 sm:w-auto"
             style={{ boxShadow: 'none' }}
           >
             {t('ctaButton')}

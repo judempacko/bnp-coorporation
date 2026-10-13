@@ -54,7 +54,7 @@ export default async function BrandPage({
     ? [
         {
           q: 'Qu’est-ce que BNP Coorporation Sarl (BNPC) ?',
-          a: "BNP Coorporation Sarl, abrégée BNPC (orthographe officielle « bnp coorporation » avec deux o), est une entreprise camerounaise basée à Yaoundé (BP 4219) depuis le 10 février 2023. Sécurité incendie, BTP, forage d’eau, énergies renouvelables, drones et réparation navale à Yaoundé, Douala, Kribi et dans tout le Cameroun.",
+          a: "BNP Coorporation Sarl, abrégée BNPC (orthographe officielle « bnp coorporation » avec deux o), est une entreprise camerounaise basée à Yaoundé (BP 4219) depuis le 10 février 2023. Sécurité incendie, BTP, forage d’eau, énergies renouvelables, drones et réparation navale à Yaoundé, Douala et dans tout le Cameroun.",
         },
         {
           q: 'Que signifie BNPC ?',
@@ -70,7 +70,7 @@ export default async function BrandPage({
         },
         {
           q: 'Où trouver BNP Coorporation SARL ?',
-          a: 'BP 4219, Yaoundé, Cameroun. Téléphone/WhatsApp (+237) 6 55 01 09 19 et (+237) 6 58 05 14 78, email contact@bnp-coorporation.com. Intervention Yaoundé, Douala, Kribi et tout le Cameroun. Devis sous 24-48h ouvrées après visite technique.',
+          a: 'BP 4219, Yaoundé, Cameroun. Téléphone/WhatsApp (+237) 6 55 01 09 19 et (+237) 6 58 05 14 78, email contact@bnp-coorporation.com. Intervention à Yaoundé, Douala et dans tout le Cameroun. Devis sous 24-48h ouvrées après visite technique.',
         },
         {
           q: 'Quels services propose BNPC ?',
@@ -80,7 +80,7 @@ export default async function BrandPage({
     : [
         {
           q: 'What is BNP Coorporation Sarl (BNPC)?',
-          a: 'BNP Coorporation Sarl, shortened to BNPC (official spelling "bnp coorporation" with two o’s), is a Cameroonian company based in Yaoundé (P.O. Box 4219) since February 10, 2023. Fire safety, construction, water drilling, solar, drones and naval repair across Yaoundé, Douala, Kribi and Cameroon.',
+          a: 'BNP Coorporation Sarl, shortened to BNPC (official spelling "bnp coorporation" with two o’s), is a Cameroonian company based in Yaoundé (P.O. Box 4219) since February 10, 2023. Fire safety, construction, water drilling, solar, drones and naval repair across Yaoundé, Douala and Cameroon.',
         },
         {
           q: 'What does BNPC stand for?',
@@ -96,7 +96,7 @@ export default async function BrandPage({
         },
         {
           q: 'Where is BNP Coorporation SARL located?',
-          a: 'P.O. Box 4219, Yaoundé, Cameroon. Phone/WhatsApp (+237) 6 55 01 09 19 and (+237) 6 58 05 14 78, email contact@bnp-coorporation.com. Active in Yaoundé, Douala, Kribi and across Cameroon. Quote within 24-48 business hours.',
+          a: 'P.O. Box 4219, Yaoundé, Cameroon. Phone/WhatsApp (+237) 6 55 01 09 19 and (+237) 6 58 05 14 78, email contact@bnp-coorporation.com. Active in Yaoundé, Douala and across Cameroon. Quote within 24-48 business hours.',
         },
         {
           q: 'What services does BNPC offer?',
@@ -126,7 +126,7 @@ export default async function BrandPage({
   };
 
   return (
-    <main className="w-full bg-white text-[#2c2c2c]">
+    <main className="w-full bg-white text-ink">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
@@ -139,7 +139,7 @@ export default async function BrandPage({
       {/* Hero marque */}
       <section className="mx-auto max-w-7xl px-6 sm:px-12 lg:px-20 py-14 sm:py-20">
         <HeroIntro className="text-center">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#0A66C2]">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand">
             {fr ? 'bnp coorporation • bnp coorporation sarl • bnpc' : 'bnp coorporation • bnp coorporation sarl • bnpc'}
           </p>
           <h1 className="mt-3 text-3xl sm:text-5xl font-semibold tracking-tight text-slate-900">
@@ -160,13 +160,13 @@ export default async function BrandPage({
           <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
             <Link
               href={`/${locale}/contact`}
-              className="inline-flex items-center justify-center rounded-full bg-[#0A66C2] px-6 py-3 text-base font-semibold text-white hover:bg-[#0854a0] transition-colors"
+              className="inline-flex items-center justify-center rounded-full bg-brand px-6 py-3 text-base font-semibold text-white hover:bg-brand-hover transition-colors"
             >
               {fr ? 'Devis sous 24-48h' : 'Quote within 24-48h'}
             </Link>
             <Link
               href={`/${locale}/qui-sommes-nous`}
-              className="inline-flex items-center justify-center rounded-full border border-slate-300 px-6 py-3 text-base font-semibold text-slate-700 hover:border-[#0A66C2] hover:text-[#0A66C2] transition-colors"
+              className="inline-flex items-center justify-center rounded-full border border-slate-300 px-6 py-3 text-base font-semibold text-slate-700 hover:border-brand hover:text-brand transition-colors"
             >
               {fr ? 'Qui sommes-nous' : 'About us'}
             </Link>
@@ -187,15 +187,15 @@ export default async function BrandPage({
               {fr ? 'Adresse' : 'Address'}
             </dt>
             <dd className="mt-1 font-semibold">BP 4219, Yaoundé, Cameroun</dd>
-            <dd className="text-sm text-slate-600">Yaoundé • Douala • Kribi</dd>
+            <dd className="text-sm text-slate-600">Yaoundé • Douala • Cameroun</dd>
           </div>
           <div>
             <dt className="text-xs font-semibold uppercase tracking-widest text-slate-500">Contact</dt>
             <dd className="mt-1 font-semibold">
-              <a href="tel:+237655010919" className="hover:text-[#0A66C2]">(+237) 6 55 01 09 19</a>
+              <a href="tel:+237655010919" className="hover:text-brand">(+237) 6 55 01 09 19</a>
             </dd>
             <dd className="text-sm text-slate-600">
-              <a href="mailto:contact@bnp-coorporation.com" className="hover:text-[#0A66C2]">contact@bnp-coorporation.com</a>
+              <a href="mailto:contact@bnp-coorporation.com" className="hover:text-brand">contact@bnp-coorporation.com</a>
             </dd>
           </div>
         </dl>
@@ -213,9 +213,9 @@ export default async function BrandPage({
             <details
               key={i}
               open={i === 0}
-              className="group border border-slate-200 bg-white open:border-[#0A66C2] transition-colors rounded-lg"
+              className="group border border-slate-200 bg-white open:border-brand transition-colors rounded-lg"
             >
-              <summary className="flex cursor-pointer items-center gap-4 p-5 text-left text-lg font-semibold hover:text-[#0A66C2]">
+              <summary className="flex cursor-pointer items-center gap-4 p-5 text-left text-lg font-semibold hover:text-brand">
                 {faq.q}
               </summary>
               <p className="px-5 pb-5 text-base leading-[1.7] text-slate-600">{faq.a}</p>

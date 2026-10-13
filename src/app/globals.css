@@ -114,6 +114,12 @@
 @theme inline {
   --color-brand: #0A66C2;
   --color-brand-hover: #0854a0;
+  --color-ink: #2c2c2c;
+  --color-muted: #51565d;
+  --color-coal: #181b1e;
+  --color-surface: #f1f2f4;
+  --color-banner: #232323;
+  --color-navy: #0b2f5c;
   --font-sans: var(--font-family-text);
   --font-mukta: var(--font-family-text);
   --font-mono: var(--font-family-code);

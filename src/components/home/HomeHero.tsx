@@ -74,7 +74,7 @@ export function HomeHero({
         if (e.key === 'ArrowLeft') prev();
         if (e.key === 'ArrowRight') next();
       }}
-      className="relative flex min-h-[82svh] w-full items-center justify-center overflow-hidden bg-[#181b1e] text-white"
+      className="relative flex min-h-[82svh] w-full items-center justify-center overflow-hidden bg-coal text-white"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocus={() => setPaused(true)}
@@ -166,7 +166,7 @@ export function HomeHero({
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <Link
               href={`/${locale}/contact`}
-              className="inline-flex items-center justify-center rounded-full bg-[#0A66C2] px-7 py-3.5 text-base font-semibold text-white shadow-lg btn-sweep"
+              className="inline-flex items-center justify-center rounded-full bg-brand px-7 py-3.5 text-base font-semibold text-white shadow-lg btn-sweep"
             >
               {fr ? 'Demander un devis' : 'Request a quote'}
             </Link>
@@ -182,7 +182,7 @@ export function HomeHero({
 
       {/* Dots + compteur en bas */}
       {total > 1 && (
-        <div className="absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 items-center gap-2">
+        <div className="absolute bottom-2 left-1/2 z-10 flex -translate-x-1/2 items-center">
           {slides.map((s, i) => (
             <button
               key={`dot-${i}`}
@@ -190,12 +190,17 @@ export function HomeHero({
               aria-label={`${fr ? 'Image' : 'Image'} ${i + 1} : ${s.alt}`}
               aria-current={i === index ? 'true' : undefined}
               onClick={() => goTo(i)}
-              className={`h-2.5 rounded-full transition-all duration-300 ${
-                i === index
-                  ? 'w-8 bg-white'
-                  : 'w-2.5 bg-white/40 hover:bg-white/70'
-              }`}
-            />
+              className="group flex h-11 w-7 items-center justify-center"
+            >
+              <span
+                aria-hidden="true"
+                className={`h-2.5 rounded-full transition-all duration-300 ${
+                  i === index
+                    ? 'w-8 bg-white'
+                    : 'w-2.5 bg-white/40 group-hover:bg-white/70'
+                }`}
+              />
+            </button>
           ))}
         </div>
       )}
