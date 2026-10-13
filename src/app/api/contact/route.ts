@@ -5,7 +5,27 @@ import { Redis } from '@upstash/redis';
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const PHONE_RE = /^\+?[0-9\s().-]{6,20}$/;
 const MAX_BODY = 32 * 1024;
-const SERVICES = ['incendie', 'btp', 'forage', 'solaire', 'drones', 'naval', 'autre'];
+const SERVICES = [
+  'securite-incendie',
+  'construction-btp',
+  'forage-et-eau',
+  'energies-renouvelables',
+  'drones-imagerie-aerienne',
+  'reparation-navale',
+  'nettoyage-industriel',
+  'autre',
+];
+// Libellés sérieux affichés dans l'email (alignés sur les noms du site).
+const SERVICE_LABELS: Record<string, string> = {
+  'securite-incendie': 'Sécurité incendie',
+  'construction-btp': 'Construction (BTP)',
+  'forage-et-eau': 'Forage et eau',
+  'energies-renouvelables': 'Énergies renouvelables',
+  'drones-imagerie-aerienne': 'Drones (imagerie aérienne)',
+  'reparation-navale': 'Réparation navale',
+  'nettoyage-industriel': 'Nettoyage industriel',
+  autre: 'Autre demande',
+};
 
 // --- Rate-limit Redis (partagé entre toutes les instances serverless) ---
 // Actif uniquement si les vars Upstash sont posées, sinon repli mémoire.
@@ -153,11 +173,12 @@ export async function POST(req: NextRequest) {
   const from = process.env.CONTACT_FROM_EMAIL || 'contact@bnp-coorporation.com';
   // Nom assaini : sans retours ligne (sujet d'email).
   const safeName = name.replace(/[\r\n]+/g, ' ');
+  const serviceLabel = service ? (SERVICE_LABELS[service] ?? service) : '';
   const text = [
     `Nom : ${safeName}`,
     `Email : ${email}`,
     phone ? `Téléphone : ${phone}` : null,
-    service ? `Service : ${service}` : null,
+    serviceLabel ? `Service : ${serviceLabel}` : null,
     '',
     message,
   ]
@@ -175,8 +196,8 @@ export async function POST(req: NextRequest) {
         from: `BNPC Contact <${from}>`,
         to: [to],
         reply_to: email,
-        subject: service
-          ? `[Contact BNPC] ${service} — ${safeName}`
+        subject: serviceLabel
+          ? `[Contact BNPC] ${serviceLabel} — ${safeName}`
           : `[Contact BNPC] Message de ${safeName}`,
         text,
       }),

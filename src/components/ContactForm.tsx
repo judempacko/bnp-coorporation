@@ -14,12 +14,13 @@ declare global {
 }
 
 const SERVICES = [
-  'incendie',
-  'btp',
-  'forage',
-  'solaire',
-  'drones',
-  'naval',
+  'securite-incendie',
+  'construction-btp',
+  'forage-et-eau',
+  'energies-renouvelables',
+  'drones-imagerie-aerienne',
+  'reparation-navale',
+  'nettoyage-industriel',
   'autre',
 ] as const;
 
