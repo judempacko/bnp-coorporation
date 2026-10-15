@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any -- Réponses WP REST dynamiques */
+import { cache } from 'react';
 import { fetchREST } from './wp-rest';
 import { cleanWpText, cleanWpParagraphs, extractYear } from './html';
 
@@ -446,7 +447,7 @@ function fallbackProjects(locale: string): Project[] {
 }
 
 /** Tous les projets (WP ou repli), triés par année décroissante. */
-export async function getProjects(locale: string): Promise<Project[]> {
+export const getProjects = cache(async (locale: string): Promise<Project[]> => {
   try {
     const raw = await fetchREST<any[]>('projet?per_page=100&_embed');
     if (Array.isArray(raw) && raw.length > 0) {
@@ -457,12 +458,12 @@ export async function getProjects(locale: string): Promise<Project[]> {
     // Repli silencieux sur les cas types
   }
   return fallbackProjects(locale);
-}
+});
 
-export async function getProjectBySlug(
+export const getProjectBySlug = cache(async (
   slug: string,
   locale: string
-): Promise<Project | null> {
+): Promise<Project | null> => {
   try {
     const raw = await fetchREST<any[]>(`projet?slug=${encodeURIComponent(slug)}&_embed`);
     if (Array.isArray(raw) && raw.length > 0) {
@@ -472,4 +473,4 @@ export async function getProjectBySlug(
     return null;
   }
   return null;
-}
+});

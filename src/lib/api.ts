@@ -1,6 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any -- Les réponses de l'API REST WordPress sont dynamiques et non typées par schéma */
+import { cache } from 'react';
 import { fetchREST } from './wp-rest';
 import { cleanWpText } from './html';
+
+/** Message d'erreur compact (sans stack trace) pour les replis silencieux. */
+function wpErrorMessage(error: unknown): string {
+  return error instanceof Error ? error.message : String(error);
+}
 
 export interface PostNode {
   id: string;
@@ -67,18 +73,18 @@ export function formatWpPost(item: any): PostNode {
   };
 }
 
-export async function getAllPosts(): Promise<PostNode[]> {
+export const getAllPosts = cache(async (): Promise<PostNode[]> => {
   try {
     const rawPosts = await fetchREST<any[]>('posts?per_page=50&_embed');
     if (!Array.isArray(rawPosts)) return [];
     return rawPosts.map(formatWpPost);
   } catch (error) {
-    console.error('Error fetching posts via REST API:', error);
+    console.warn(`[WP] posts indisponibles, repli local : ${wpErrorMessage(error)}`);
     return [];
   }
-}
+});
 
-export async function getPostBySlug(slug: string): Promise<PostNode | null> {
+export const getPostBySlug = cache(async (slug: string): Promise<PostNode | null> => {
   try {
     const rawPosts = await fetchREST<any[]>(
       `posts?slug=${encodeURIComponent(slug)}&_embed`
@@ -88,10 +94,10 @@ export async function getPostBySlug(slug: string): Promise<PostNode | null> {
     }
     return null;
   } catch (error) {
-    console.error(`Error fetching post with slug ${slug} via REST API:`, error);
+    console.warn(`[WP] post « ${slug} » indisponible : ${wpErrorMessage(error)}`);
     return null;
   }
-}
+});
 
 // ---------------------------------------------------------------------------
 // Services (CPT `service` + champs ACF)
@@ -300,21 +306,21 @@ export async function formatWpService(item: any, locale: string): Promise<Servic
   };
 }
 
-export async function getAllServices(locale: string): Promise<ServiceNode[]> {
+export const getAllServices = cache(async (locale: string): Promise<ServiceNode[]> => {
   try {
     const raw = await fetchREST<any[]>('service?per_page=100&_embed');
     if (!Array.isArray(raw)) return [];
     return Promise.all(raw.map((item) => formatWpService(item, locale)));
   } catch (error) {
-    console.error('Error fetching services via REST API:', error);
+    console.warn(`[WP] services indisponibles, repli local : ${wpErrorMessage(error)}`);
     return [];
   }
-}
+});
 
-export async function getServiceBySlug(
+export const getServiceBySlug = cache(async (
   slug: string,
   locale: string
-): Promise<ServiceNode | null> {
+): Promise<ServiceNode | null> => {
   try {
     const raw = await fetchREST<any[]>(
       `service?slug=${encodeURIComponent(slug)}&_embed`
@@ -324,7 +330,7 @@ export async function getServiceBySlug(
     }
     return null;
   } catch (error) {
-    console.error(`Error fetching service with slug ${slug} via REST API:`, error);
+    console.warn(`[WP] service « ${slug} » indisponible : ${wpErrorMessage(error)}`);
     return null;
   }
-}
+});

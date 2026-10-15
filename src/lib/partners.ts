@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any -- Réponses WP REST dynamiques */
+import { cache } from 'react';
 import { fetchREST } from './wp-rest';
 import { cleanWpText } from './html';
 
@@ -44,7 +45,7 @@ const FALLBACK_PARTNERS_EN = [
 ];
 
 /** Tente le CPT `partenaire` côté WP, sinon repli sur les secteurs types. */
-export async function getPartners(locale: string): Promise<Partner[]> {
+export const getPartners = cache(async (locale: string): Promise<Partner[]> => {
   try {
     const raw = await fetchREST<any[]>('partenaire?per_page=50&_embed');
     if (Array.isArray(raw) && raw.length > 0) {
@@ -115,4 +116,4 @@ export async function getPartners(locale: string): Promise<Partner[]> {
     logoAlt: name,
     website: null,
   }));
-}
+});

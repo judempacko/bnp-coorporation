@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any -- Réponses WP REST dynamiques */
+import { cache } from 'react';
 import { fetchREST } from './wp-rest';
 import { cleanWpText } from './html';
 
@@ -201,7 +202,7 @@ const MOCK_GALLERY: GalleryEvent[] = [
 ];
 
 /** Tente le CPT `galerie` côté WP, sinon repli sur les données mockées. */
-export async function getGalleryEvents(locale: string): Promise<GalleryEvent[]> {
+export const getGalleryEvents = cache(async (locale: string): Promise<GalleryEvent[]> => {
   try {
     const raw = await fetchREST<any[]>('galerie?per_page=100&_embed');
     if (Array.isArray(raw) && raw.length > 0) {
@@ -289,7 +290,7 @@ export async function getGalleryEvents(locale: string): Promise<GalleryEvent[]> 
   }
   void locale;
   return [...MOCK_GALLERY].sort((a, b) => (a.date < b.date ? 1 : -1));
-}
+});
 
 export async function getGalleryEventBySlug(
   slug: string,
