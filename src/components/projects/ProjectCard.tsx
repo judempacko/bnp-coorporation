@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowUpRight, LinkedinLogo } from '@phosphor-icons/react/dist/ssr';
+import { LinkedinLogo } from '@phosphor-icons/react/dist/ssr';
 import type { Project } from '@/lib/projects';
 
 interface ProjectCardProps {
@@ -11,7 +11,7 @@ interface ProjectCardProps {
 /**
  * Carte projet signature « black + accent » (réf. Nisoz adaptée charte BNPC) :
  * corps noir #14181d, photo légèrement désaturée qui s'anime au survol,
- * pastille carrée bleu brand avec flèche = seul CTA. Titre blanc,
+ * bouton bleu rounded sous le titre = seul CTA. Titre blanc,
  * excerpt court, méta discrète. Zéro pavé, zéro double lien.
  */
 export function ProjectCard({ project, locale }: ProjectCardProps) {
@@ -37,19 +37,6 @@ export function ProjectCard({ project, locale }: ProjectCardProps) {
       </Link>
 
       <div className="relative flex flex-1 flex-col p-5">
-        {/* Pastille à cheval sur la frontière image / bloc noir */}
-        <Link
-          href={href}
-          aria-label={`${fr ? 'Voir le projet' : 'View project'} : ${project.title}`}
-          className="absolute -top-[22px] right-4 z-10 flex h-11 w-11 items-center justify-center rounded-md bg-brand text-white shadow-lg transition-all duration-300 hover:bg-white hover:text-brand"
-        >
-          <ArrowUpRight
-            size={19}
-            weight="bold"
-            aria-hidden
-            className="transition-transform duration-300 group-hover:rotate-45"
-          />
-        </Link>
         {project.tags.length > 0 && (
           <p className="text-[12px] font-semibold uppercase tracking-[0.12em] text-blue-300">
             {project.tags.join(' • ')}
@@ -58,6 +45,13 @@ export function ProjectCard({ project, locale }: ProjectCardProps) {
         <h3 className="mt-2 text-[19px] font-semibold leading-snug text-white transition-colors group-hover:text-blue-200">
           <Link href={href}>{project.title}</Link>
         </h3>
+        <Link
+          href={href}
+          aria-label={`${fr ? 'Voir le projet' : 'View project'} : ${project.title}`}
+          className="mt-3 inline-flex w-fit items-center rounded-full bg-brand px-4 py-2 text-[14px] font-semibold text-white transition-colors duration-300 hover:bg-brand-hover"
+        >
+          {fr ? 'Voir le projet' : 'View project'}
+        </Link>
         {project.excerpt && (
           <p className="mt-2 text-[14px] leading-relaxed text-white/70 line-clamp-2">
             {project.excerpt}
