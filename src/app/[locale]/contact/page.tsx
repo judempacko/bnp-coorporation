@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { HeroIntro } from '@/components/animations/HeroIntro';
-import { ParallaxBg } from '@/components/animations/ParallaxBg';
+import { PageHero } from '@/components/PageHero';
 import { ContactForm } from '@/components/ContactForm';
 import { canonicalFor, languageAlternates, SITE_URL } from '@/lib/seo';
 
@@ -100,24 +99,15 @@ export default async function ContactPage({
       />
 
       {/* Hero banner */}
-      <section className="relative w-full h-[200px] sm:h-[240px] flex items-center justify-center overflow-hidden bg-banner">
-        <ParallaxBg
-          image="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1800&q=70"
-          className="bg-cover bg-center grayscale"
-          amplitude={8}
-        />
-        <div className="absolute inset-0 bg-black/60" />
-        <HeroIntro className="relative z-10">
-          <h1 className="text-white text-[28px] sm:text-[40px] leading-[1.2] font-semibold tracking-tight">
-            {t('heroTitle')}
-          </h1>
-        </HeroIntro>
-      </section>
+      <PageHero
+        title={t('heroTitle')}
+        image="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1800&q=70"
+      />
 
       {/* Coordonnées */}
       <section className="max-w-[1100px] mx-auto px-6 pt-12 sm:pt-16 pb-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 text-center">
-          <div className="flex flex-col items-center">
+        <div className="flex flex-col divide-y divide-slate-200 text-center lg:flex-row lg:divide-x lg:divide-y-0">
+          <div className="flex flex-1 flex-col items-center px-6 py-8 lg:py-0">
             <span className="text-brand">
               <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M6.62 10.79a15.15 15.15 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.4 11.4 0 003.57.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.4 11.4 0 00.57 3.57 1 1 0 01-.25 1.02l-2.2 2.2z" />
@@ -133,7 +123,7 @@ export default async function ContactPage({
               <a href="tel:+237658051478" className="hover:text-brand">{t('phone2')}</a>
             </p>
           </div>
-          <div className="flex flex-col items-center">
+          <div className="flex flex-1 flex-col items-center px-6 py-8 lg:py-0">
             <span className="text-brand">
               <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
@@ -146,7 +136,7 @@ export default async function ContactPage({
               <a href="mailto:contact@bnp-coorporation.com" className="hover:text-brand">{t('emailValue')}</a>
             </p>
           </div>
-          <div className="flex flex-col items-center">
+          <div className="flex flex-1 flex-col items-center px-6 py-8 lg:py-0">
             <span className="text-brand">
               <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M3.4 20.4l17.45-7.48a1 1 0 000-1.84L3.4 3.6a1 1 0 00-1.39 1.24l1.85 6.82a1 1 0 00.72.72l6.82 1.85a.5.5 0 010 .94l-6.82 1.85a1 1 0 00-.72.72l-1.85 6.82a1 1 0 001.39 1.24z" />
@@ -157,7 +147,7 @@ export default async function ContactPage({
             </h2>
             <p className="mt-2 text-[16px] text-muted">{t('addressValue')}</p>
           </div>
-          <div className="flex flex-col items-center">
+          <div className="flex flex-1 flex-col items-center px-6 py-8 lg:py-0">
             <span className="text-brand">
               <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M19 4h-1V2h-2v2H8V2H6v2H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2zm-9 13H7v-2h3v2zm2-4H7v-2h5v2zm5 4h-3v-2h3v2zm0-4H7v-2h10v2z" />
