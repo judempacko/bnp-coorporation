@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { setRequestLocale } from 'next-intl/server';
 import { getAllServices, type ServiceNode } from '@/lib/api';
 import { fallbackServicesNav } from './[slug]/page';
+import { PageHero } from '@/components/PageHero';
 import { canonicalFor, languageAlternates } from '@/lib/seo';
 
 const FALLBACK_CARD_IMAGE =
@@ -79,18 +80,17 @@ export default async function ServicesPage({
 
   return (
     <main className="w-full bg-white">
-      <section className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 pt-12 sm:pt-24 pb-6 sm:pb-8 text-center">
-        <h1 className="text-[28px] sm:text-[40px] leading-[1.2] font-semibold text-ink">
-          {fr ? 'Nos Services' : 'Our Services'}
-        </h1>
-        <p className="mt-3 text-[16px] leading-[1.7] text-muted max-w-3xl mx-auto">
-          {fr
+      <PageHero
+        title={fr ? 'Nos Services' : 'Our Services'}
+        subtitle={
+          fr
             ? 'Sept pôles d\u2019expertise complémentaires pour répondre à vos défis industriels, techniques et opérationnels sur l\u2019ensemble du territoire camerounais.'
-            : 'Seven complementary areas of expertise to meet your industrial, technical and operational challenges across Cameroon.'}
-        </p>
-      </section>
+            : 'Seven complementary areas of expertise to meet your industrial, technical and operational challenges across Cameroon.'
+        }
+        image="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=1800"
+      />
 
-      <section className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 pb-12 sm:pb-24">
+      <section className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 py-12 sm:py-20">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {cards.map((card) => (
             <Link

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import { getProjects } from '@/lib/projects';
 import { ProjectCard } from '@/components/projects/ProjectCard';
+import { PageHero } from '@/components/PageHero';
 import { canonicalFor, languageAlternates } from '@/lib/seo';
 
 export async function generateMetadata({
@@ -44,18 +45,17 @@ export default async function ProjetsPage({
 
   return (
     <main className="w-full bg-white">
-      <section className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 pt-12 sm:pt-24 pb-6 sm:pb-8 text-center">
-        <h1 className="text-[28px] sm:text-[40px] leading-[1.2] font-semibold text-ink">
-          {fr ? 'Nos Projets & Réalisations' : 'Our Projects & Achievements'}
-        </h1>
-        <p className="mt-3 text-[16px] leading-[1.7] text-muted max-w-3xl mx-auto">
-          {fr
-            ? "Études de cas et chantiers BNPC au Cameroun : client, année, lieu et service concerné pour chaque réalisation."
-            : 'BNPC case studies and sites in Cameroon: client, year, location and related service for each achievement.'}
-        </p>
-      </section>
+      <PageHero
+        title={fr ? 'Nos Projets & Réalisations' : 'Our Projects & Achievements'}
+        subtitle={
+          fr
+            ? 'Études de cas et chantiers BNPC au Cameroun : client, année, lieu et service concerné pour chaque réalisation.'
+            : 'BNPC case studies and sites in Cameroon: client, year, location and related service for each achievement.'
+        }
+        image="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80&w=1800"
+      />
 
-      <section className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 pb-12 sm:pb-24">
+      <section className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 py-12 sm:py-20">
         {projects.length === 0 ? (
           <div className="p-12 text-center rounded-2xl border border-dashed border-slate-300">
             <p className="text-slate-500">

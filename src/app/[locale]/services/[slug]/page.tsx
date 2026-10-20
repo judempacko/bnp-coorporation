@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { getAllServices, getServiceBySlug, type ServiceNode } from '@/lib/api';
-import { ServiceHero } from '@/components/services/ServiceHero';
+import { PageHero } from '@/components/PageHero';
 import { ScrubLead } from '@/components/services/ScrubLead';
 import { FeatureRow } from '@/components/services/FeatureRow';
 import { SITE_URL, canonicalFor, languageAlternates } from '@/lib/seo';
@@ -244,7 +244,6 @@ export default async function ServiceDetailPage({
           }));
 
   const labels = {
-    allServices: fr ? 'Tous nos services' : 'All our services',
     targetsTitle: fr ? 'Nos cibles' : 'Who we serve',
     othersTitle: fr ? 'Découvrez nos autres expertises' : 'Explore our other areas of expertise',
     discover: fr ? 'Découvrir' : 'Discover',
@@ -271,13 +270,11 @@ export default async function ServiceDetailPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
       />
-      {/* 1. Hero cinématique */}
-      <ServiceHero
+      {/* 1. Hero */}
+      <PageHero
         title={data.title}
         subtitle={data.subtitle}
         image={data.heroImage || FALLBACK_HERO}
-        backLabel={labels.allServices}
-        backHref={`/${locale}/services`}
       />
 
       {/* 2. Main Content */}

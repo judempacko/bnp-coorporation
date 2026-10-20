@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import Link from 'next/link';
-import { ServiceHero } from '@/components/services/ServiceHero';
+import { PageHero } from '@/components/PageHero';
 import { GalleryGrid } from '@/components/entreprise/GalleryGrid';
 import { getGalleryEvents } from '@/lib/gallery';
 
@@ -31,16 +31,13 @@ export default async function GaleriePage({
 
   const t = await getTranslations('GalleryPage');
   const events = await getGalleryEvents(locale);
-  const backLabel = locale === 'fr' ? 'Accueil' : 'Home';
 
   return (
     <main className="w-full bg-white text-ink">
-      <ServiceHero
+      <PageHero
         title={t('title')}
         subtitle={t('intro')}
         image={HERO_IMAGE}
-        backLabel={backLabel}
-        backHref={`/${locale}`}
       />
 
       <section className="max-w-[1100px] mx-auto px-6 py-12">

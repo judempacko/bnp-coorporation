@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ScrubLead } from '@/components/services/ScrubLead';
 import { Counter } from '@/components/animations/Counter';
+import { PageHero } from '@/components/PageHero';
 import { EditorialRow } from '@/components/entreprise/EditorialRow';
 import { TeamGrid } from '@/components/entreprise/TeamGrid';
 import { getTeam } from '@/lib/team';
@@ -53,33 +54,17 @@ export default async function QuiSommesNousPage({
   const events = (await getGalleryEvents(locale)).slice(0, 3);
 
   const labels = {
-    backHome: fr ? 'Accueil' : 'Home',
     discover: fr ? 'Découvrir' : 'Discover',
     galleryAll: fr ? 'Voir toute la galerie' : 'View the full gallery',
   };
 
   return (
     <main className="w-full bg-white text-ink">
-      {/* Header compact : bandeau bleu profond uni, sans cinématique.
-          Le hero photo plein écran n'a pas de sens ici (page éditoriale),
-          et le bleu vif est réservé aux CTA — d'où une teinte profonde. */}
-      <section className="bg-navy text-white">
-        <div className="mx-auto max-w-7xl px-6 sm:px-12 lg:px-16 py-10 sm:py-14">
-          <Link
-            href={`/${locale}`}
-            className="group inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-[14px] font-semibold text-white backdrop-blur-md transition-colors hover:bg-white/20"
-          >
-            <span aria-hidden className="transition-transform duration-300 ease-out group-hover:-translate-x-1">←</span>
-            {labels.backHome}
-          </Link>
-          <h1 className="mt-4 text-3xl sm:text-4xl font-semibold tracking-tight text-balance">
-            {t('title')}
-          </h1>
-          <p className="mt-2 max-w-2xl text-[16px] sm:text-[17px] leading-relaxed text-blue-100">
-            {t('subtitle')}
-          </p>
-        </div>
-      </section>
+      <PageHero
+        title={t('title')}
+        subtitle={t('subtitle')}
+        image={STORY1_IMAGE.replace('w=800', 'w=1800')}
+      />
 
       {/* 2. Récit : lead scrub + lignes éditoriales */}
       <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 py-14 sm:py-20">
