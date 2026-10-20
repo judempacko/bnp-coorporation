@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import Link from 'next/link';
-import { HeroIntro } from '@/components/animations/HeroIntro';
+import { PageHero } from '@/components/PageHero';
 import {
   SITE_URL,
   canonicalFor,
@@ -137,44 +137,39 @@ export default async function BrandPage({
       />
 
       {/* Hero marque */}
-      <section className="mx-auto max-w-7xl px-6 sm:px-12 lg:px-20 py-14 sm:py-20">
-        <HeroIntro className="text-center">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand">
-            {fr ? 'bnp coorporation • bnp coorporation sarl • bnpc' : 'bnp coorporation • bnp coorporation sarl • bnpc'}
-          </p>
-          <h1 className="mt-3 text-3xl sm:text-5xl font-semibold tracking-tight text-slate-900">
-            {fr
-              ? 'BNP Coorporation Sarl (BNPC)'
-              : 'BNP Coorporation Sarl (BNPC)'}
-          </h1>
-          <p className="mt-3 text-lg sm:text-xl font-medium text-slate-700">
-            {fr
-              ? 'Entreprise camerounaise à Yaoundé — Sécurité incendie, BTP, forage, solaire, drones, naval'
-              : 'Cameroonian company in Yaoundé — Fire safety, construction, drilling, solar, drones, naval'}
-          </p>
-          <p className="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-slate-600">
-            {fr
-              ? "Vous cherchiez « bnp coorporation », « bnp coorporation sarl », « bnpc » ou « BNPC » ? Vous êtes au bon endroit : site officiel de BNP Coorporation Sarl (BNPC), entreprise camerounaise indépendante basée à Yaoundé. Elle n'a aucun lien avec BNP Paribas ni BNP Paribas Corporate."
-              : 'Looking for "bnp coorporation", "bnp coorporation sarl", "bnpc" or "BNPC"? You are in the right place: official website of BNP Coorporation Sarl (BNPC), an independent Cameroonian company based in Yaoundé. Not affiliated with BNP Paribas or BNP Paribas Corporate.'}
-          </p>
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-            <Link
-              href={`/${locale}/contact`}
-              className="inline-flex items-center justify-center rounded-full bg-brand px-6 py-3 text-base font-semibold text-white hover:bg-brand-hover transition-colors"
-            >
-              {fr ? 'Devis sous 24-48h' : 'Quote within 24-48h'}
-            </Link>
-            <Link
-              href={`/${locale}/qui-sommes-nous`}
-              className="inline-flex items-center justify-center rounded-full border border-slate-300 px-6 py-3 text-base font-semibold text-slate-700 hover:border-brand hover:text-brand transition-colors"
-            >
-              {fr ? 'Qui sommes-nous' : 'About us'}
-            </Link>
-          </div>
-        </HeroIntro>
+      <PageHero
+        title={fr ? 'BNP Coorporation Sarl (BNPC)' : 'BNP Coorporation Sarl (BNPC)'}
+        subtitle={
+          fr
+            ? 'Entreprise camerounaise à Yaoundé — Sécurité incendie, BTP, forage, solaire, drones, naval'
+            : 'Cameroonian company in Yaoundé — Fire safety, construction, drilling, solar, drones, naval'
+        }
+        image="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1800"
+      >
+        <p className="mt-4 max-w-3xl text-[15px] sm:text-[16px] leading-relaxed text-white/75">
+          {fr
+            ? "Vous cherchiez « bnp coorporation », « bnp coorporation sarl », « bnpc » ou « BNPC » ? Vous êtes au bon endroit : site officiel de BNP Coorporation Sarl (BNPC), entreprise camerounaise indépendante basée à Yaoundé. Elle n'a aucun lien avec BNP Paribas ni BNP Paribas Corporate."
+            : 'Looking for "bnp coorporation", "bnp coorporation sarl", "bnpc" or "BNPC"? You are in the right place: official website of BNP Coorporation Sarl (BNPC), an independent Cameroonian company based in Yaoundé. Not affiliated with BNP Paribas or BNP Paribas Corporate.'}
+        </p>
+        <div className="mt-6 flex flex-wrap items-center gap-3">
+          <Link
+            href={`/${locale}/contact`}
+            className="inline-flex items-center justify-center rounded-full bg-brand px-6 py-3 text-base font-semibold text-white hover:bg-brand-hover transition-colors"
+          >
+            {fr ? 'Devis sous 24-48h' : 'Quote within 24-48h'}
+          </Link>
+          <Link
+            href={`/${locale}/qui-sommes-nous`}
+            className="inline-flex items-center justify-center rounded-full border border-white/30 px-6 py-3 text-base font-semibold text-white hover:border-white hover:bg-white/10 transition-colors"
+          >
+            {fr ? 'Qui sommes-nous' : 'About us'}
+          </Link>
+        </div>
+      </PageHero>
 
-        {/* Preuves NAP — signaux d'entité */}
-        <dl className="mx-auto mt-10 grid max-w-4xl grid-cols-1 gap-4 rounded-2xl border border-slate-200 bg-neutral-100 p-6 text-left sm:grid-cols-3">
+      {/* Preuves NAP — signaux d'entité */}
+      <section className="mx-auto max-w-7xl px-6 sm:px-12 lg:px-20 py-10 sm:py-12">
+        <dl className="mx-auto grid max-w-4xl grid-cols-1 gap-4 rounded-2xl border border-slate-200 bg-neutral-100 p-6 text-left sm:grid-cols-3">
           <div>
             <dt className="text-xs font-semibold uppercase tracking-widest text-slate-500">
               {fr ? 'Raison sociale' : 'Legal name'}
