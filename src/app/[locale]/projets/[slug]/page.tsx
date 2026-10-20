@@ -13,6 +13,7 @@ import {
 } from '@phosphor-icons/react/dist/ssr';
 import { getProjects, getProjectBySlug } from '@/lib/projects';
 import { ProjectCard } from '@/components/projects/ProjectCard';
+import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { canonicalFor, languageAlternates } from '@/lib/seo';
 
 export async function generateStaticParams() {
@@ -100,6 +101,7 @@ export default async function ProjetDetailPage({
     <div className="w-full bg-white text-ink">
       {/* 1. En-tête */}
       <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 pt-10 sm:pt-14">
+        <Breadcrumbs currentLabel={project.title} className="mb-5" />
         <Link
           href={`/${locale}/projets`}
           className="inline-flex items-center gap-2 text-[15px] font-semibold text-brand hover:underline"

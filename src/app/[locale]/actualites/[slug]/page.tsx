@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { getPostBySlug } from '@/lib/api';
 import { canonicalFor, languageAlternates, SITE_URL } from '@/lib/seo';
 import { cleanWpText } from '@/lib/html';
+import { Breadcrumbs } from '@/components/Breadcrumbs';
 
 export async function generateMetadata({
   params,
@@ -87,6 +88,7 @@ export default async function ArticleDetailPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
       />
+      <Breadcrumbs currentLabel={cleanWpText(post.title)} className="mb-6" />
       <Link
         href={`/${locale}/actualites`}
         className="inline-flex items-center text-base font-semibold text-blue-600 dark:text-blue-400 hover:underline mb-8"

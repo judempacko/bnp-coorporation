@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { LinkedinLogo, ArrowLeft } from '@phosphor-icons/react/dist/ssr';
 import { getTeam, getTeamMemberBySlug } from '@/lib/team';
+import { Breadcrumbs } from '@/components/Breadcrumbs';
 
 export async function generateStaticParams() {
   const [fr, en] = await Promise.all([getTeam('fr'), getTeam('en')]);
@@ -75,6 +76,7 @@ export default async function TeamMemberPage({
 
       {/* Retour équipe : bandeau fin, pas de hero cinématique ici */}
       <div className="mx-auto max-w-[1100px] px-6 pt-6">
+        <Breadcrumbs currentLabel={member.name} className="mb-4" />
         <Link
           href={`/${locale}/qui-sommes-nous`}
           className="group inline-flex items-center gap-2 text-[14px] font-semibold text-neutral-500 hover:text-brand transition-colors"

@@ -22,25 +22,41 @@ function humanize(slug: string): string {
     .replace(/\b\p{L}/gu, (c) => c.toUpperCase());
 }
 
-export function Breadcrumbs() {
+interface BreadcrumbsProps {
+  variant?: 'light' | 'dark';
+  currentLabel?: string;
+  className?: string;
+}
+
+export function Breadcrumbs({ variant = 'light', currentLabel, className }: BreadcrumbsProps) {
   const pathname = usePathname();
   const locale = useLocale();
   const en = locale === 'en';
+  const onDark = variant === 'dark';
 
   // /fr/services/securite-incendie -> ['services', 'securite-incendie']
   const segments = (pathname || '/').split('/').filter(Boolean).slice(1);
-  if (segments.length === 0) return null; // accueil : pas de fil d'Ariane
+  if (segments.length === 0) return null;
 
   const homeLabel = en ? 'Home' : 'Accueil';
 
   // Chemins relatifs pour <Link>, URLs absolues pour le JSON-LD.
   const crumbs = [{ name: homeLabel, path: `/${locale}` }];
   let trail = `/${locale}`;
-  for (const seg of segments) {
+  for (let i = 0; i < segments.length; i++) {
+    const seg = segments[i];
     trail += `/${seg}`;
+    const isLast = i === segments.length - 1;
     const section = SECTION_LABELS[seg];
     crumbs.push({
-      name: section != null ? (en ? section.en : section.fr) : humanize(seg),
+      name:
+        isLast && currentLabel
+          ? currentLabel
+          : section != null
+            ? en
+              ? section.en
+              : section.fr
+            : humanize(seg),
       path: trail,
     });
   }
@@ -57,24 +73,40 @@ export function Breadcrumbs() {
   };
 
   return (
-    <div className="w-full bg-white">
+    <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <nav aria-label="Breadcrumb" className="max-w-[1100px] mx-auto px-6 pt-4">
-        <ol className="flex flex-wrap items-center gap-1.5 text-[13px] leading-[1.5] text-muted">
+      <nav aria-label="Breadcrumb" className={className}>
+        <ol
+          className={`flex flex-wrap items-center gap-1.5 text-[13px] leading-[1.5] ${
+            onDark ? 'text-white/70' : 'text-muted'
+          }`}
+        >
           {crumbs.map((crumb, i) => {
             const isLast = i === crumbs.length - 1;
             return (
               <li key={crumb.path} className="flex items-center gap-1.5">
-                {i > 0 && <span aria-hidden="true">/</span>}
+                {i > 0 && (
+                  <span aria-hidden="true" className={onDark ? 'text-white/40' : undefined}>
+                    /
+                  </span>
+                )}
                 {isLast ? (
-                  <span aria-current="page" className="text-ink font-medium">
+                  <span
+                    aria-current="page"
+                    className={`font-medium ${onDark ? 'text-white' : 'text-ink'}`}
+                  >
                     {crumb.name}
                   </span>
                 ) : (
-                  <Link href={crumb.path} className="hover:text-brand transition-colors">
+                  <Link
+                    href={crumb.path}
+                    className={`transition-colors ${
+                      onDark ? 'hover:text-white' : 'hover:text-brand'
+                    }`}
+                  >
                     {crumb.name}
                   </Link>
                 )}
@@ -83,6 +115,6 @@ export function Breadcrumbs() {
           })}
         </ol>
       </nav>
-    </div>
+    </>
   );
 }

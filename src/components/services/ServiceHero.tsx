@@ -6,6 +6,7 @@ import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { prefersReducedMotion } from '../animations/gsap-setup';
+import { Breadcrumbs } from '../Breadcrumbs';
 
 interface ServiceHeroProps {
   title: string;
@@ -113,6 +114,7 @@ export function ServiceHero({
 
       {/* Contenu */}
       <div className="hero-content relative z-10 mx-auto max-w-4xl px-6 pb-10 pt-10 sm:px-12 sm:pb-24 sm:pt-16">
+        <Breadcrumbs variant="dark" currentLabel={title} className="hero-fade mb-5" />
         <Link
           href={backHref}
           className="hero-fade group inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-[14px] font-semibold text-slate-100 backdrop-blur-md transition-colors hover:bg-white/20 hover:text-white"
