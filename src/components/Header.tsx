@@ -85,7 +85,7 @@ export function Header({ locale, services }: HeaderProps) {
             width={115}
             height={43}
             priority
-            className="h-[43px] w-[115px] object-contain"
+            className="h-8 w-[86px] object-contain sm:h-[43px] sm:w-[115px]"
           />
         </Link>
 
@@ -133,13 +133,13 @@ export function Header({ locale, services }: HeaderProps) {
             </button>
 
             {companyDropdownOpen && (
-              <div className="absolute top-full left-0 w-64 bg-white border border-slate-200 rounded-xl shadow-xl p-2 space-y-1 z-50 animate-in fade-in-0 zoom-in-95 duration-150">
+              <div className="absolute top-full left-0 w-64 bg-white border border-slate-200 rounded-md shadow-xl p-2 space-y-1 z-50 animate-in fade-in-0 zoom-in-95 duration-150">
                 {companyLinks.map((c) => (
                   <Link
                     key={c.slug}
                     href={c.href}
                     onClick={() => setCompanyDropdownOpen(false)}
-                    className={`group flex items-center justify-between gap-3 px-4 py-2.5 rounded-lg text-[16px] font-medium transition-all ${
+                    className={`group flex items-center justify-between gap-3 px-4 py-2.5 rounded-sm text-[16px] font-medium transition-all ${
                       isActive(c.href)
                         ? 'bg-surface text-brand'
                         : 'text-ink hover:bg-surface'
@@ -185,13 +185,13 @@ export function Header({ locale, services }: HeaderProps) {
 
             {/* Shadcn Dropdown Panel */}
             {servicesDropdownOpen && (
-              <div className="absolute top-full left-0 w-72 bg-white border border-slate-200 rounded-xl shadow-xl p-2 space-y-1 z-50 animate-in fade-in-0 zoom-in-95 duration-150">
+              <div className="absolute top-full left-0 w-72 bg-white border border-slate-200 rounded-md shadow-xl p-2 space-y-1 z-50 animate-in fade-in-0 zoom-in-95 duration-150">
                 {servicesList.map((s) => (
                   <Link
                     key={s.slug}
                     href={`/${locale}/services/${s.slug}`}
                     onClick={() => setServicesDropdownOpen(false)}
-                    className={`group flex items-center justify-between px-3.5 py-2.5 rounded-lg text-[16px] font-medium transition-all ${
+                    className={`group flex items-center justify-between px-3.5 py-2.5 rounded-sm text-[16px] font-medium transition-all ${
                       isActive(`/${locale}/services/${s.slug}`)
                         ? 'bg-surface text-brand'
                         : 'text-ink hover:bg-surface'
