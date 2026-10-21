@@ -189,8 +189,9 @@ export function ContactForm() {
               ? t('errorCaptcha')
               : t('errorGeneric');
 
-  const inputClass =
-    'w-full bg-white px-4 py-3 text-[16px] leading-[1.7] text-ink placeholder:text-neutral-400 focus:outline-none focus:ring-1 focus:ring-brand';
+  const fieldClass =
+    'bg-white px-4 py-3 text-[16px] leading-[1.7] text-ink placeholder:text-neutral-400 focus:outline-none focus:ring-1 focus:ring-brand';
+  const inputClass = `${fieldClass} w-full`;
 
   return (
     <div className="max-w-[760px] mx-auto px-6">
@@ -276,11 +277,11 @@ export function ContactForm() {
               value={formData.phoneCode}
               onChange={(e) => setFormData({ ...formData, phoneCode: e.target.value })}
               aria-label={t('dialCodeLabel')}
-              className={`${inputClass} w-[128px] shrink-0 cursor-pointer`}
+              className={`${fieldClass} w-[142px] shrink-0 cursor-pointer px-3`}
             >
               {COUNTRIES.map((c) => (
                 <option key={c.code} value={c.code}>
-                  {c.code} {(locale === 'en' ? c.en : c.fr).slice(0, 12)}
+                  {c.code} {(locale === 'en' ? c.en : c.fr).slice(0, 10)}
                 </option>
               ))}
             </select>
@@ -293,7 +294,7 @@ export function ContactForm() {
               }
               placeholder={t('phonePlaceholder')}
               aria-label={t('phonePlaceholder')}
-              className={inputClass}
+              className={`${fieldClass} min-w-0 flex-1`}
               autoComplete="tel-national"
               inputMode="tel"
               minLength={6}
