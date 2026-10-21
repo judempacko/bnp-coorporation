@@ -4,7 +4,6 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { setRequestLocale } from 'next-intl/server';
 import {
-  ArrowLeft,
   CalendarBlank,
   LinkedinLogo,
   MapPin,
@@ -13,7 +12,7 @@ import {
 } from '@phosphor-icons/react/dist/ssr';
 import { getProjects, getProjectBySlug } from '@/lib/projects';
 import { ProjectCard } from '@/components/projects/ProjectCard';
-import { Breadcrumbs } from '@/components/Breadcrumbs';
+import { PageHero } from '@/components/PageHero';
 import { canonicalFor, languageAlternates } from '@/lib/seo';
 
 export async function generateStaticParams() {
@@ -99,79 +98,79 @@ export default async function ProjetDetailPage({
 
   return (
     <div className="w-full bg-white text-ink">
-      {/* 1. En-tête */}
-      <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 pt-10 sm:pt-14">
-        <Breadcrumbs currentLabel={project.title} className="mb-5" />
-        <Link
-          href={`/${locale}/projets`}
-          className="inline-flex items-center gap-2 text-[15px] font-semibold text-brand hover:underline"
+      {/* 1. Hero */}
+      <PageHero
+        title={project.title}
+        subtitle={project.excerpt}
+        image={project.image}
+        currentLabel={project.title}
+      />
+
+      {/* 2. Aperçu : couverture + détails du projet */}
+      <section className="max-w-[1100px] mx-auto px-6 pt-10 sm:pt-14">
+        <div
+          className={`grid grid-cols-1 gap-6 items-center lg:gap-8 ${
+            meta.length > 0 || project.serviceSlug
+              ? 'lg:grid-cols-[minmax(0,1.6fr)_minmax(280px,1fr)]'
+              : ''
+          }`}
         >
-          <ArrowLeft size={16} weight="bold" aria-hidden />
-          {fr ? 'Tous nos projets' : 'All our projects'}
-        </Link>
-        {project.tags.length > 0 && (
-          <p className="mt-4 text-[13px] font-semibold uppercase tracking-wide text-brand">
-            {project.tags.join(' • ')}
-          </p>
-        )}
-        <h1 className="mt-2 text-[28px] sm:text-[40px] leading-[1.2] font-semibold max-w-4xl">
-          {project.title}
-        </h1>
-        {project.excerpt && (
-          <p className="mt-4 text-[18px] leading-relaxed text-muted max-w-3xl">
-            {project.excerpt}
-          </p>
-        )}
+          <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl bg-neutral-200">
+            <Image
+              src={project.image}
+              alt={project.imageAlt || project.title}
+              fill
+              sizes="(max-width: 1024px) 100vw, 66vw"
+              className="object-cover"
+              priority
+            />
+          </div>
 
-        {/* Méta : client, année, lieu, ville, service */}
-        {(meta.length > 0 || project.serviceSlug) && (
-          <dl className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {meta.map((m) => (
-              <div key={m.label} className="rounded-lg border border-slate-200 p-4">
-                <dt className="inline-flex items-center gap-2 text-[13px] font-semibold uppercase tracking-wide text-muted">
-                  <m.icon size={16} weight="fill" className="text-brand" aria-hidden />
-                  {m.label}
-                </dt>
-                <dd className="mt-1 text-[16px] font-semibold">{m.value}</dd>
-              </div>
-            ))}
-            {project.serviceSlug && (
-              <div className="rounded-lg border border-slate-200 p-4">
-                <dt className="inline-flex items-center gap-2 text-[13px] font-semibold uppercase tracking-wide text-muted">
-                  <Wrench size={16} weight="fill" className="text-brand" aria-hidden />
-                  {fr ? 'Service' : 'Service'}
-                </dt>
-                <dd className="mt-1 text-[16px] font-semibold">
-                  <Link
-                    href={`/${locale}/services/${project.serviceSlug}`}
-                    className="text-brand hover:underline"
+          {(meta.length > 0 || project.serviceSlug) && (
+            <aside className="rounded-xl border border-slate-200 bg-white p-6 sm:p-7">
+              <h2 className="text-[20px] font-semibold text-ink sm:text-[22px]">
+                {fr ? 'Détails du projet' : 'Project details'}
+              </h2>
+              <dl className="mt-4 divide-y divide-slate-200">
+                {meta.map((m) => (
+                  <div
+                    key={m.label}
+                    className="flex items-start justify-between gap-4 py-3"
                   >
-                    {project.serviceLabel || project.serviceSlug}
-                  </Link>
-                </dd>
-              </div>
-            )}
-          </dl>
-        )}
-      </div>
-
-      {/* 2. Image principale */}
-      <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 mt-8">
-        <div className="relative w-full aspect-[16/9] overflow-hidden rounded-lg bg-neutral-200">
-          <Image
-            src={project.image}
-            alt={project.imageAlt || project.title}
-            fill
-            sizes="100vw"
-            className="object-cover"
-            priority
-          />
+                    <dt className="inline-flex items-center gap-2 text-[13px] font-semibold uppercase tracking-wide text-muted">
+                      <m.icon size={16} weight="fill" className="text-brand" aria-hidden />
+                      {m.label}
+                    </dt>
+                    <dd className="text-right text-[15px] font-semibold text-ink">
+                      {m.value}
+                    </dd>
+                  </div>
+                ))}
+                {project.serviceSlug && (
+                  <div className="flex items-start justify-between gap-4 py-3">
+                    <dt className="inline-flex items-center gap-2 text-[13px] font-semibold uppercase tracking-wide text-muted">
+                      <Wrench size={16} weight="fill" className="text-brand" aria-hidden />
+                      {fr ? 'Service' : 'Service'}
+                    </dt>
+                    <dd className="text-right text-[15px] font-semibold">
+                      <Link
+                        href={`/${locale}/services/${project.serviceSlug}`}
+                        className="text-brand hover:underline"
+                      >
+                        {project.serviceLabel || project.serviceSlug}
+                      </Link>
+                    </dd>
+                  </div>
+                )}
+              </dl>
+            </aside>
+          )}
         </div>
-      </div>
+      </section>
 
       {/* 3. Description */}
       {project.description.length > 0 && (
-        <div className="max-w-[960px] mx-auto px-6 sm:px-12 lg:px-16 py-10 sm:py-12 space-y-4">
+        <div className="max-w-[1100px] mx-auto px-6 py-10 sm:py-12 space-y-4">
           {project.description.map((para, i) => (
             <p key={i} className="text-[16px] leading-[1.75] text-ink">
               {para}
@@ -182,7 +181,7 @@ export default async function ProjetDetailPage({
 
       {/* 4. Galerie images */}
       {gallery.length > 0 && (
-        <section className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 py-10 sm:py-12">
+        <section className="max-w-[1100px] mx-auto px-6 py-10 sm:py-12">
           <h2 className="text-[22px] sm:text-[24px] font-semibold">
             {fr ? 'Galerie du projet' : 'Project gallery'}
           </h2>
@@ -208,7 +207,7 @@ export default async function ProjetDetailPage({
 
       {/* 5. Vidéos */}
       {project.videos.length > 0 && (
-        <section className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 py-10 sm:py-12">
+        <section className="max-w-[1100px] mx-auto px-6 py-10 sm:py-12">
           <h2 className="text-[22px] sm:text-[24px] font-semibold">
             {fr ? 'Vidéos du projet' : 'Project videos'}
           </h2>
@@ -255,7 +254,7 @@ export default async function ProjetDetailPage({
       {/* 6. LinkedIn */}
       {project.linkedinUrl && (
         <section className="w-full bg-surface">
-          <div className="max-w-[960px] mx-auto px-6 sm:px-12 lg:px-16 py-10 sm:py-12 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="max-w-[1100px] mx-auto px-6 py-10 sm:py-12 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <p className="text-[16px] font-semibold">
               {fr
                 ? 'Ce projet a aussi été publié sur LinkedIn.'
@@ -277,7 +276,7 @@ export default async function ProjetDetailPage({
       {/* 7. Autres projets */}
       {others.length > 0 && (
         <section className="bg-neutral-100 border-t border-slate-200 py-12 sm:py-14">
-          <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16">
+          <div className="max-w-[1100px] mx-auto px-6">
             <h2 className="text-[24px] font-semibold mb-6 sm:text-[28px] sm:mb-8">
               {fr ? 'Autres réalisations' : 'More achievements'}
             </h2>
