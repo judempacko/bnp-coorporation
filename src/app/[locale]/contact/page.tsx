@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { PhoneCall, EnvelopeSimple, MapPin, Clock } from '@phosphor-icons/react/dist/ssr';
 import { PageHero } from '@/components/PageHero';
 import { ContactForm } from '@/components/ContactForm';
 import { canonicalFor, languageAlternates, SITE_URL } from '@/lib/seo';
@@ -109,9 +110,7 @@ export default async function ContactPage({
         <div className="flex flex-col divide-y divide-slate-200 text-center lg:flex-row lg:divide-x lg:divide-y-0">
           <div className="flex flex-1 flex-col items-center px-6 py-8 lg:py-0">
             <span className="text-brand">
-              <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M6.62 10.79a15.15 15.15 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.4 11.4 0 003.57.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.4 11.4 0 00.57 3.57 1 1 0 01-.25 1.02l-2.2 2.2z" />
-              </svg>
+              <PhoneCall size={28} weight="fill" aria-hidden />
             </span>
             <h2 className="mt-3 text-[18px] leading-[1.35] font-semibold text-ink">
               {t('phoneWhatsappTitle')}
@@ -125,9 +124,7 @@ export default async function ContactPage({
           </div>
           <div className="flex flex-1 flex-col items-center px-6 py-8 lg:py-0">
             <span className="text-brand">
-              <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
-              </svg>
+              <EnvelopeSimple size={28} weight="fill" aria-hidden />
             </span>
             <h2 className="mt-3 text-[18px] leading-[1.35] font-semibold text-ink">
               {t('emailTitle')}
@@ -138,9 +135,7 @@ export default async function ContactPage({
           </div>
           <div className="flex flex-1 flex-col items-center px-6 py-8 lg:py-0">
             <span className="text-brand">
-              <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M3.4 20.4l17.45-7.48a1 1 0 000-1.84L3.4 3.6a1 1 0 00-1.39 1.24l1.85 6.82a1 1 0 00.72.72l6.82 1.85a.5.5 0 010 .94l-6.82 1.85a1 1 0 00-.72.72l-1.85 6.82a1 1 0 001.39 1.24z" />
-              </svg>
+              <MapPin size={28} weight="fill" aria-hidden />
             </span>
             <h2 className="mt-3 text-[18px] leading-[1.35] font-semibold text-ink">
               {t('addressTitle')}
@@ -149,9 +144,7 @@ export default async function ContactPage({
           </div>
           <div className="flex flex-1 flex-col items-center px-6 py-8 lg:py-0">
             <span className="text-brand">
-              <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M19 4h-1V2h-2v2H8V2H6v2H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2zm-9 13H7v-2h3v2zm2-4H7v-2h5v2zm5 4h-3v-2h3v2zm0-4H7v-2h10v2z" />
-              </svg>
+              <Clock size={28} weight="fill" aria-hidden />
             </span>
             <h2 className="mt-3 text-[18px] leading-[1.35] font-semibold text-ink">
               {t('hoursTitle')}
@@ -168,24 +161,26 @@ export default async function ContactPage({
       </section>
 
       {/* FAQ — <details> natif = crawlable sans JS, idéal SEO/GEO */}
-      <section className="max-w-[1100px] mx-auto px-6 py-12 sm:py-16">
-        <h2 className="text-center text-[24px] sm:text-[28px] leading-[1.25] font-semibold text-ink max-w-[640px] mx-auto">
+      <section className="max-w-[860px] mx-auto px-6 py-12 sm:py-16">
+        <h2 className="text-[24px] sm:text-[28px] leading-[1.25] font-semibold text-ink">
           {t('faqTitle')}
         </h2>
-        <div className="mt-8 space-y-4">
+        <div className="mt-6 divide-y divide-slate-200 overflow-hidden rounded-xl border border-slate-200 bg-white">
           {faqs.map((faq, i) => (
-            <details
-              key={i}
-              open={i === 0}
-              className="group border border-slate-200 bg-white open:border-brand transition-colors"
-            >
-              <summary className="flex items-center gap-4 cursor-pointer p-5 text-left text-[18px] leading-[1.35] font-semibold text-ink hover:text-brand">
-                <span className="w-8 h-8 shrink-0 border border-brand text-brand flex items-center justify-center text-lg leading-none group-open:rotate-180 transition-transform">
-                  ⌃
+            <details key={i} className="group">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-6 px-5 py-5 text-left transition-colors hover:bg-neutral-50 group-open:bg-neutral-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ink sm:px-6 [&::-webkit-details-marker]:hidden">
+                <h3 className="text-[17px] sm:text-[18px] leading-[1.4] font-semibold text-ink">
+                  {faq.q}
+                </h3>
+                <span
+                  aria-hidden
+                  className="relative flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-slate-300 text-muted transition-colors group-open:border-ink group-open:bg-ink group-open:text-white"
+                >
+                  <span className="absolute h-0.5 w-3.5 rounded-full bg-current" />
+                  <span className="absolute h-3.5 w-0.5 rounded-full bg-current transition-transform duration-200 group-open:scale-y-0" />
                 </span>
-                {faq.q}
               </summary>
-              <p className="px-5 pb-5 pl-[68px] text-[16px] leading-[1.7] text-muted">
+              <p className="px-5 pb-6 pr-12 text-[16px] leading-[1.75] text-muted sm:px-6 sm:pr-16">
                 {faq.a}
               </p>
             </details>
