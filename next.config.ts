@@ -10,6 +10,15 @@ const nextConfig: NextConfig = {
   // Si ton IP change, remplace-la ici et redémarre `npm run dev`.
   allowedDevOrigins: ['192.168.100.5'],
   poweredByHeader: false,
+  async redirects() {
+    return [
+      {
+        source: '/:locale(fr|en)/bnp-coorporation-sarl-bnpc',
+        destination: '/:locale',
+        permanent: true,
+      },
+    ];
+  },
   images: {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [
