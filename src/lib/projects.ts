@@ -366,9 +366,11 @@ export async function formatWpProject(item: any, locale: string): Promise<Projec
     pickLocale(acf.description, acf.description_en, locale)
   );
   const client = cleanWpText(pickLocale(acf.client, acf.client_en, locale));
-  const year = extractYear(acf.annee ?? acf.year);
+  const year = extractYear(acf.annee ?? acf.year) ?? extractYear(item.date);
   const lieu = cleanWpText(pickLocale(acf.lieu, acf.lieu_en, locale));
-  const ville = cleanWpText(pickLocale(acf.ville, acf.ville_en, locale));
+  const villeFromTitle = title.match(/\(([^)]+)\)\s*$/)?.[1]?.trim() || '';
+  const ville =
+    cleanWpText(pickLocale(acf.ville, acf.ville_en, locale)) || villeFromTitle;
   const linkedin =
     typeof acf.linkedin === 'string' && acf.linkedin.trim()
       ? acf.linkedin.trim()
