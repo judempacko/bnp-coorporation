@@ -3,6 +3,12 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { PhoneCall, EnvelopeSimple, MapPin, Clock } from '@phosphor-icons/react/dist/ssr';
 import { PageHero } from '@/components/PageHero';
 import { ContactForm } from '@/components/ContactForm';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
 import { canonicalFor, languageAlternates, SITE_URL } from '@/lib/seo';
 
 export async function generateMetadata({
@@ -157,32 +163,27 @@ export default async function ContactPage({
         <ContactForm />
       </section>
 
-      {/* FAQ — <details> natif = crawlable sans JS, idéal SEO/GEO */}
-      <section className="max-w-[860px] mx-auto px-6 py-12 sm:py-16">
-        <h2 className="text-[24px] sm:text-[28px] leading-[1.25] font-semibold text-ink">
+      {/* FAQ — accordéon shadcn, même rendu que la page marque */}
+      <section className="mx-auto max-w-4xl px-6 pb-16 pt-12 sm:px-12 sm:pb-24 sm:pt-16">
+        <h2 className="text-center text-2xl font-semibold sm:text-3xl">
           {t('faqTitle')}
         </h2>
-        <div className="mt-6 divide-y divide-slate-200 overflow-hidden rounded-xl border border-slate-200 bg-white">
+        <Accordion multiple defaultValue={['faq-0']} className="mt-8 space-y-4">
           {faqs.map((faq, i) => (
-            <details key={i} className="group">
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-6 px-5 py-5 text-left transition-colors hover:bg-neutral-50 group-open:bg-neutral-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ink sm:px-6 [&::-webkit-details-marker]:hidden">
-                <h3 className="text-[17px] sm:text-[18px] leading-[1.4] font-semibold text-ink">
-                  {faq.q}
-                </h3>
-                <span
-                  aria-hidden
-                  className="relative flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-slate-300 text-muted transition-colors group-open:border-ink group-open:bg-ink group-open:text-white"
-                >
-                  <span className="absolute h-0.5 w-3.5 rounded-full bg-current" />
-                  <span className="absolute h-3.5 w-0.5 rounded-full bg-current transition-transform duration-200 group-open:scale-y-0" />
-                </span>
-              </summary>
-              <p className="px-5 pb-6 pr-12 text-[16px] leading-[1.75] text-muted sm:px-6 sm:pr-16">
+            <AccordionItem
+              key={i}
+              value={`faq-${i}`}
+              className="rounded-lg border border-slate-200 bg-white transition-colors data-open:border-brand"
+            >
+              <AccordionTrigger className="items-center gap-4 p-5 text-left text-lg font-semibold hover:text-brand hover:no-underline">
+                {faq.q}
+              </AccordionTrigger>
+              <AccordionContent className="px-5 pb-7 pt-2 text-base leading-[1.8] text-slate-600 sm:pb-8 sm:pt-3">
                 {faq.a}
-              </p>
-            </details>
+              </AccordionContent>
+            </AccordionItem>
           ))}
-        </div>
+        </Accordion>
       </section>
     </main>
   );
