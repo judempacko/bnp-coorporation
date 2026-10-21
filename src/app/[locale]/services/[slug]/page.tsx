@@ -4,8 +4,7 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { getAllServices, getServiceBySlug, type ServiceNode } from '@/lib/api';
 import { PageHero } from '@/components/PageHero';
-import { ScrubLead } from '@/components/services/ScrubLead';
-import { FeatureRow } from '@/components/services/FeatureRow';
+import { FeatureCard } from '@/components/services/FeatureCard';
 import { SITE_URL, canonicalFor, languageAlternates } from '@/lib/seo';
 
 interface DisplayFeature {
@@ -46,7 +45,7 @@ const fallbackServicesDataMap: Record<string, DisplayService> = {
   'securite-incendie': {
     title: 'Sécurité incendie',
     subtitle: 'La protection des biens et de votre environnement',
-    lead: "La protection des personnes et des biens contre les risques d'incendie est une obligation légale et morale. BNP Coorporation Sarl offre une expertise globale allant de l'audit de sécurité des Établissements Recevant du Public (ERP) aux certifications professionnelles reconnues.",
+    lead: "La protection des personnes et des biens contre les risques d'incendie est une obligation légale et morale. BNP Coorporation Sarl offre une expertise globale allant de l'audit de sécurité des Établissements Recevant du Public (ERP) à la mise en conformité des installations.",
     features: [
       {
         title: 'Audits et ingénierie',
@@ -64,9 +63,9 @@ const fallbackServicesDataMap: Record<string, DisplayService> = {
         ],
       },
       {
-        title: 'Formations certifiantes',
+        title: 'Formation et sensibilisation',
         items: [
-          'Formations professionnelles spécialisées (SSIAP 1, SSIAP 2, SSIAP 3).',
+          'Formation du personnel à la sécurité incendie et aux gestes de première intervention.',
           "Simulations d'évacuation grandeur nature.",
         ],
       },
@@ -79,10 +78,10 @@ const fallbackServicesDataMap: Record<string, DisplayService> = {
       },
     ],
     targets:
-      'BNP Coorporation Sarl est le partenaire de référence des Établissements Recevant du Public (ERP), banques, centres commerciaux, usines, immeubles de bureaux et institutions scolaires soumis aux contrôles réglementaires de sécurité incendie au Cameroun. Nous accompagnons les directeurs de sites, responsables HSE et gestionnaires d\u2019immeubles pour mettre leurs infrastructures en conformité totale avec la loi, protéger leurs collaborateurs par des formations agréées (SSIAP, SST) et doter leurs installations de systèmes de détection et d\u2019extinction automatique de pointe à forte fiabilité.',
+      'BNP Coorporation Sarl accompagne les Établissements Recevant du Public (ERP), banques, centres commerciaux, usines, immeubles de bureaux et institutions scolaires soumis aux contrôles réglementaires de sécurité incendie au Cameroun. Nous aidons les directeurs de sites, responsables HSE et gestionnaires d\u2019immeubles à mettre leurs infrastructures en conformité avec la réglementation, à sensibiliser leurs collaborateurs à la sécurité incendie et à doter leurs installations de systèmes de détection et d\u2019extinction fiables.',
     ctaTitle: 'Vos locaux et vos équipes sont-ils aux normes de sécurité incendie ?',
     ctaText:
-      "Protégez vos collaborateurs et évitez les sanctions réglementaires. Audits ERP, installation d'équipements et formations certifiantes SSIAP à Yaoundé et Douala.",
+      "Protégez vos collaborateurs et évitez les sanctions réglementaires. Audits ERP, installation d'équipements et formation de vos équipes à Yaoundé et Douala.",
     ctaButton: 'Contactez-nous',
   },
   'construction-btp': {
@@ -278,17 +277,19 @@ export default async function ServiceDetailPage({
       />
 
       {/* 2. Main Content */}
-      <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 py-14 sm:py-20">
-        <div className="max-w-[960px] mx-auto space-y-14 sm:space-y-16">
+      <div className="max-w-[1100px] mx-auto px-6 py-14 sm:py-20">
+        <div className="space-y-14 sm:space-y-16">
 
-          {/* Lead en reveal scrub mot-à-mot */}
-          {data.lead && <ScrubLead text={data.lead} />}
+          {/* Lead — affichage statique, sans reveal */}
+          {data.lead && (
+            <p className="text-[18px] leading-[1.7] text-ink">{data.lead}</p>
+          )}
 
-          {/* Activities : lignes éditoriales alternées avec clip-reveal */}
+          {/* Activities : grid de cartes */}
           {data.features.length > 0 && (
-            <div className="space-y-12 sm:space-y-16">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-7 lg:grid-cols-3">
               {data.features.map((feature, idx) => (
-                <FeatureRow
+                <FeatureCard
                   key={idx}
                   index={idx}
                   title={feature.title}
@@ -298,7 +299,6 @@ export default async function ServiceDetailPage({
                     FALLBACK_FEATURE_IMAGES[idx % FALLBACK_FEATURE_IMAGES.length]
                   }
                   imageAlt={feature.imageAlt || feature.title}
-                  imageFirst={idx % 2 === 0}
                 />
               ))}
             </div>
@@ -310,7 +310,7 @@ export default async function ServiceDetailPage({
       {/* 3. Other Services */}
       {others.length > 0 && (
         <section className="bg-neutral-100 border-t border-slate-200 py-12 sm:py-14">
-          <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16">
+          <div className="max-w-[1100px] mx-auto px-6">
             <h2 className="text-[24px] font-semibold leading-snug text-ink mb-6 sm:text-[28px] sm:mb-8">
               {labels.othersTitle}
             </h2>
@@ -349,7 +349,7 @@ export default async function ServiceDetailPage({
       {/* 4. Cibles : bandeau pleine largeur gris doux, collé au CTA */}
       {data.targets && (
         <section className="w-full bg-surface">
-          <div className="max-w-[960px] mx-auto px-6 sm:px-12 lg:px-16 py-12 sm:py-16">
+          <div className="max-w-[1100px] mx-auto px-6 py-12 sm:py-16">
             <h2 className="text-[22px] font-semibold text-ink sm:text-[24px]">
               {labels.targetsTitle}
             </h2>
