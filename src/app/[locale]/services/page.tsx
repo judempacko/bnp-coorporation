@@ -112,13 +112,12 @@ export default async function ServicesPage({
                   {card.title}
                 </h2>
                 {card.excerpt && (
-                  <p className="text-[16px] leading-[1.7] text-muted line-clamp-3">
+                  <p className="text-[16px] leading-[1.7] text-muted line-clamp-2">
                     {card.excerpt}
                   </p>
                 )}
-                <span className="mt-auto pt-2 inline-flex items-center gap-2 text-[16px] font-semibold text-brand">
-                  {fr ? 'Découvrir' : 'Discover'}
-                  <span aria-hidden>→</span>
+                <span className="mt-auto w-fit inline-flex items-center rounded-full bg-brand px-4 py-2 text-[14px] font-semibold text-white transition-colors group-hover:bg-brand-hover">
+                  {fr ? 'Voir le service' : 'View service'}
                 </span>
               </div>
             </Link>
