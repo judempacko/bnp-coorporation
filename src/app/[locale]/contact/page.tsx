@@ -118,9 +118,6 @@ export default async function ContactPage({
             <p className="mt-2 text-[16px] text-muted">
               <a href="tel:+237655010919" className="hover:text-brand">{t('phone1')}</a>
             </p>
-            <p className="mt-1 text-[16px] text-muted">
-              <a href="tel:+237658051478" className="hover:text-brand">{t('phone2')}</a>
-            </p>
           </div>
           <div className="flex flex-1 flex-col items-center px-6 py-8 lg:py-0">
             <span className="text-brand">

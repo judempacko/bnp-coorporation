@@ -37,8 +37,8 @@ export async function generateMetadata({
   const fr = locale !== 'en';
   const title = fr ? 'Nos Services' : 'Our Services';
   const description = fr
-    ? "7 pôles d'expertise BNPC au Cameroun : sécurité incendie SSIAP, BTP, forage d'eau, solaire, drones, naval, nettoyage industriel. Devis sous 24-48h."
-    : '7 BNPC expertise areas in Cameroon: SSIAP fire safety, construction, water drilling, solar, drones, naval, industrial cleaning. Quote within 24-48h.';
+    ? "7 pôles d'expertise BNPC au Cameroun : sécurité incendie, BTP, forage d'eau, solaire, drones, naval, nettoyage industriel. Devis sous 24-48h."
+    : '7 BNPC expertise areas in Cameroon: fire safety, construction, water drilling, solar, drones, naval, industrial cleaning. Quote within 24-48h.';
   return {
     title: `${title} — BNPC`,
     description,

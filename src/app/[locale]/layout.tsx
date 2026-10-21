@@ -41,7 +41,7 @@ const baseMetadata: Metadata = {
     'BNP Coorporation Cameroun',
     'BNP Coorporation Yaoundé',
     'sécurité incendie Cameroun',
-    'SSIAP Yaoundé',
+    'sécurité incendie Yaoundé',
     'BTP Cameroun',
     'forage eau Cameroun',
     'énergie solaire Cameroun',

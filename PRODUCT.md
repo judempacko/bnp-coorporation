@@ -18,20 +18,20 @@ et un devis fiable sous 24-48h ouvrées.
 
 Site vitrine qui convertit en demandes de devis. Le succès se mesure à égalité
 par les soumissions du formulaire /contact et par les appels / WhatsApp directs.
-Le parcours canonique : premier contact → visite technique systématique →
-devis validé sous 24-48h ouvrées → réalisation + suivi.
+Le parcours canonique : premier contact → visite technique lorsque le projet
+le nécessite → devis validé sous 24-48h ouvrées → réalisation + suivi.
 
 ## Positioning
 
 Ingénierie multiservices à 7 pôles complémentaires (incendie, BTP, forage,
 solaire, drones, naval, nettoyage industriel) avec visite technique
-systématique avant tout chiffrage et direction resserrée qui décide vite.
+selon la nature du projet et direction resserrée qui décide vite.
 Mobilisable sur le terrain à Yaoundé, Douala et dans le reste du Cameroun.
 
 ## Operating Context
 
 Siège BP 4219 Yaoundé, base à Douala, intervention dans tout le Cameroun.
-Contacts : (+237) 6 55 01 09 19, (+237) 6 58 05 14 78, contact@bnp-coorporation.com.
+Contacts : (+237) 6 55 01 09 19, contact@bnp-coorporation.com.
 Horaires : lun-ven 8h-16h, sam 8h-12h. Site bilingue FR/EN à parité via next-intl,
 contenus (services, projets, articles, partenaires) issus de WordPress GraphQL
 avec fallbacks statiques.
@@ -59,7 +59,8 @@ fabriquer : témoignages clients textuels, chiffres de satisfaction.
 
 ## Product Principles
 
-1. La visite technique précède tout chiffrage — jamais de prix sans diagnostic.
+1. Pas de chiffrage sans diagnostic suffisant ; visite technique sur site
+   lorsque la nature ou l'ampleur du projet le nécessite.
 2. Un seul chemin de conversion par page, le CTA final mène à /contact.
 3. La preuve terrain (projets, galerie) prime sur la promesse.
 4. Chaque contenu FR existe en EN à parité, sans exception.

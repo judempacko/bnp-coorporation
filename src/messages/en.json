@@ -3,7 +3,7 @@
     "eyebrow": "Yaoundé • Douala — Since 2023",
     "title": "BNP Coorporation Sarl (BNPC)",
     "subtitle": "Fire Safety, Construction & Engineering in Cameroon",
-    "description": "BNP Coorporation Sarl (BNPC), Cameroonian company based in Yaoundé since 2023: fire safety (SSIAP, ERP audits), construction, water drilling, solar, drones and naval repair. Operating from Yaoundé and Douala across Cameroon. Quote within 24-48h.",
+    "description": "BNP Coorporation Sarl (BNPC), Cameroonian company based in Yaoundé since 2023: fire safety (ERP audits), construction, water drilling, solar, drones and naval repair. Operating from Yaoundé and Douala across Cameroon. Quote within 24-48h.",
     "disambiguation": "Independent Cameroonian company, not affiliated with BNP Paribas or BNP Paribas Corporate."
   },
   "Navigation": {
@@ -104,7 +104,6 @@
     "value6Desc": "An active, concrete contribution to local economic growth.",
     "phoneWhatsappTitle": "Phone & WhatsApp",
     "phone1": "(+237) 6 55 01 09 19",
-    "phone2": "(+237) 6 58 05 14 78",
     "emailTitle": "Email",
     "emailValue": "contact@bnp-coorporation.com",
     "addressTitle": "Address",
@@ -142,11 +141,11 @@
     "errorCaptcha": "Bot verification failed. Reload the page and try again.",
     "faqTitle": "Frequently asked questions about our intervention procedures",
     "faq1Q": "What is the lead time for a quote at BNP Coorporation Sarl?",
-    "faq1A": "Our engineers and technical experts analyze your request and send you a detailed proposal within 24 to 48 business hours. For industrial or naval emergencies, our teams can be mobilized immediately.",
+    "faq1A": "Our engineers and technical experts analyze your request and send a detailed proposal within 24 to 48 business hours, after a site visit when the project requires it. For industrial or naval emergencies, mobilization depends on team availability.",
     "faq2Q": "Do you operate outside Yaoundé and Douala?",
-    "faq2A": "Yes, we cover the entire Cameroonian territory (Kribi, Garoua, Bamenda, Bafoussam, agricultural areas and isolated industrial sites).",
+    "faq2A": "Yes, we operate in Yaoundé, Douala and across Cameroon, including isolated industrial sites.",
     "faq3Q": "Do you carry out on-site technical visits before pricing?",
-    "faq3A": "Absolutely. For construction works, water boreholes, solar installations and fire safety audits, our technicians visit your site to perform an accurate diagnosis before any quote validation."
+    "faq3A": "Yes, depending on the nature and scale of the project. For construction, water boreholes, solar installations and fire safety audits, our technicians visit your site to establish a diagnosis before pricing."
   },
   "Footer": {
     "rights": "All rights reserved.",

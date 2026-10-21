@@ -43,8 +43,8 @@ export async function generateMetadata({
     ? 'BNP Coorporation Sarl (BNPC) — Sécurité incendie, BTP & Ingénierie au Cameroun'
     : 'BNP Coorporation Sarl (BNPC) — Fire Safety, Construction & Engineering in Cameroon';
   const description = fr
-    ? "BNP Coorporation Sarl (BNPC) à Yaoundé : sécurité incendie (SSIAP, audits ERP), BTP, forage d'eau, solaire, drones, naval. Devis sous 24-48h, intervention Yaoundé, Douala et tout le Cameroun."
-    : 'BNP Coorporation Sarl (BNPC) in Yaoundé: fire safety (SSIAP, ERP audits), construction, water drilling, solar, drones, naval repair. Quote within 24-48h across Cameroon.';
+    ? "BNP Coorporation Sarl (BNPC) à Yaoundé : sécurité incendie (audits ERP), BTP, forage d'eau, solaire, drones, naval. Devis sous 24-48h, intervention Yaoundé, Douala et tout le Cameroun."
+    : 'BNP Coorporation Sarl (BNPC) in Yaoundé: fire safety (ERP audits), construction, water drilling, solar, drones, naval repair. Quote within 24-48h across Cameroon.';
   const path = '';
   return {
     title: { absolute: title },
@@ -152,8 +152,8 @@ export default async function HomePage({
         },
         {
           icon: ClipboardText,
-          title: 'Visite technique systématique',
-          desc: 'BTP, forages, solaire, audits incendie : diagnostic sur site avant tout chiffrage.',
+          title: 'Visite technique sur site',
+          desc: 'Selon la nature du projet : diagnostic sur site avant chiffrage.',
         },
         {
           icon: Timer,
@@ -174,7 +174,7 @@ export default async function HomePage({
         },
         {
           icon: ClipboardText,
-          title: 'Systematic site visit',
+          title: 'On-site technical visit',
           desc: 'Construction, drilling, solar, fire audits: on-site diagnosis before any pricing.',
         },
         {
@@ -247,29 +247,29 @@ export default async function HomePage({
     ? [
         {
           q: "Quel est le délai d'obtention d'un devis ?",
-          a: 'Proposition détaillée sous 24 à 48h ouvrées après visite technique. Mobilisation immédiate pour les urgences industrielles ou navales.',
+          a: 'Proposition détaillée sous 24 à 48h ouvrées, après visite technique lorsque le projet le nécessite. Pour les urgences industrielles ou navales, mobilisation selon la disponibilité des équipes.',
         },
         {
           q: 'Intervenez-vous en dehors de Yaoundé et Douala ?',
-          a: 'Oui : Kribi, Garoua, Bamenda, Bafoussam, zones agricoles et sites industriels isolés sur tout le territoire.',
+          a: 'Oui, nous intervenons à Yaoundé, Douala et sur tout le territoire camerounais, y compris sur sites industriels isolés.',
         },
         {
           q: 'La visite technique est-elle obligatoire ?',
-          a: 'Oui pour BTP, forages, solaire et audits incendie : nos techniciens diagnostiquent sur site avant validation du devis.',
+          a: "Pas systématiquement : elle dépend de la nature et de l'ampleur du projet. Pour le BTP, les forages, le solaire et les audits incendie, un diagnostic sur site est généralement nécessaire avant chiffrage.",
         },
       ]
     : [
         {
           q: 'What is the lead time for a quote?',
-          a: 'Detailed proposal within 24-48 business hours after site visit. Immediate mobilization for industrial or naval emergencies.',
+          a: 'Detailed proposal within 24-48 business hours, after a site visit when the project requires it. For industrial or naval emergencies, mobilization depends on team availability.',
         },
         {
           q: 'Do you operate outside Yaoundé and Douala?',
-          a: 'Yes: Kribi, Garoua, Bamenda, Bafoussam, agricultural areas and isolated industrial sites nationwide.',
+          a: 'Yes, we operate in Yaoundé, Douala and across Cameroon, including isolated industrial sites.',
         },
         {
           q: 'Is the site visit mandatory?',
-          a: 'Yes for construction, drilling, solar and fire audits: our technicians diagnose on site before quote validation.',
+          a: 'Not systematically: it depends on the nature and scale of the project. For construction, drilling, solar and fire audits, an on-site diagnosis is generally required before pricing.',
         },
       ];
 
