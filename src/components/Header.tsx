@@ -67,6 +67,12 @@ export function Header({ locale, services }: HeaderProps) {
     return pathname.startsWith(href);
   };
 
+  // Soulignement animé au survol / focus ; persistant sur l'élément actif.
+  const navUnderline =
+    "relative inline-flex items-center after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-full after:origin-left after:bg-brand after:transition-transform after:duration-200 after:ease-out after:content-[''] group-hover:after:scale-x-100 group-focus-visible:after:scale-x-100 motion-reduce:after:transition-none";
+  const navUnderlineIdle = "after:scale-x-0";
+  const navUnderlineActive = "after:scale-x-100";
+
   return (
     <header className={`sticky top-0 z-50 w-full bg-white border-b border-slate-200 transition-shadow ${scrolled ? 'shadow-[0_1px_8px_rgba(0,0,0,0.06)]' : ''}`}>
       {/* Navbar Container */}
@@ -87,9 +93,11 @@ export function Header({ locale, services }: HeaderProps) {
         <nav className="hidden lg:flex self-stretch items-center gap-6 text-[16px] font-medium text-ink">
           <Link
             href={`/${locale}`}
-            className={`hover:text-brand transition-colors ${isActive(`/${locale}`) ? "text-brand font-semibold" : ""}`}
+            className={`group py-2 transition-colors ${isActive(`/${locale}`) ? "text-brand font-semibold" : ""}`}
           >
-            Accueil
+            <span className={`${navUnderline} ${isActive(`/${locale}`) ? navUnderlineActive : navUnderlineIdle}`}>
+              Accueil
+            </span>
           </Link>
 
           {/* L'entreprise : bouton uniquement (aucune navigation au clic), ouvre le menu.
@@ -104,18 +112,24 @@ export function Header({ locale, services }: HeaderProps) {
               onClick={() => setCompanyDropdownOpen((v) => !v)}
               aria-expanded={companyDropdownOpen}
               aria-haspopup="true"
-              className={`flex items-center gap-1 py-2 hover:text-brand transition-colors cursor-pointer text-[16px] font-medium ${
+              className={`group flex items-center gap-1 py-2 cursor-pointer text-[16px] font-medium transition-colors ${
                 isActive(`/${locale}/qui-sommes-nous`) || isActive(`/${locale}/galerie`)
                   ? "text-brand font-semibold"
                   : ""
               }`}
             >
-              <span>L&apos;entreprise</span>
-              <CaretDown
-                size={14}
-                weight="bold"
-                className={`transition-transform duration-200 ${companyDropdownOpen ? "rotate-180 text-brand" : ""}`}
-              />
+              <span className={`${navUnderline} gap-1 ${
+                isActive(`/${locale}/qui-sommes-nous`) || isActive(`/${locale}/galerie`)
+                  ? navUnderlineActive
+                  : navUnderlineIdle
+              }`}>
+                L&apos;entreprise
+                <CaretDown
+                  size={14}
+                  weight="bold"
+                  className={`transition-transform duration-200 ${companyDropdownOpen ? "rotate-180" : ""}`}
+                />
+              </span>
             </button>
 
             {companyDropdownOpen && (
@@ -128,7 +142,7 @@ export function Header({ locale, services }: HeaderProps) {
                     className={`group flex items-center justify-between gap-3 px-4 py-2.5 rounded-lg text-[16px] font-medium transition-all ${
                       isActive(c.href)
                         ? 'bg-surface text-brand'
-                        : 'text-ink hover:bg-surface hover:text-brand'
+                        : 'text-ink hover:bg-surface'
                     }`}
                   >
                     <span>{c.label}</span>
@@ -151,18 +165,22 @@ export function Header({ locale, services }: HeaderProps) {
           >
             <button
               type="button"
-              className={`flex items-center gap-1 py-2 hover:text-brand transition-colors cursor-pointer text-[16px] font-medium ${
+              className={`group flex items-center gap-1 py-2 cursor-pointer text-[16px] font-medium transition-colors ${
                 isActive(`/${locale}/services`)
                   ? "text-brand font-semibold"
                   : ""
               }`}
             >
-              <span>Services</span>
-              <CaretDown
-                size={14}
-                weight="bold"
-                className={`transition-transform duration-200 ${servicesDropdownOpen ? "rotate-180 text-brand" : ""}`}
-              />
+              <span className={`${navUnderline} gap-1 ${
+                isActive(`/${locale}/services`) ? navUnderlineActive : navUnderlineIdle
+              }`}>
+                Services
+                <CaretDown
+                  size={14}
+                  weight="bold"
+                  className={`transition-transform duration-200 ${servicesDropdownOpen ? "rotate-180" : ""}`}
+                />
+              </span>
             </button>
 
             {/* Shadcn Dropdown Panel */}
@@ -176,7 +194,7 @@ export function Header({ locale, services }: HeaderProps) {
                     className={`group flex items-center justify-between px-3.5 py-2.5 rounded-lg text-[16px] font-medium transition-all ${
                       isActive(`/${locale}/services/${s.slug}`)
                         ? 'bg-surface text-brand'
-                        : 'text-ink hover:bg-surface hover:text-brand'
+                        : 'text-ink hover:bg-surface'
                     }`}
                   >
                     <span>{s.label}</span>
@@ -193,23 +211,29 @@ export function Header({ locale, services }: HeaderProps) {
 
           <Link
             href={`/${locale}/projets`}
-            className={`hover:text-brand transition-colors ${isActive(`/${locale}/projets`) ? "text-brand font-semibold" : ""}`}
+            className={`group py-2 transition-colors ${isActive(`/${locale}/projets`) ? "text-brand font-semibold" : ""}`}
           >
-            Réalisations
+            <span className={`${navUnderline} ${isActive(`/${locale}/projets`) ? navUnderlineActive : navUnderlineIdle}`}>
+              Réalisations
+            </span>
           </Link>
 
           <Link
             href={`/${locale}/actualites`}
-            className={`hover:text-brand transition-colors ${isActive(`/${locale}/actualites`) ? "text-brand font-semibold" : ""}`}
+            className={`group py-2 transition-colors ${isActive(`/${locale}/actualites`) ? "text-brand font-semibold" : ""}`}
           >
-            Actualités
+            <span className={`${navUnderline} ${isActive(`/${locale}/actualites`) ? navUnderlineActive : navUnderlineIdle}`}>
+              Actualités
+            </span>
           </Link>
 
           <Link
             href={`/${locale}/contact`}
-            className={`hover:text-brand transition-colors ${isActive(`/${locale}/contact`) ? "text-brand font-semibold" : ""}`}
+            className={`group py-2 transition-colors ${isActive(`/${locale}/contact`) ? "text-brand font-semibold" : ""}`}
           >
-            Contact
+            <span className={`${navUnderline} ${isActive(`/${locale}/contact`) ? navUnderlineActive : navUnderlineIdle}`}>
+              Contact
+            </span>
           </Link>
         </nav>
 
@@ -219,10 +243,12 @@ export function Header({ locale, services }: HeaderProps) {
           <Link
             href={switchedPath}
             aria-label={locale === 'fr' ? 'Switch to English' : 'Passer en français'}
-            className="inline-flex items-center gap-1.5 px-2 py-1.5 text-[16px] font-medium text-ink hover:text-brand transition-colors"
+            className="group inline-flex items-center px-2 py-1.5 text-[16px] font-medium text-ink transition-colors"
           >
-            <Translate size={18} weight="bold" aria-hidden />
-            <span>{locale === 'fr' ? 'Français' : 'English'}</span>
+            <span className={`${navUnderline} ${navUnderlineIdle} gap-1.5`}>
+              <Translate size={18} weight="bold" aria-hidden />
+              <span>{locale === 'fr' ? 'Français' : 'English'}</span>
+            </span>
           </Link>
 
           {/* Button Nous Joindre (Taille stricte 17px) */}
