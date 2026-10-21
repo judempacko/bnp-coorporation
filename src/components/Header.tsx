@@ -159,7 +159,7 @@ export function Header({ locale, services }: HeaderProps) {
 
           {/* Shadcn-style Services Dropdown Menu */}
           <div
-            className="relative"
+            className="relative self-stretch flex items-center"
             onMouseEnter={() => setServicesDropdownOpen(true)}
             onMouseLeave={() => setServicesDropdownOpen(false)}
           >
