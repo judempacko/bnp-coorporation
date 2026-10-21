@@ -13,7 +13,8 @@ const SECTION_LABELS: Record<string, { fr: string; en: string }> = {
   'qui-sommes-nous': { fr: 'Qui sommes-nous', en: 'About us' },
   galerie: { fr: 'Galerie', en: 'Gallery' },
   contact: { fr: 'Contact', en: 'Contact' },
-  'bnp-coorporation-sarl-bnpc': { fr: 'BNP Coorporation Sarl', en: 'BNP Coorporation Sarl' },
+  'conditions-generales-utilisation': { fr: "Conditions d'utilisation", en: 'Terms of Service' },
+  'politique-de-confidentialite': { fr: 'Politique de confidentialité', en: 'Privacy Policy' },
 };
 
 function humanize(slug: string): string {

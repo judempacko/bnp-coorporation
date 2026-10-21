@@ -8,6 +8,7 @@ import {
   EnvelopeSimple,
   CaretRight,
 } from '@phosphor-icons/react';
+import { CookieSettingsButton } from '@/components/CookieSettingsButton';
 
 interface FooterProps {
   locale: string;
@@ -114,12 +115,6 @@ export function Footer({ locale }: FooterProps) {
                   <span>Contact</span>
                 </Link>
               </li>
-              <li>
-                <Link href={`/${locale}/bnp-coorporation-sarl-bnpc`} className="hover:text-brand transition-colors inline-flex items-center gap-2 text-neutral-700 group">
-                  <CaretRight size={14} weight="bold" className="text-brand group-hover:translate-x-0.5 transition-transform" />
-                  <span>BNP Coorporation Sarl (BNPC)</span>
-                </Link>
-              </li>
             </ul>
           </div>
 
@@ -137,7 +132,6 @@ export function Footer({ locale }: FooterProps) {
                 <Phone size={20} weight="fill" className="text-brand shrink-0 mt-0.5" />
                 <div className="flex flex-col">
                   <a href="tel:+237655010919" className="hover:text-brand transition-colors">(+237) 6 55 01 09 19</a>
-                  <a href="tel:+237658051478" className="hover:text-brand transition-colors">(+237) 6 58 05 14 78</a>
                 </div>
               </div>
               <div className="flex items-start gap-3">
@@ -169,8 +163,32 @@ export function Footer({ locale }: FooterProps) {
           <span aria-hidden className="text-neutral-400">•</span>
           <span>{fr ? 'Créée le 10 février 2023 à Yaoundé' : 'Incorporated on February 10, 2023 in Yaoundé'}</span>
         </div>
-        <div className="border-t border-neutral-300 py-5 text-center text-[16px] font-normal text-neutral-600">
-          <p>© {yearRange} BNP Coorporation Sarl, {fr ? 'Tous droits réservés' : 'All rights reserved'}</p>
+        <div className="border-t border-neutral-300">
+          <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 py-4 flex flex-col items-center gap-2 text-[15px] font-normal text-neutral-600 sm:flex-row sm:justify-between sm:gap-6">
+            <p className="text-center sm:text-left">
+              © {yearRange} BNP Coorporation Sarl, {fr ? 'Tous droits réservés' : 'All rights reserved'}
+            </p>
+            <nav
+              aria-label={fr ? 'Liens juridiques' : 'Legal links'}
+              className="flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5 text-neutral-700 sm:justify-end"
+            >
+              <Link
+                href={`/${locale}/conditions-generales-utilisation`}
+                className="transition-colors hover:text-brand"
+              >
+                {fr ? "Conditions d'utilisation" : 'Terms of Service'}
+              </Link>
+              <Link
+                href={`/${locale}/politique-de-confidentialite`}
+                className="transition-colors hover:text-brand"
+              >
+                {fr ? 'Politique de confidentialité' : 'Privacy Policy'}
+              </Link>
+              <CookieSettingsButton className="transition-colors hover:text-brand">
+                {fr ? 'Gérer les cookies' : 'Manage cookies'}
+              </CookieSettingsButton>
+            </nav>
+          </div>
         </div>
       </div>
     </footer>

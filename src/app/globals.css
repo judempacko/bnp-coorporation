@@ -716,3 +716,84 @@
     overflow-x: auto;
   }
 }
+
+/* ==========================================================================
+   PAGES LÉGALES — corps de texte long, liens et listes.
+   ========================================================================== */
+.legal-prose {
+  color: var(--text-muted-color);
+}
+
+.legal-prose p {
+  margin-bottom: 1rem;
+}
+
+.legal-prose p:last-child {
+  margin-bottom: 0;
+}
+
+.legal-prose ul {
+  margin: 0 0 1rem 0;
+  padding-left: 1.25rem;
+  list-style: disc;
+}
+
+.legal-prose li {
+  margin-bottom: 0.35rem;
+}
+
+.legal-prose li::marker {
+  color: var(--brand-primary);
+}
+
+.legal-prose a {
+  color: var(--brand-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.legal-prose a:hover {
+  color: var(--brand-hover);
+}
+
+.legal-prose strong {
+  color: var(--text-base-color);
+  font-weight: 600;
+}
+
+.legal-prose h3 {
+  margin: 1.25rem 0 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-base-color);
+}
+
+.legal-prose table {
+  width: 100%;
+  margin-bottom: 1rem;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+.legal-prose th,
+.legal-prose td {
+  border: 1px solid var(--border-subtle);
+  padding: 0.6rem 0.75rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.legal-prose th {
+  background: var(--color-surface, #f1f2f4);
+  color: var(--text-base-color);
+  font-weight: 600;
+}
+
+.legal-prose code {
+  border-radius: 2px;
+  background: var(--code-bg);
+  padding: 0.1rem 0.3rem;
+  font-family: var(--font-family-code);
+  font-size: 0.875em;
+}

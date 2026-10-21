@@ -7,6 +7,7 @@ import { routing } from '@/i18n/routing';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { BackToTop } from '@/components/BackToTop';
+import { CookieConsent } from '@/components/CookieConsent';
 import { getAllServices } from '@/lib/api';
 import { SITE_URL, organizationJsonLd, websiteJsonLd } from '@/lib/seo';
 import "../globals.css";
@@ -146,6 +147,7 @@ export default async function LocaleLayout({
             {children}
           </div>
           <Footer locale={locale} />
+          <CookieConsent locale={locale} />
           <BackToTop locale={locale} />
         </NextIntlClientProvider>
       </body>

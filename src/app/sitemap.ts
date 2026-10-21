@@ -16,13 +16,14 @@ const FALLBACK_SERVICE_SLUGS = [
 
 const STATIC_PATHS = [
   '',
-  '/bnp-coorporation-sarl-bnpc',
   '/services',
   '/projets',
   '/actualites',
   '/qui-sommes-nous',
   '/galerie',
   '/contact',
+  '/conditions-generales-utilisation',
+  '/politique-de-confidentialite',
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
