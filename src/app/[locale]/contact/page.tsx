@@ -10,6 +10,7 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import { canonicalFor, languageAlternates, SITE_URL } from '@/lib/seo';
+import { COMPANY } from '@/lib/company';
 
 export async function generateMetadata({
   params,
@@ -20,8 +21,8 @@ export async function generateMetadata({
   const fr = locale !== 'en';
   const title = fr ? 'Contact' : 'Contact';
   const description = fr
-    ? "Contact BNP Coorporation Sarl à Yaoundé : devis sous 24-48h, visites techniques BTP, forage, solaire, sécurité incendie. (+237) 6 55 01 09 19 — BP 4219 Yaoundé."
-    : 'Contact BNP Coorporation Sarl in Yaoundé: quote within 24-48h, site visits for construction, drilling, solar, fire safety. (+237) 6 55 01 09 19.';
+    ? `Contact ${COMPANY.legalName} à Yaoundé : devis sous 24-48h, visites techniques BTP, forage, solaire, sécurité incendie. ${COMPANY.phone} — ${COMPANY.poBox} Yaoundé.`
+    : `Contact ${COMPANY.legalName} in Yaoundé: quote within 24-48h, site visits for construction, drilling, solar, fire safety. ${COMPANY.phone}.`;
   return {
     title: `${title} — BNPC`,
     description,
@@ -67,15 +68,15 @@ export default async function ContactPage({
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
     '@id': `${SITE_URL}/#localbusiness`,
-    name: 'BNP Coorporation Sarl',
+    name: COMPANY.legalName,
     url: SITE_URL,
-    email: 'contact@bnp-coorporation.com',
-    telephone: '+237655010919',
+    email: COMPANY.email,
+    telephone: COMPANY.phoneHref,
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'BP 4219',
-      addressLocality: 'Yaoundé',
-      addressCountry: 'CM',
+      streetAddress: COMPANY.poBox,
+      addressLocality: COMPANY.city,
+      addressCountry: COMPANY.countryCode,
     },
     openingHoursSpecification: [
       {
@@ -108,7 +109,7 @@ export default async function ContactPage({
       {/* Hero banner */}
       <PageHero
         title={t('heroTitle')}
-        image="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1800&q=70"
+        image="/images/hero-header/contact-page.jpg"
       />
 
       {/* Coordonnées */}
@@ -122,7 +123,7 @@ export default async function ContactPage({
               {t('phoneWhatsappTitle')}
             </h2>
             <p className="mt-2 text-[16px] text-muted">
-              <a href="tel:+237655010919" className="hover:text-brand">{t('phone1')}</a>
+              <a href={`tel:${COMPANY.phoneHref}`} className="hover:text-brand">{t('phone1')}</a>
             </p>
           </div>
           <div className="flex flex-1 flex-col items-start py-8 lg:py-0 lg:px-8">
@@ -133,7 +134,7 @@ export default async function ContactPage({
               {t('emailTitle')}
             </h2>
             <p className="mt-2 text-[16px] text-muted break-all">
-              <a href="mailto:contact@bnp-coorporation.com" className="hover:text-brand">{t('emailValue')}</a>
+              <a href={`mailto:${COMPANY.email}`} className="hover:text-brand">{t('emailValue')}</a>
             </p>
           </div>
           <div className="flex flex-1 flex-col items-start py-8 lg:py-0 lg:px-8">
