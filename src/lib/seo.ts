@@ -1,8 +1,10 @@
+import { COMPANY } from '@/lib/company';
+
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') ||
   'https://www.bnp-coorporation.com';
 
-export const SITE_NAME = 'BNP Coorporation Sarl';
+export const SITE_NAME = COMPANY.legalName;
 export const SITE_SHORT = 'BNPC';
 export const BRAND_TAGLINE_FR =
   'BNP Coorporation Sarl (BNPC) — Entreprise camerounaise indépendante';
@@ -16,8 +18,8 @@ export const DEFAULT_OG_IMAGE = `${SITE_URL}/logo-bnpc.svg`;
  * BNP Paribas / BNP Paribas Corporate.
  */
 export const SOCIAL_PROFILES: string[] = [
-  'https://www.linkedin.com/company/bnp-coorporation-sarl',
-  'https://www.facebook.com/bnpcoorporation',
+  COMPANY.social.linkedin,
+  COMPANY.social.facebook,
 ];
 
 /** Toutes les variantes exactes que Google doit associer à la même entité. */
@@ -69,18 +71,18 @@ export function organizationJsonLd() {
     url: SITE_URL,
     logo: `${SITE_URL}/logo-bnpc.svg`,
     image: `${SITE_URL}/logo-bnpc.svg`,
-    email: 'contact@bnp-coorporation.com',
-    telephone: '+237655010919',
-    foundingDate: '2023-02-10',
+    email: COMPANY.email,
+    telephone: COMPANY.phoneHref,
+    foundingDate: COMPANY.foundedAt,
     foundingLocation: {
       '@type': 'Place',
       name: 'Yaoundé, Cameroun',
     },
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'BP 4219',
-      addressLocality: 'Yaoundé',
-      addressCountry: 'CM',
+      streetAddress: COMPANY.poBox,
+      addressLocality: COMPANY.city,
+      addressCountry: COMPANY.countryCode,
     },
     areaServed: [
       { '@type': 'City', name: 'Yaoundé' },

@@ -2,7 +2,9 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { setRequestLocale } from 'next-intl/server';
 import { LegalDocument, type LegalSection } from '@/components/legal/LegalDocument';
+import { CompanyIdentity } from '@/components/legal/CompanyIdentity';
 import { CookieSettingsButton } from '@/components/CookieSettingsButton';
+import { COMPANY } from '@/lib/company';
 import { canonicalFor, languageAlternates } from '@/lib/seo';
 
 const PATH = '/politique-de-confidentialite';
@@ -43,20 +45,8 @@ const sectionsFr: LegalSection[] = [
     title: 'Responsable du traitement',
     body: (
       <>
-        <p>
-          Le responsable du traitement est
-          <strong> BNP Coorporation Sarl (BNPC)</strong>, société à
-          responsabilité limitée au capital de 1 000 000 FCFA, dont le siège est
-          situé BP 4219, Yaoundé, Cameroun (RCCM RC/YAO/2023/C/323, NIU
-          M042318209289U).
-        </p>
-        <p>
-          Pour toute question relative à vos données personnelles :{' '}
-          <a href="mailto:contact@bnp-coorporation.com">
-            contact@bnp-coorporation.com
-          </a>{' '}
-          — <a href="tel:+237655010919">(+237) 6 55 01 09 19</a>.
-        </p>
+        <p>Le responsable du traitement des données collectées sur ce site est :</p>
+        <CompanyIdentity locale="fr" />
       </>
     ),
   },
@@ -251,9 +241,7 @@ const sectionsFr: LegalSection[] = [
         </ul>
         <p>
           Pour exercer ces droits, écrivez à{' '}
-          <a href="mailto:contact@bnp-coorporation.com">
-            contact@bnp-coorporation.com
-          </a>{' '}
+          <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>{' '}
           en précisant votre demande. Nous répondons dans un délai maximal de 30
           jours. Une pièce d’identité peut être demandée en cas de doute
           raisonnable sur votre identité.
@@ -285,19 +273,8 @@ const sectionsEn: LegalSection[] = [
     title: 'Data controller',
     body: (
       <>
-        <p>
-          The controller is <strong>BNP Coorporation Sarl (BNPC)</strong>, a
-          limited liability company with capital of 1,000,000 FCFA, registered at
-          P.O. Box 4219, Yaoundé, Cameroon (RCCM RC/YAO/2023/C/323, NIU
-          M042318209289U).
-        </p>
-        <p>
-          For any question about your personal data:{' '}
-          <a href="mailto:contact@bnp-coorporation.com">
-            contact@bnp-coorporation.com
-          </a>{' '}
-          — <a href="tel:+237655010919">(+237) 6 55 01 09 19</a>.
-        </p>
+        <p>The controller of data collected on this website is:</p>
+        <CompanyIdentity locale="en" />
       </>
     ),
   },
@@ -487,9 +464,7 @@ const sectionsEn: LegalSection[] = [
         </ul>
         <p>
           To exercise these rights, email{' '}
-          <a href="mailto:contact@bnp-coorporation.com">
-            contact@bnp-coorporation.com
-          </a>{' '}
+          <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>{' '}
           with details of your request. We respond within a maximum of 30 days.
           Proof of identity may be requested where there is reasonable doubt about
           your identity.

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { setRequestLocale } from 'next-intl/server';
 import { LegalDocument, type LegalSection } from '@/components/legal/LegalDocument';
+import { CompanyIdentity } from '@/components/legal/CompanyIdentity';
 import { canonicalFor, languageAlternates } from '@/lib/seo';
 
 const PATH = '/conditions-generales-utilisation';
@@ -53,22 +54,7 @@ const sectionsFr: LegalSection[] = [
     id: 'editeur',
     title: 'Éditeur du site',
     body: (
-      <ul>
-        <li><strong>BNP Coorporation Sarl (BNPC)</strong></li>
-        <li>Société à responsabilité limitée au capital de 1 000 000 FCFA</li>
-        <li>Siège : BP 4219, Yaoundé, Cameroun</li>
-        <li>RCCM : RC/YAO/2023/C/323</li>
-        <li>NIU : M042318209289U</li>
-        <li>
-          Téléphone : <a href="tel:+237655010919">(+237) 6 55 01 09 19</a>
-        </li>
-        <li>
-          E-mail :{' '}
-          <a href="mailto:contact@bnp-coorporation.com">
-            contact@bnp-coorporation.com
-          </a>
-        </li>
-      </ul>
+      <CompanyIdentity locale="fr" />
     ),
   },
   {
@@ -215,22 +201,7 @@ const sectionsEn: LegalSection[] = [
     id: 'editeur',
     title: 'Website publisher',
     body: (
-      <ul>
-        <li><strong>BNP Coorporation Sarl (BNPC)</strong></li>
-        <li>Limited liability company with capital of 1,000,000 FCFA</li>
-        <li>Registered office: P.O. Box 4219, Yaoundé, Cameroon</li>
-        <li>Trade register (RCCM): RC/YAO/2023/C/323</li>
-        <li>Tax ID (NIU): M042318209289U</li>
-        <li>
-          Phone: <a href="tel:+237655010919">(+237) 6 55 01 09 19</a>
-        </li>
-        <li>
-          Email:{' '}
-          <a href="mailto:contact@bnp-coorporation.com">
-            contact@bnp-coorporation.com
-          </a>
-        </li>
-      </ul>
+      <CompanyIdentity locale="en" />
     ),
   },
   {

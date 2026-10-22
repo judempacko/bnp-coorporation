@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { MapPin, Phone, EnvelopeSimple, LinkedinLogo, FacebookLogo } from '@phosphor-icons/react';
 import { CookieSettingsButton } from '@/components/CookieSettingsButton';
+import { COMPANY, companyAddress } from '@/lib/company';
 
 interface FooterProps {
   locale: string;
@@ -11,7 +12,7 @@ interface FooterProps {
 
 export function Footer({ locale }: FooterProps) {
   const fr = locale !== 'en';
-  const startYear = 2023;
+  const startYear = Number(COMPANY.foundedAt.slice(0, 4));
   const currentYear = new Date().getFullYear();
   const yearRange = currentYear > startYear ? `${startYear} - ${currentYear}` : `${startYear}`;
 
@@ -61,19 +62,19 @@ export function Footer({ locale }: FooterProps) {
             </p>
             <div className="flex items-center gap-2.5">
               <a
-                href="https://www.linkedin.com/company/bnp-coorporation-sarl"
+                href={COMPANY.social.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="LinkedIn — BNP Coorporation Sarl"
+                aria-label={`LinkedIn — ${COMPANY.legalName}`}
                 className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-neutral-300 bg-white shrink-0 text-neutral-600 transition-colors hover:border-brand hover:text-brand"
               >
                 <LinkedinLogo size={22} weight="fill" aria-hidden />
               </a>
               <a
-                href="https://www.facebook.com/bnpcoorporation"
+                href={COMPANY.social.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Facebook — BNP Coorporation Sarl"
+                aria-label={`Facebook — ${COMPANY.legalName}`}
                 className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-neutral-300 bg-white shrink-0 text-neutral-600 transition-colors hover:border-brand hover:text-brand"
               >
                 <FacebookLogo size={22} weight="fill" aria-hidden />
@@ -127,21 +128,21 @@ export function Footer({ locale }: FooterProps) {
             <div className="space-y-3 text-[15px] text-neutral-700">
               <div className="flex items-start gap-2.5">
                 <MapPin size={18} weight="fill" className="mt-0.5 shrink-0 text-brand" />
-                <span>BP 4219, Yaoundé, Cameroun</span>
+                <span>{companyAddress(locale)}</span>
               </div>
               <div className="flex items-start gap-2.5">
                 <Phone size={18} weight="fill" className="mt-0.5 shrink-0 text-brand" />
-                <a href="tel:+237655010919" className="transition-colors hover:text-brand">
-                  (+237) 6 55 01 09 19
+                <a href={`tel:${COMPANY.phoneHref}`} className="transition-colors hover:text-brand">
+                  {COMPANY.phone}
                 </a>
               </div>
               <div className="flex items-start gap-2.5">
                 <EnvelopeSimple size={18} weight="fill" className="mt-0.5 shrink-0 text-brand" />
                 <a
-                  href="mailto:contact@bnp-coorporation.com"
+                  href={`mailto:${COMPANY.email}`}
                   className="break-all transition-colors hover:text-brand"
                 >
-                  contact@bnp-coorporation.com
+                  {COMPANY.email}
                 </a>
               </div>
             </div>

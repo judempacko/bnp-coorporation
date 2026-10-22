@@ -9,6 +9,12 @@ import { EditorialRow } from '@/components/entreprise/EditorialRow';
 import { TeamGrid } from '@/components/entreprise/TeamGrid';
 import { getTeam } from '@/lib/team';
 import { getGalleryEvents, formatEventDate } from '@/lib/gallery';
+import {
+  COMPANY,
+  companyCapital,
+  companyForm,
+  companyFounded,
+} from '@/lib/company';
 
 const STORY1_IMAGE =
   'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800';
@@ -187,36 +193,36 @@ export default async function QuiSommesNousPage({
               <dt className="text-[12px] font-semibold uppercase tracking-[0.1em] text-muted">
                 {fr ? 'Raison sociale' : 'Legal name'}
               </dt>
-              <dd className="mt-1 text-[15px] font-medium text-ink">BNP Coorporation Sarl</dd>
+              <dd className="mt-1 text-[15px] font-medium text-ink">{COMPANY.legalName}</dd>
             </div>
             <div>
               <dt className="text-[12px] font-semibold uppercase tracking-[0.1em] text-muted">
                 {fr ? 'Forme juridique' : 'Legal form'}
               </dt>
-              <dd className="mt-1 text-[15px] font-medium text-ink">SARL</dd>
+              <dd className="mt-1 text-[15px] font-medium text-ink">{companyForm(locale)}</dd>
             </div>
             <div>
               <dt className="text-[12px] font-semibold uppercase tracking-[0.1em] text-muted">
                 {fr ? 'Capital social' : 'Share capital'}
               </dt>
               <dd className="mt-1 text-[15px] font-medium text-ink">
-                {fr ? '1 000 000 FCFA' : 'FCFA 1,000,000'}
+                {companyCapital(locale)}
               </dd>
             </div>
             <div>
               <dt className="text-[12px] font-semibold uppercase tracking-[0.1em] text-muted">RCCM</dt>
-              <dd className="mt-1 text-[15px] font-medium text-ink">RC/YAO/2023/C/323</dd>
+              <dd className="mt-1 text-[15px] font-medium text-ink">{COMPANY.rccm}</dd>
             </div>
             <div>
               <dt className="text-[12px] font-semibold uppercase tracking-[0.1em] text-muted">NIU</dt>
-              <dd className="mt-1 text-[15px] font-medium text-ink">M042318209289U</dd>
+              <dd className="mt-1 text-[15px] font-medium text-ink">{COMPANY.niu}</dd>
             </div>
             <div>
               <dt className="text-[12px] font-semibold uppercase tracking-[0.1em] text-muted">
                 {fr ? 'Date de création' : 'Date of incorporation'}
               </dt>
               <dd className="mt-1 text-[15px] font-medium text-ink">
-                {fr ? '10 février 2023 à Yaoundé' : 'February 10, 2023 in Yaoundé'}
+                {companyFounded(locale)}
               </dd>
             </div>
           </dl>
