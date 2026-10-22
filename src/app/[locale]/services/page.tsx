@@ -87,7 +87,7 @@ export default async function ServicesPage({
             ? 'Sept pôles d\u2019expertise complémentaires pour répondre à vos défis industriels, techniques et opérationnels sur l\u2019ensemble du territoire camerounais.'
             : 'Seven complementary areas of expertise to meet your industrial, technical and operational challenges across Cameroon.'
         }
-        image="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=1800"
+        image="/images/hero-header/services-page.jpg"
       />
 
       <section className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 py-12 sm:py-20">
