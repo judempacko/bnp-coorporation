@@ -49,8 +49,8 @@ export default async function ProjetsPage({
         title={fr ? 'Nos Projets & Réalisations' : 'Our Projects & Achievements'}
         subtitle={
           fr
-            ? 'Études de cas et chantiers BNPC au Cameroun : client, année, lieu et service concerné pour chaque réalisation.'
-            : 'BNPC case studies and sites in Cameroon: client, year, location and related service for each achievement.'
+            ? 'Études de cas et chantiers BNPC au Cameroun.'
+            : 'BNPC case studies and sites in Cameroon.'
         }
         image="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80&w=1800"
       />
