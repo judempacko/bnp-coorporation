@@ -11,16 +11,13 @@ export const DEFAULT_OG_IMAGE = `${SITE_URL}/logo-bnpc.svg`;
 // pour le rich result Logo) puis basculer DEFAULT_OG_IMAGE + logo JSON-LD vers le PNG.
 
 /**
- * Profils officiels — REMPLACER dès que les pages existent.
+ * Profils officiels (sameAs JSON-LD). Ordre : LinkedIn > Facebook > autres.
  * Laisser un tableau vide casse la désambiguïsation d'entité face à
- * BNP Paribas / BNP Paribas Corporate. Ordre : LinkedIn > Facebook > autres.
+ * BNP Paribas / BNP Paribas Corporate.
  */
 export const SOCIAL_PROFILES: string[] = [
-  // 'https://www.linkedin.com/company/bnp-coorporation-sarl',
-  // 'https://www.facebook.com/bnpcoorporation',
-  // 'https://www.instagram.com/bnpcoorporation',
-  // 'https://www.youtube.com/@bnpcoorporation',
-  // 'https://x.com/bnpcoorporation',
+  'https://www.linkedin.com/company/bnp-coorporation-sarl',
+  'https://www.facebook.com/bnpcoorporation',
 ];
 
 /** Toutes les variantes exactes que Google doit associer à la même entité. */
