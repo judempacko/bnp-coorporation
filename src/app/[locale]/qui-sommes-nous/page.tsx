@@ -176,7 +176,54 @@ export default async function QuiSommesNousPage({
         </div>
       </section>
 
-      {/* 7. Galerie : bandeau façon "autres expertises" */}
+      {/* 7. Informations légales */}
+      <section className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 pb-14 sm:pb-20">
+        <div className="rounded-2xl border border-slate-200 bg-neutral-50 p-8 sm:p-10">
+          <h2 className="text-[20px] sm:text-[24px] font-semibold text-ink">
+            {fr ? 'Informations légales' : 'Legal information'}
+          </h2>
+          <dl className="mt-6 grid grid-cols-1 gap-x-8 gap-y-5 sm:grid-cols-2 lg:grid-cols-3">
+            <div>
+              <dt className="text-[12px] font-semibold uppercase tracking-[0.1em] text-muted">
+                {fr ? 'Raison sociale' : 'Legal name'}
+              </dt>
+              <dd className="mt-1 text-[15px] font-medium text-ink">BNP Coorporation Sarl</dd>
+            </div>
+            <div>
+              <dt className="text-[12px] font-semibold uppercase tracking-[0.1em] text-muted">
+                {fr ? 'Forme juridique' : 'Legal form'}
+              </dt>
+              <dd className="mt-1 text-[15px] font-medium text-ink">SARL</dd>
+            </div>
+            <div>
+              <dt className="text-[12px] font-semibold uppercase tracking-[0.1em] text-muted">
+                {fr ? 'Capital social' : 'Share capital'}
+              </dt>
+              <dd className="mt-1 text-[15px] font-medium text-ink">
+                {fr ? '1 000 000 FCFA' : 'FCFA 1,000,000'}
+              </dd>
+            </div>
+            <div>
+              <dt className="text-[12px] font-semibold uppercase tracking-[0.1em] text-muted">RCCM</dt>
+              <dd className="mt-1 text-[15px] font-medium text-ink">RC/YAO/2023/C/323</dd>
+            </div>
+            <div>
+              <dt className="text-[12px] font-semibold uppercase tracking-[0.1em] text-muted">NIU</dt>
+              <dd className="mt-1 text-[15px] font-medium text-ink">M042318209289U</dd>
+            </div>
+            <div>
+              <dt className="text-[12px] font-semibold uppercase tracking-[0.1em] text-muted">
+                {fr ? 'Date de création' : 'Date of incorporation'}
+              </dt>
+              <dd className="mt-1 text-[15px] font-medium text-ink">
+                {fr ? '10 février 2023 à Yaoundé' : 'February 10, 2023 in Yaoundé'}
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      {/* 8. Galerie : bandeau façon "autres expertises" */}
       {events.length > 0 && (
         <section className="bg-neutral-100 border-t border-slate-200 py-12 sm:py-14">
           <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16">
@@ -236,7 +283,7 @@ export default async function QuiSommesNousPage({
         </section>
       )}
 
-      {/* 8. Bannière CTA bleue */}
+      {/* 9. Bannière CTA bleue */}
       <section className="bg-brand text-white py-12 px-6 sm:py-14 sm:px-12 lg:px-16">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center items-stretch justify-between gap-6 md:gap-8">
           <div className="space-y-3 max-w-3xl">
