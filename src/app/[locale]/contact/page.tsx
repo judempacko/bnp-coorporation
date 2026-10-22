@@ -112,9 +112,9 @@ export default async function ContactPage({
       />
 
       {/* Coordonnées */}
-      <section className="max-w-[1100px] mx-auto px-6 pt-12 sm:pt-16 pb-12">
-        <div className="flex flex-col divide-y divide-slate-200 text-center lg:flex-row lg:divide-x lg:divide-y-0">
-          <div className="flex flex-1 flex-col items-center px-6 py-8 lg:py-0">
+      <section className="mx-auto max-w-[1100px] px-6 pt-12 sm:pt-16 pb-12">
+        <div className="flex flex-col divide-y divide-slate-200 text-left lg:flex-row lg:divide-x lg:divide-y-0">
+          <div className="flex flex-1 flex-col items-start py-8 lg:py-0 lg:pr-8">
             <span className="text-brand">
               <PhoneCall size={28} weight="fill" aria-hidden />
             </span>
@@ -125,7 +125,7 @@ export default async function ContactPage({
               <a href="tel:+237655010919" className="hover:text-brand">{t('phone1')}</a>
             </p>
           </div>
-          <div className="flex flex-1 flex-col items-center px-6 py-8 lg:py-0">
+          <div className="flex flex-1 flex-col items-start py-8 lg:py-0 lg:px-8">
             <span className="text-brand">
               <EnvelopeSimple size={28} weight="fill" aria-hidden />
             </span>
@@ -136,7 +136,7 @@ export default async function ContactPage({
               <a href="mailto:contact@bnp-coorporation.com" className="hover:text-brand">{t('emailValue')}</a>
             </p>
           </div>
-          <div className="flex flex-1 flex-col items-center px-6 py-8 lg:py-0">
+          <div className="flex flex-1 flex-col items-start py-8 lg:py-0 lg:px-8">
             <span className="text-brand">
               <MapPin size={28} weight="fill" aria-hidden />
             </span>
@@ -145,7 +145,7 @@ export default async function ContactPage({
             </h2>
             <p className="mt-2 text-[16px] text-muted">{t('addressValue')}</p>
           </div>
-          <div className="flex flex-1 flex-col items-center px-6 py-8 lg:py-0">
+          <div className="flex flex-1 flex-col items-start py-8 lg:py-0 lg:pl-8">
             <span className="text-brand">
               <Clock size={28} weight="fill" aria-hidden />
             </span>
