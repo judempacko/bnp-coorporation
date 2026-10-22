@@ -163,8 +163,9 @@ export function Header({ locale, services }: HeaderProps) {
             onMouseEnter={() => setServicesDropdownOpen(true)}
             onMouseLeave={() => setServicesDropdownOpen(false)}
           >
-            <button
-              type="button"
+            <Link
+              href={`/${locale}/services`}
+              onClick={() => setServicesDropdownOpen(false)}
               className={`group flex items-center gap-1 py-2 cursor-pointer text-[16px] font-medium transition-colors ${
                 isActive(`/${locale}/services`)
                   ? "text-brand font-semibold"
@@ -181,7 +182,7 @@ export function Header({ locale, services }: HeaderProps) {
                   className={`transition-transform duration-200 ${servicesDropdownOpen ? "rotate-180" : ""}`}
                 />
               </span>
-            </button>
+            </Link>
 
             {/* Shadcn Dropdown Panel */}
             {servicesDropdownOpen && (
@@ -306,9 +307,13 @@ export function Header({ locale, services }: HeaderProps) {
             </Link>
           </div>
           <div className="space-y-1 pl-3 border-l-2 border-brand">
-            <span className="block text-[16px] font-semibold text-brand uppercase tracking-wider py-1">
+            <Link
+              href={`/${locale}/services`}
+              onClick={() => setMobileMenuOpen(false)}
+              className="block text-[16px] font-semibold text-brand uppercase tracking-wider py-1"
+            >
               Services
-            </span>
+            </Link>
             {servicesList.map((s) => (
               <Link
                 key={s.slug}
