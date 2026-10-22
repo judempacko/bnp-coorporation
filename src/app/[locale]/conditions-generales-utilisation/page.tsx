@@ -41,57 +41,50 @@ const sectionsFr: LegalSection[] = [
     id: 'objet',
     title: 'Objet',
     body: (
-      <>
-        <p>
-          Les présentes conditions générales d’utilisation encadrent l’accès et
-          l’utilisation du site <strong>bnp-coorporation.com</strong>, édité par
-          BNP Coorporation Sarl (BNPC). En consultant ce site, vous acceptez les
-          conditions décrites ci-dessous. Si vous ne les acceptez pas, vous êtes
-          invité à cesser d’utiliser le site.
-        </p>
-      </>
+      <p>
+        Les présentes conditions encadrent l’accès et l’utilisation du site{' '}
+        <strong>bnp-coorporation.com</strong>, édité par BNP Coorporation Sarl
+        (BNPC). En consultant ce site, vous acceptez ces conditions. Si vous ne
+        les acceptez pas, vous êtes invité à cesser de l’utiliser.
+      </p>
     ),
   },
   {
     id: 'editeur',
     title: 'Éditeur du site',
     body: (
-      <>
-        <p>Le site est édité par :</p>
-        <ul>
-          <li><strong>BNP Coorporation Sarl (BNPC)</strong></li>
-          <li>Société à responsabilité limitée au capital de 1 000 000 FCFA</li>
-          <li>Siège : BP 4219, Yaoundé, Cameroun</li>
-          <li>RCCM : RC/YAO/2023/C/323</li>
-          <li>NIU : M042318209289U</li>
-          <li>
-            Téléphone :{' '}
-            <a href="tel:+237655010919">(+237) 6 55 01 09 19</a>
-          </li>
-          <li>
-            E-mail :{' '}
-            <a href="mailto:contact@bnp-coorporation.com">
-              contact@bnp-coorporation.com
-            </a>
-          </li>
-        </ul>
-      </>
+      <ul>
+        <li><strong>BNP Coorporation Sarl (BNPC)</strong></li>
+        <li>Société à responsabilité limitée au capital de 1 000 000 FCFA</li>
+        <li>Siège : BP 4219, Yaoundé, Cameroun</li>
+        <li>RCCM : RC/YAO/2023/C/323</li>
+        <li>NIU : M042318209289U</li>
+        <li>
+          Téléphone : <a href="tel:+237655010919">(+237) 6 55 01 09 19</a>
+        </li>
+        <li>
+          E-mail :{' '}
+          <a href="mailto:contact@bnp-coorporation.com">
+            contact@bnp-coorporation.com
+          </a>
+        </li>
+      </ul>
     ),
   },
   {
     id: 'acces',
-    title: 'Accès et disponibilité du site',
+    title: 'Accès et disponibilité',
     body: (
       <>
         <p>
-          Le site est accessible gratuitement, à l’exception des frais de
-          connexion et de matériel supportés par l’utilisateur. BNPC peut
-          modifier, suspendre ou interrompre tout ou partie du site, notamment
-          pour maintenance, sans obligation d’information préalable.
+          Le site est accessible gratuitement, hors frais de connexion et de
+          matériel supportés par l’utilisateur. BNPC peut modifier, suspendre ou
+          interrompre tout ou partie du site, notamment pour maintenance, sans
+          obligation d’information préalable.
         </p>
         <p>
-          Nous faisons nos efforts pour maintenir le site disponible, mais nous
-          ne garantissons pas une accessibilité continue ni l’absence d’erreurs.
+          Nous faisons nos efforts pour maintenir le site disponible, sans
+          garantir une accessibilité continue ni l’absence d’erreurs.
         </p>
       </>
     ),
@@ -109,9 +102,8 @@ const sectionsFr: LegalSection[] = [
         <p>
           Toute prestation fait l’objet d’un devis écrit, précédé lorsque la
           nature ou l’ampleur du projet l’exige d’une visite technique sur site.
-          Le délai indicatif de 24 à 48 heures ouvrées n’est pas garanti et
-          dépend des informations disponibles. Seul un devis accepté et signé
-          engage les parties.
+          Le délai indicatif de 24 à 48 heures ouvrées n’est pas garanti. Seul un
+          devis accepté et signé engage les parties.
         </p>
       </>
     ),
@@ -124,7 +116,7 @@ const sectionsFr: LegalSection[] = [
         <p>
           Les textes, photographies, vidéos, logos, marques, éléments graphiques
           et la structure du site sont protégés par le droit de la propriété
-          intellectuelle. Ils appartiennent à BNPC ou à leurs titulaires
+          intellectuelle et appartiennent à BNPC ou à leurs titulaires
           respectifs.
         </p>
         <p>
@@ -137,19 +129,8 @@ const sectionsFr: LegalSection[] = [
     ),
   },
   {
-    id: 'liens-externes',
-    title: 'Liens externes',
-    body: (
-      <p>
-        Le site peut renvoyer vers des sites tiers. BNPC n’exerce aucun contrôle
-        sur leur contenu et décline toute responsabilité quant à leurs
-        informations, produits ou pratiques.
-      </p>
-    ),
-  },
-  {
     id: 'responsabilite',
-    title: 'Responsabilité',
+    title: 'Responsabilité et liens externes',
     body: (
       <>
         <p>
@@ -159,9 +140,10 @@ const sectionsFr: LegalSection[] = [
         </p>
         <p>
           BNPC ne saurait être tenue responsable des dommages indirects résultant
-          de l’utilisation ou de l’impossibilité d’utiliser le site. Cette
-          limitation ne s’applique pas aux responsabilités qui ne peuvent être
-          exclues en vertu du droit applicable.
+          de l’utilisation ou de l’impossibilité d’utiliser le site, ni du contenu
+          des sites tiers vers lesquels le site renvoie. Cette limitation ne
+          s’applique pas aux responsabilités qui ne peuvent être exclues en vertu
+          du droit applicable.
         </p>
         <p>
           L’utilisateur demeure responsable de l’exactitude des informations
@@ -172,16 +154,16 @@ const sectionsFr: LegalSection[] = [
   },
   {
     id: 'donnees-personnelles',
-    title: 'Données personnelles et cookies',
+    title: 'Données personnelles',
     body: (
       <p>
-        Les modalités de traitement des données personnelles et l’usage des
-        cookies sont décrits dans notre{' '}
+        Le traitement des données personnelles et l’usage des cookies sont décrits
+        dans notre{' '}
         <Link href="/fr/politique-de-confidentialite">
           politique de confidentialité
         </Link>
-        . Vous pouvez modifier votre choix de consentement à tout moment depuis
-        le lien « Gérer les cookies » présent en bas de page.
+        . Vous pouvez modifier votre choix de consentement à tout moment depuis le
+        lien « Gérer les cookies » en bas de page.
       </p>
     ),
   },
@@ -191,14 +173,14 @@ const sectionsFr: LegalSection[] = [
     body: (
       <>
         <p>
-          Les présentes conditions sont régies par le droit camerounais. En cas
-          de différend, les parties s’efforcent d’abord de trouver une solution
+          Les présentes conditions sont régies par le droit camerounais. En cas de
+          différend, les parties s’efforcent d’abord de trouver une solution
           amiable.
         </p>
         <p>
-          À défaut d’accord, les juridictions compétentes de Yaoundé sont
-          saisies, sous réserve des règles impératives applicables au
-          consommateur ou au cocontractant.
+          À défaut d’accord, les juridictions compétentes de Yaoundé sont saisies,
+          sous réserve des règles impératives applicables au consommateur ou au
+          cocontractant.
         </p>
       </>
     ),
@@ -208,23 +190,9 @@ const sectionsFr: LegalSection[] = [
     title: 'Modifications',
     body: (
       <p>
-        BNPC peut mettre à jour les présentes conditions à tout moment. La date
-        de dernière mise à jour figure en haut de la page. La poursuite de
-        l’utilisation du site après modification vaut acceptation des nouvelles
-        conditions.
-      </p>
-    ),
-  },
-  {
-    id: 'contact',
-    title: 'Contact',
-    body: (
-      <p>
-        Pour toute question relative aux présentes conditions, écrivez à{' '}
-        <a href="mailto:contact@bnp-coorporation.com">
-          contact@bnp-coorporation.com
-        </a>{' '}
-        ou appelez le <a href="tel:+237655010919">(+237) 6 55 01 09 19</a>.
+        BNPC peut mettre à jour ces conditions à tout moment. La date de dernière
+        mise à jour figure en haut de la page. La poursuite de l’utilisation du
+        site après modification vaut acceptation des nouvelles conditions.
       </p>
     ),
   },
@@ -236,10 +204,10 @@ const sectionsEn: LegalSection[] = [
     title: 'Purpose',
     body: (
       <p>
-        These Terms of Service govern access to and use of the website{' '}
+        These terms govern access to and use of the website{' '}
         <strong>bnp-coorporation.com</strong>, published by BNP Coorporation Sarl
-        (BNPC). By browsing this website, you accept the terms set out below. If
-        you do not accept them, you should stop using the website.
+        (BNPC). By browsing this website, you accept these terms. If you do not
+        accept them, you should stop using the website.
       </p>
     ),
   },
@@ -247,25 +215,22 @@ const sectionsEn: LegalSection[] = [
     id: 'editeur',
     title: 'Website publisher',
     body: (
-      <>
-        <p>The website is published by:</p>
-        <ul>
-          <li><strong>BNP Coorporation Sarl (BNPC)</strong></li>
-          <li>Limited liability company with capital of 1,000,000 FCFA</li>
-          <li>Registered office: P.O. Box 4219, Yaoundé, Cameroon</li>
-          <li>Trade register (RCCM): RC/YAO/2023/C/323</li>
-          <li>Tax ID (NIU): M042318209289U</li>
-          <li>
-            Phone: <a href="tel:+237655010919">(+237) 6 55 01 09 19</a>
-          </li>
-          <li>
-            Email:{' '}
-            <a href="mailto:contact@bnp-coorporation.com">
-              contact@bnp-coorporation.com
-            </a>
-          </li>
-        </ul>
-      </>
+      <ul>
+        <li><strong>BNP Coorporation Sarl (BNPC)</strong></li>
+        <li>Limited liability company with capital of 1,000,000 FCFA</li>
+        <li>Registered office: P.O. Box 4219, Yaoundé, Cameroon</li>
+        <li>Trade register (RCCM): RC/YAO/2023/C/323</li>
+        <li>Tax ID (NIU): M042318209289U</li>
+        <li>
+          Phone: <a href="tel:+237655010919">(+237) 6 55 01 09 19</a>
+        </li>
+        <li>
+          Email:{' '}
+          <a href="mailto:contact@bnp-coorporation.com">
+            contact@bnp-coorporation.com
+          </a>
+        </li>
+      </ul>
     ),
   },
   {
@@ -279,8 +244,8 @@ const sectionsEn: LegalSection[] = [
           of the website, in particular for maintenance, without prior notice.
         </p>
         <p>
-          We make reasonable efforts to keep the website available, but we do not
-          guarantee continuous access or the absence of errors.
+          We make reasonable efforts to keep the website available, without
+          guaranteeing continuous access or the absence of errors.
         </p>
       </>
     ),
@@ -298,9 +263,8 @@ const sectionsEn: LegalSection[] = [
         <p>
           Every engagement is subject to a written quote, preceded by a site visit
           where the nature or scale of the project requires one. The indicative
-          24 to 48 business-hour timeframe is not guaranteed and depends on the
-          information available. Only an accepted and signed quote binds the
-          parties.
+          24 to 48 business-hour timeframe is not guaranteed. Only an accepted
+          and signed quote binds the parties.
         </p>
       </>
     ),
@@ -312,8 +276,8 @@ const sectionsEn: LegalSection[] = [
       <>
         <p>
           Text, photographs, videos, logos, trademarks, graphic elements and the
-          structure of the website are protected by intellectual property law.
-          They belong to BNPC or their respective owners.
+          structure of the website are protected by intellectual property law and
+          belong to BNPC or their respective owners.
         </p>
         <p>
           Any reproduction, representation, adaptation or distribution, in whole
@@ -325,19 +289,8 @@ const sectionsEn: LegalSection[] = [
     ),
   },
   {
-    id: 'liens-externes',
-    title: 'External links',
-    body: (
-      <p>
-        The website may link to third-party websites. BNPC has no control over
-        their content and accepts no liability for their information, products or
-        practices.
-      </p>
-    ),
-  },
-  {
     id: 'responsabilite',
-    title: 'Liability',
+    title: 'Liability and external links',
     body: (
       <>
         <p>
@@ -347,8 +300,9 @@ const sectionsEn: LegalSection[] = [
         </p>
         <p>
           BNPC shall not be liable for indirect loss resulting from the use of, or
-          inability to use, the website. This limitation does not apply to
-          liability that cannot be excluded under applicable law.
+          inability to use, the website, or for the content of third-party sites
+          linked from it. This limitation does not apply to liability that cannot
+          be excluded under applicable law.
         </p>
         <p>
           Users remain responsible for the accuracy of the information they submit
@@ -359,7 +313,7 @@ const sectionsEn: LegalSection[] = [
   },
   {
     id: 'donnees-personnelles',
-    title: 'Personal data and cookies',
+    title: 'Personal data',
     body: (
       <p>
         How personal data is processed and how cookies are used is described in
@@ -398,19 +352,6 @@ const sectionsEn: LegalSection[] = [
       </p>
     ),
   },
-  {
-    id: 'contact',
-    title: 'Contact',
-    body: (
-      <p>
-        For any question about these terms, email{' '}
-        <a href="mailto:contact@bnp-coorporation.com">
-          contact@bnp-coorporation.com
-        </a>{' '}
-        or call <a href="tel:+237655010919">(+237) 6 55 01 09 19</a>.
-      </p>
-    ),
-  },
 ];
 
 export default async function TermsPage({
@@ -431,7 +372,7 @@ export default async function TermsPage({
           : 'The rules for accessing and using the bnp-coorporation.com website.'
       }
       image="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1800&q=70"
-      tocLabel="Sommaire"
+      tocLabel={fr ? 'Sommaire' : 'Contents'}
       lastUpdatedLabel={fr ? 'Dernière mise à jour' : 'Last updated'}
       lastUpdated={fr ? LAST_UPDATED_FR : LAST_UPDATED_EN}
       lastUpdatedDate={LAST_UPDATED_DATE}
