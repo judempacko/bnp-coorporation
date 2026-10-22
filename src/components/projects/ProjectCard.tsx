@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { MapPin, CalendarBlank } from '@phosphor-icons/react/dist/ssr';
 import type { Project } from '@/lib/projects';
 
 interface ProjectCardProps {
@@ -11,7 +12,6 @@ export function ProjectCard({ project, locale }: ProjectCardProps) {
   const fr = locale !== 'en';
   const href = `/${locale}${project.href}`;
   const location = project.ville || project.lieu;
-  const meta = [location, project.year].filter(Boolean).join(' • ');
 
   return (
     <Link
@@ -36,8 +36,24 @@ export function ProjectCard({ project, locale }: ProjectCardProps) {
             {project.excerpt}
           </p>
         )}
-        {meta && (
-          <p className="text-[13px] font-medium text-muted">{meta}</p>
+        {(location || project.year) && (
+          <p className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[15px] leading-snug font-medium text-neutral-600">
+            {location && (
+              <span className="inline-flex items-center gap-1.5">
+                <MapPin size={17} weight="fill" className="shrink-0 text-brand" aria-hidden />
+                {location}
+              </span>
+            )}
+            {location && project.year && (
+              <span aria-hidden className="h-1 w-1 shrink-0 rounded-full bg-neutral-300" />
+            )}
+            {project.year && (
+              <span className="inline-flex items-center gap-1.5">
+                <CalendarBlank size={17} weight="fill" className="shrink-0 text-brand" aria-hidden />
+                {project.year}
+              </span>
+            )}
+          </p>
         )}
         <span className="mt-auto w-fit inline-flex items-center rounded-full bg-brand px-4 py-2 text-[14px] font-semibold text-white transition-colors group-hover:bg-brand-hover">
           {fr ? 'Voir le projet' : 'View project'}
