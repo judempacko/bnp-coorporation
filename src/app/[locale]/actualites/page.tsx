@@ -51,7 +51,7 @@ export default async function ActualitesPage({
             ? 'Découvrez nos articles, événements et mises à jour du groupe BNPC.'
             : 'Explore our articles, events, and updates from the BNPC group.'
         }
-        image="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=80&w=1800"
+        image="/images/hero-header/blog-page.jpg"
       />
 
       <section className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 py-12 sm:py-20">
