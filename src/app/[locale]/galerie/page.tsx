@@ -4,9 +4,7 @@ import Link from 'next/link';
 import { PageHero } from '@/components/PageHero';
 import { GalleryGrid } from '@/components/entreprise/GalleryGrid';
 import { getGalleryEvents } from '@/lib/gallery';
-
-const HERO_IMAGE =
-  'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80&w=1600';
+import { getHeroes } from '@/lib/heroes';
 
 export async function generateMetadata({
   params,
@@ -30,14 +28,17 @@ export default async function GaleriePage({
   setRequestLocale(locale);
 
   const t = await getTranslations('GalleryPage');
-  const events = await getGalleryEvents(locale);
+  const [events, heroes] = await Promise.all([
+    getGalleryEvents(locale),
+    getHeroes(),
+  ]);
 
   return (
     <main className="w-full bg-white text-ink">
       <PageHero
         title={t('title')}
         subtitle={t('intro')}
-        image={HERO_IMAGE}
+        image={heroes.galerie}
       />
 
       <section className="max-w-[1100px] mx-auto px-6 py-12">

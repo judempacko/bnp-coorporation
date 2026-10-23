@@ -4,6 +4,7 @@ import { getAllPosts } from '@/lib/api';
 import { PostCard } from '@/components/PostCard';
 import { PageHero } from '@/components/PageHero';
 import { canonicalFor, languageAlternates } from '@/lib/seo';
+import { getHeroes } from '@/lib/heroes';
 
 export async function generateMetadata({
   params,
@@ -40,7 +41,7 @@ export default async function ActualitesPage({
   const { locale } = await params;
   setRequestLocale(locale);
 
-  const posts = await getAllPosts();
+  const [posts, heroes] = await Promise.all([getAllPosts(), getHeroes()]);
 
   return (
     <main className="w-full bg-white">
@@ -51,7 +52,7 @@ export default async function ActualitesPage({
             ? 'Découvrez nos articles, événements et mises à jour du groupe BNPC.'
             : 'Explore our articles, events, and updates from the BNPC group.'
         }
-        image="/images/hero-header/blog-page.jpg"
+        image={heroes.actualites}
       />
 
       <section className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 py-12 sm:py-20">

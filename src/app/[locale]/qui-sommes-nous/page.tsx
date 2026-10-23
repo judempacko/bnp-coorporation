@@ -15,6 +15,7 @@ import {
   companyForm,
   companyFounded,
 } from '@/lib/company';
+import { getHeroes } from '@/lib/heroes';
 
 const STORY1_IMAGE =
   'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800';
@@ -58,6 +59,7 @@ export default async function QuiSommesNousPage({
 
   const members = await getTeam(locale);
   const events = (await getGalleryEvents(locale)).slice(0, 3);
+  const heroes = await getHeroes();
 
   const labels = {
     discover: fr ? 'Découvrir' : 'Discover',
@@ -69,7 +71,7 @@ export default async function QuiSommesNousPage({
       <PageHero
         title={t('title')}
         subtitle={t('subtitle')}
-        image={STORY1_IMAGE.replace('w=800', 'w=1800')}
+        image={heroes['qui-sommes-nous']}
       />
 
       {/* 2. Récit : lead scrub + lignes éditoriales */}

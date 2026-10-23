@@ -4,6 +4,7 @@ import { getProjects } from '@/lib/projects';
 import { ProjectCard } from '@/components/projects/ProjectCard';
 import { PageHero } from '@/components/PageHero';
 import { canonicalFor, languageAlternates } from '@/lib/seo';
+import { getHeroes } from '@/lib/heroes';
 
 export async function generateMetadata({
   params,
@@ -41,7 +42,10 @@ export default async function ProjetsPage({
   setRequestLocale(locale);
   const fr = locale !== 'en';
 
-  const projects = await getProjects(locale).catch(() => []);
+  const [projects, heroes] = await Promise.all([
+    getProjects(locale).catch(() => []),
+    getHeroes(),
+  ]);
 
   return (
     <main className="w-full bg-white">
@@ -52,7 +56,7 @@ export default async function ProjetsPage({
             ? 'Études de cas et chantiers BNPC au Cameroun.'
             : 'BNPC case studies and sites in Cameroon.'
         }
-        image="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80&w=1800"
+        image={heroes.projets}
       />
 
       <section className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 py-12 sm:py-20">

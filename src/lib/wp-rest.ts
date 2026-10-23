@@ -2,20 +2,16 @@ const API_URL =
   process.env.NEXT_PUBLIC_WORDPRESS_API_URL ||
   "https://api.bnp-coorporation.com/wp-json/wp/v2";
 
+/** Racine `/wp-json` (hors namespace `wp/v2`) pour les routes ACF, etc. */
+const WP_JSON_URL = API_URL.replace(/\/wp-json\/.*$/, "/wp-json");
+
 /**
  * Délai max d'un appel WP : évite de bloquer le rendu quand l'hôte
  * ne répond pas (WAF lent, challenge anti-bot, DNS…).
  */
 const FETCH_TIMEOUT_MS = 10_000;
 
-export async function fetchREST<T = unknown>(
-  endpoint: string,
-  options: RequestInit = {}
-): Promise<T> {
-  const baseUrl = API_URL.replace(/\/$/, "");
-  const cleanEndpoint = endpoint.replace(/^\//, "");
-  const url = `${baseUrl}/${cleanEndpoint}`;
-
+async function request<T>(url: string, options: RequestInit = {}): Promise<T> {
   // Certains WAF / pare-feu (Cloudflare Bot Fight Mode, ModSecurity…)
   // bloquent les requêtes sans User-Agent navigateur : on s'identifie
   // en client HTTP classique. Insuffisant contre un challenge JS/cookie
@@ -44,4 +40,25 @@ export async function fetchREST<T = unknown>(
   }
 
   return res.json();
+}
+
+export async function fetchREST<T = unknown>(
+  endpoint: string,
+  options: RequestInit = {}
+): Promise<T> {
+  const baseUrl = API_URL.replace(/\/$/, "");
+  const cleanEndpoint = endpoint.replace(/^\//, "");
+  return request<T>(`${baseUrl}/${cleanEndpoint}`, options);
+}
+
+/**
+ * Appel à la racine `/wp-json` (ex. `acf/v3/options/options`).
+ */
+export async function fetchWPJson<T = unknown>(
+  endpoint: string,
+  options: RequestInit = {}
+): Promise<T> {
+  const baseUrl = WP_JSON_URL.replace(/\/$/, "");
+  const cleanEndpoint = endpoint.replace(/^\//, "");
+  return request<T>(`${baseUrl}/${cleanEndpoint}`, options);
 }

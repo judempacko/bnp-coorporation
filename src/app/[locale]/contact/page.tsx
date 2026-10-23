@@ -11,6 +11,7 @@ import {
 } from '@/components/ui/accordion';
 import { canonicalFor, languageAlternates, SITE_URL } from '@/lib/seo';
 import { COMPANY } from '@/lib/company';
+import { getHeroes } from '@/lib/heroes';
 
 export async function generateMetadata({
   params,
@@ -46,6 +47,7 @@ export default async function ContactPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const heroes = await getHeroes();
   const t = await getTranslations('ContactPage');
 
   const faqs = [
@@ -109,7 +111,7 @@ export default async function ContactPage({
       {/* Hero banner */}
       <PageHero
         title={t('heroTitle')}
-        image="/images/hero-header/contact-page.jpg"
+        image={heroes.contact}
       />
 
       {/* Coordonnées */}

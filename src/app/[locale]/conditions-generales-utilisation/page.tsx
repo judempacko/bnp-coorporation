@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { setRequestLocale } from 'next-intl/server';
 import { LegalDocument, type LegalSection } from '@/components/legal/LegalDocument';
 import { CompanyIdentity } from '@/components/legal/CompanyIdentity';
+import { getHeroes } from '@/lib/heroes';
 import { canonicalFor, languageAlternates } from '@/lib/seo';
 
 const PATH = '/conditions-generales-utilisation';
@@ -333,6 +334,7 @@ export default async function TermsPage({
   const { locale } = await params;
   setRequestLocale(locale);
   const fr = locale !== 'en';
+  const heroes = await getHeroes();
 
   return (
     <LegalDocument
@@ -342,7 +344,7 @@ export default async function TermsPage({
           ? 'Les règles d’accès et d’utilisation du site bnp-coorporation.com.'
           : 'The rules for accessing and using the bnp-coorporation.com website.'
       }
-      image="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1800&q=70"
+      image={heroes['conditions-generales-utilisation']}
       tocLabel={fr ? 'Sommaire' : 'Contents'}
       lastUpdatedLabel={fr ? 'Dernière mise à jour' : 'Last updated'}
       lastUpdated={fr ? LAST_UPDATED_FR : LAST_UPDATED_EN}

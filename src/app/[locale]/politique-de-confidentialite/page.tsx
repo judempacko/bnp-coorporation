@@ -5,6 +5,7 @@ import { LegalDocument, type LegalSection } from '@/components/legal/LegalDocume
 import { CompanyIdentity } from '@/components/legal/CompanyIdentity';
 import { CookieSettingsButton } from '@/components/CookieSettingsButton';
 import { COMPANY } from '@/lib/company';
+import { getHeroes } from '@/lib/heroes';
 import { canonicalFor, languageAlternates } from '@/lib/seo';
 
 const PATH = '/politique-de-confidentialite';
@@ -496,6 +497,7 @@ export default async function PrivacyPage({
   const { locale } = await params;
   setRequestLocale(locale);
   const fr = locale !== 'en';
+  const heroes = await getHeroes();
 
   return (
     <LegalDocument
@@ -505,7 +507,7 @@ export default async function PrivacyPage({
           ? 'Comment nous collectons, utilisons et protégeons vos données personnelles.'
           : 'How we collect, use and protect your personal data.'
       }
-      image="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=1800&q=70"
+      image={heroes['politique-de-confidentialite']}
       tocLabel={fr ? 'Sommaire' : 'Contents'}
       lastUpdatedLabel={fr ? 'Dernière mise à jour' : 'Last updated'}
       lastUpdated={fr ? LAST_UPDATED_FR : LAST_UPDATED_EN}

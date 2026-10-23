@@ -6,6 +6,7 @@ import { getAllServices, type ServiceNode } from '@/lib/api';
 import { fallbackServicesNav } from './[slug]/page';
 import { PageHero } from '@/components/PageHero';
 import { canonicalFor, languageAlternates } from '@/lib/seo';
+import { getHeroes } from '@/lib/heroes';
 
 const FALLBACK_CARD_IMAGE =
   'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=800';
@@ -64,7 +65,10 @@ export default async function ServicesPage({
   setRequestLocale(locale);
   const fr = locale !== 'en';
 
-  const wpServices = await getAllServices(locale);
+  const [wpServices, heroes] = await Promise.all([
+    getAllServices(locale),
+    getHeroes(),
+  ]);
   const cards: ServiceCard[] =
     wpServices.length > 0
       ? wpServices.map(toCard)
@@ -87,7 +91,7 @@ export default async function ServicesPage({
             ? 'Sept pôles d\u2019expertise complémentaires pour répondre à vos défis industriels, techniques et opérationnels sur l\u2019ensemble du territoire camerounais.'
             : 'Seven complementary areas of expertise to meet your industrial, technical and operational challenges across Cameroon.'
         }
-        image="/images/hero-header/services-page.jpg"
+        image={heroes.services}
       />
 
       <section className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 py-12 sm:py-20">
