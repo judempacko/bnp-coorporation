@@ -8,10 +8,6 @@ import {
   Timer,
   MapPin,
   ArrowRight,
-  PhoneCall,
-  MagnifyingGlass,
-  FileText,
-  Wrench,
 } from '@phosphor-icons/react/dist/ssr';
 import { getAllPosts, getAllServices } from '@/lib/api';
 import { getProjects } from '@/lib/projects';
@@ -189,90 +185,6 @@ export default async function HomePage({
         },
       ];
 
-  const steps = fr
-    ? [
-        {
-          n: '01',
-          icon: PhoneCall,
-          title: 'Contact direct',
-          desc: 'Téléphone, WhatsApp ou formulaire.',
-        },
-        {
-          n: '02',
-          icon: MagnifyingGlass,
-          title: 'Visite technique',
-          desc: 'Diagnostic précis sur site.',
-        },
-        {
-          n: '03',
-          icon: FileText,
-          title: 'Devis 24-48h',
-          desc: 'Sous 24 à 48h ouvrées.',
-        },
-        {
-          n: '04',
-          icon: Wrench,
-          title: 'Réalisation + suivi',
-          desc: 'Exécution et maintenance.',
-        },
-      ]
-    : [
-        {
-          n: '01',
-          icon: PhoneCall,
-          title: 'Direct contact',
-          desc: 'By phone, WhatsApp or form.',
-        },
-        {
-          n: '02',
-          icon: MagnifyingGlass,
-          title: 'Site visit',
-          desc: 'Accurate on-site diagnosis.',
-        },
-        {
-          n: '03',
-          icon: FileText,
-          title: 'Quote in 24-48h',
-          desc: 'Within 24-48 business hours.',
-        },
-        {
-          n: '04',
-          icon: Wrench,
-          title: 'Delivery + follow-up',
-          desc: 'Execution and maintenance.',
-        },
-      ];
-
-  const faqs = fr
-    ? [
-        {
-          q: "Quel est le délai d'obtention d'un devis ?",
-          a: 'Proposition détaillée sous 24 à 48h ouvrées, après visite technique lorsque le projet le nécessite. Pour les urgences industrielles ou navales, mobilisation selon la disponibilité des équipes.',
-        },
-        {
-          q: 'Intervenez-vous en dehors de Yaoundé et Douala ?',
-          a: 'Oui, nous intervenons à Yaoundé, Douala et sur tout le territoire camerounais, y compris sur sites industriels isolés.',
-        },
-        {
-          q: 'La visite technique est-elle obligatoire ?',
-          a: "Pas systématiquement : elle dépend de la nature et de l'ampleur du projet. Pour le BTP, les forages, le solaire et les audits incendie, un diagnostic sur site est généralement nécessaire avant chiffrage.",
-        },
-      ]
-    : [
-        {
-          q: 'What is the lead time for a quote?',
-          a: 'Detailed proposal within 24-48 business hours, after a site visit when the project requires it. For industrial or naval emergencies, mobilization depends on team availability.',
-        },
-        {
-          q: 'Do you operate outside Yaoundé and Douala?',
-          a: 'Yes, we operate in Yaoundé, Douala and across Cameroon, including isolated industrial sites.',
-        },
-        {
-          q: 'Is the site visit mandatory?',
-          a: 'Not systematically: it depends on the nature and scale of the project. For construction, drilling, solar and fire audits, an on-site diagnosis is generally required before pricing.',
-        },
-      ];
-
   return (
     <main className="w-full bg-white">
       {/* 1. Hero épuré — H1 = marque exacte (SEO), une seule accroche,
@@ -404,45 +316,7 @@ export default async function HomePage({
         </div>
       </section>
 
-      {/* 5. Méthode — process centré inspiré maquette : pastille + badge numéro + pointillés */}
-      <section className="w-full bg-surface">
-        <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 py-14 sm:py-20">
-          <Reveal>
-            <h2 className="text-[28px] sm:text-[32px] font-semibold text-ink">
-              {fr ? 'Un parcours simple, sans surprise' : 'A simple process, no surprises'}
-            </h2>
-          </Reveal>
-          <ol className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-10">
-            {steps.map((step, i) => (
-              <li
-                key={step.n}
-                className="relative flex flex-col items-center px-2 text-center"
-              >
-                {i < steps.length - 1 && (
-                  <span
-                    aria-hidden="true"
-                    className="absolute left-[62%] top-8 hidden w-[76%] border-t border-dashed border-slate-300 lg:block"
-                  />
-                )}
-                <div className="relative">
-                  <span className="flex h-16 w-16 items-center justify-center rounded-full bg-brand text-white shadow-md">
-                    <step.icon size={26} weight="duotone" aria-hidden />
-                  </span>
-                  <span className="absolute -right-1.5 -top-1.5 flex h-6 min-w-6 items-center justify-center rounded-full bg-coal px-1 text-[11px] font-bold text-white ring-2 ring-surface">
-                    {step.n}
-                  </span>
-                </div>
-                <h3 className="mt-4 text-[17px] font-semibold text-ink">{step.title}</h3>
-                <p className="mt-2 max-w-[26ch] text-[15px] leading-relaxed text-muted">
-                  {step.desc}
-                </p>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      {/* 6. Projets à la une — structure : eyebrow centré + H2 centré + 3 cartes (image, tags, titre, extrait, lire la suite) */}
+      {/* 5. Projets à la une — structure : eyebrow centré + H2 centré + 3 cartes (image, tags, titre, extrait, lire la suite) */}
       {featuredProjects.length > 0 && (
         <section className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 py-14 sm:py-20">
           <Reveal>
@@ -476,7 +350,7 @@ export default async function HomePage({
         </section>
       )}
 
-      {/* 6b. Partenaires — structure : header centré + rangée de 6 logos en niveaux de gris */}
+      {/* 6. Partenaires — structure : header centré + rangée de 6 logos en niveaux de gris */}
       {partners.length > 0 && (
       <section className="w-full border-t border-slate-200 bg-white">
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 py-14 sm:py-20">
@@ -638,24 +512,7 @@ export default async function HomePage({
         </div>
       </section>
 
-      {/* 9. FAQ courte */}
-      <section className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 pb-14 sm:pb-20">
-        <Reveal>
-          <h2 className="text-[24px] sm:text-[28px] font-semibold text-ink">
-            {fr ? "Questions fréquentes" : 'Frequently asked questions'}
-          </h2>
-        </Reveal>
-        <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
-          {faqs.map((f) => (
-            <div key={f.q} className="rounded-lg border border-slate-200 p-6 space-y-2">
-              <h3 className="text-[16px] font-semibold text-ink">{f.q}</h3>
-              <p className="text-[15px] leading-relaxed text-muted">{f.a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* 10. CTA final */}
+      {/* 9. CTA final */}
       <section className="bg-brand text-white py-12 px-6 sm:py-14 sm:px-12 lg:px-16">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center items-stretch justify-between gap-6 md:gap-8">
           <div className="space-y-3 max-w-3xl">
