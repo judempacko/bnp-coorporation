@@ -110,7 +110,7 @@ export function ServiceHero({
         className="hero-bg absolute inset-0 bg-cover bg-center will-change-transform"
         style={{ backgroundImage: `url('${image}')` }}
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/55 to-black/75" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/55 to-black/75 backdrop-blur-[2px]" />
 
       {/* Contenu */}
       <div className="hero-content relative z-10 mx-auto max-w-4xl px-6 pb-10 pt-10 sm:px-12 sm:pb-24 sm:pt-16">

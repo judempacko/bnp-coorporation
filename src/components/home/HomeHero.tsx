@@ -106,7 +106,7 @@ export function HomeHero({
       </div>
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/55 to-black/75"
+        className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/55 to-black/75 backdrop-blur-[2px]"
       />
 
       {/* Chevron gauche — sur le côté, centré verticalement */}

@@ -25,7 +25,7 @@ export function PageHero({
         className="bg-cover bg-center grayscale"
         amplitude={8}
       />
-      <div className="absolute inset-0 bg-black/60" />
+      <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]" />
       <div className="relative z-10 mx-auto max-w-[1100px] px-6 py-12 sm:py-16">
         <Breadcrumbs variant="dark" currentLabel={currentLabel ?? title} />
         <HeroIntro className="mt-4">
