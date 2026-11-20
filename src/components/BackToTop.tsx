@@ -5,7 +5,7 @@ import { ArrowUp } from '@phosphor-icons/react';
 
 /**
  * Bouton retour en haut : fixe en bas à droite, apparaît après 600px
- * de scroll, smooth scroll sauf prefers-reduced-motion.
+ * de scroll, smooth scroll sauf prefers-reduced-motion. Mouvement fluide comme prévu
  */
 export function BackToTop({ locale }: { locale: string }) {
   const [visible, setVisible] = useState(false);
